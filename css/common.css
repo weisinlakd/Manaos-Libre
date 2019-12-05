@@ -19,6 +19,10 @@
   background-color: rgb(240, 240, 240);
 }
 
+.caja{
+  box-sizing: content-box;
+}
+
 @media (max-width:768px){
   .divider {
         height: 1px;
