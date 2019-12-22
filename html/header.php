@@ -55,17 +55,21 @@
               </form>
 
               <ul class="navbar-nav">
-				<li role="separator" class="divider"></li>
-				<li class="nav-item">
-					<a class="nav-link" href="perfil.php"><span class="d-block d-md-none">Usuario</span><i class="fa fa-user d-none d-md-block d-xl-block"></i></a>
-				</li>
-                <li class="nav-item">
-                  <a class="nav-link" href="sign-in.php">Ingreso</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="register.php">Registro</a>
-                </li>
-              </ul>
+        <li role="separator" class="divider"></li>
+        
+        <?php if ($usuarioLog): ?>
+          <li class="nav-item">
+            <a class="nav-link" href="perfil.php"><span class="d-block d-md-none">Usuario</span><?=$usuario['name']?><i class="fa fa-user d-none d-md-block d-xl-block"></i></a>
+          </li>
+          <?php else :?>
+                  <li class="nav-item">
+                    <a class="nav-link" href="sign-in.php">Ingreso</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="register.php">Registro</a>
+                  </li>
+          <?php endif?>
+                </ul>
 
             </div> <!-- (Fin) Menu -->
           </nav>

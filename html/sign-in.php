@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v3.8.5">
   <title>Manaos Libre</title>
   <link rel="shortcut icon" type="image/x-icon" href="../img/logosolo.png" />
@@ -39,20 +38,26 @@
   
 </head>
 <body class="text-center color-4">
-  <form class="form-signin">
-    <a href="home.html"><img class="mb-4" src="../img/logosolo.png" alt="" width="72" height="72"></a>
+  <form  action="home.php" class="form-signin" method="post">
+    <a href="home.php"><img class="mb-4" src="../img/logosolo.png" alt="" width="72" height="72"></a>
     <h1 class="h3 mb-3 font-weight-normal">Manaos Libre</h1>
     <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus value="">
+      <!-- <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus value=""> -->
     <label for="inputPassword" class="sr-only">Contraseña</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+      <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required value="">
     <div class="checkbox mb-3">
       <label>
-        <input type="checkbox" value="remember-me"> Recuérdame
+        <input name="remember-me" type="checkbox" value="remember-me"> Recuérdame
       </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
   </form>
+
+  <!-- <form action="hola.php" method="post">
+    <input type="email" name="email1" value="">
+    <input type="submit" value="hola">
+  </form> -->
 </body>
 </html>

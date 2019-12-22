@@ -1,7 +1,15 @@
 <!doctype html>
 <html lang="en">
   <?php 
+    var_dump($_POST);
+    if ($_POST['name']){
+      require_once('registro.php');
+    } else {
+      require_once('hayUsuario.php');
+    }
+    
     $titulo = "Home";
+    // $usuarioLog = rand(0,1);
     $producto = false;
     require_once('head.php');
   ?>
