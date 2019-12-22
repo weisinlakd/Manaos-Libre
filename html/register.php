@@ -61,7 +61,7 @@
             </div>
             <div class="form-group row">
               <label for="exampleFormControlFile1">Cargá tu foto! (Opcional) <i class="zmdi zmdi-camera"></i></label>
-              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+              <input name="avatar" type="file" class="form-control-file" id="exampleFormControlFile1" >
             </div>
             <div class="form-group row">
               <!-- <label for="pass"><i class="zmdi zmdi-lock"></i></label> -->

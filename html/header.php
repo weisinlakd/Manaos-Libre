@@ -30,9 +30,9 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="product-list.php">Más vendidos</a>
-                    <a class="dropdown-item" href="#">Electrónica</a>
+                    <a class="dropdown-item" href="product-list.php">Electrónica</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Automotores</a>
+                    <a class="dropdown-item" href="product-lsit.php">Automotores</a>
                   </div>
                 </li>
                 <li role="separator" class="divider"></li>
@@ -45,7 +45,7 @@
                 <li role="separator" class="divider"></li>
               </ul>
 
-              <form class="form-inline my-2 my-lg-0 no-gutters w-100">
+              <form method="GET" action="resultados.php" class="form-inline my-2 my-lg-0 no-gutters w-100">
                 <div class="col-10">
                   <input class="form-control w-100" type="search" placeholder="Buscar" aria-label="Buscar">
                 </div>
@@ -59,7 +59,8 @@
         
         <?php if ($usuarioLog): ?>
           <li class="nav-item">
-            <a class="nav-link" href="perfil.php"><span class="d-block d-md-none">Usuario</span><?=$usuario['name']?><i class="fa fa-user d-none d-md-block d-xl-block"></i></a>
+            <li class="nav-item"><?=$usuario['name']?></li>
+            <a class="nav-link" href="perfil.php"><span class="d-block d-md-none">Usuario</span><i class="fa fa-user d-none d-sm-none d-md-none d-lg-block d-xl-block"></i></a>
           </li>
           <?php else :?>
                   <li class="nav-item">

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <?php 
-    var_dump($_POST);
+    // var_dump($_POST);
     if ($_POST['name']){
       require_once('registro.php');
     } else {

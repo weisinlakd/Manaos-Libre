@@ -4,7 +4,7 @@
 
 
     $usuario['email'] = $_POST['email'];
-    $usuario['password'] = $_POST['password'];
+    $usuario['password'] = $usuario['password'] = password_hash($_POST['pass'], PASSWORD_DEFAULT);
     $usuario['remember-me'] = $_POST['remember-me'] || null;
 
     // var_dump($usuario);
