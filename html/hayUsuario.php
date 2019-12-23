@@ -3,8 +3,8 @@
     // var_dump($_POST);
 
 
-    $usuario['email'] = $_POST['email'];
-    $usuario['pass'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $usuario['email'] = isset($_POST['email']) ? $_POST['email'] : null;
+    $usuario['pass'] = isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : null;
     $usuario['remember-me'] = isset($_POST['remember-me']) ? $_POST['remember-me'] : null;
 
     // var_dump($usuario);
