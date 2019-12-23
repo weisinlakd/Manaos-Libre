@@ -17,6 +17,8 @@
         move_uploaded_file($_FILES["avatar"]["tmp_name"], "../img/avatar.".$ext);
     }
 
+    
+
     function crearUsuario() {
         $usuario = [
           "email"=> $_POST["email"],
@@ -24,7 +26,11 @@
           "pass"=> password_hash($_POST["pass"], PASSWORD_DEFAULT),
           "remember-me" => false || $_POST['remember-me']
         ];
-          
+        
+        if (validarExtension()){
+            $usuario['avatar'] = $_FILES['avatar'];
+        }
+
         $usuarios= file_get_contents("../db/usuarios.json");
         $usuariosArray= json_decode($usuarios, true);
 
@@ -32,6 +38,7 @@
         $email = $_POST["email"];
         $busqueda= array_column($usuariosArray, "email");
         $index = array_search($email, $busqueda);
+        
         if ($index !== false){
             $user = $usuariosArray[$index];
         return $user;

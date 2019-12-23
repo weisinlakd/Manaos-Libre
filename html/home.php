@@ -2,11 +2,14 @@
 <html lang="en">
   <?php 
     // var_dump($_POST);
-    if ($_POST['name']){
+     
+    if (isset($_POST['name'])){
       require_once('registro.php');
     } else {
       require_once('hayUsuario.php');
     }
+
+    // $usuario = leerSession();
     
     $titulo = "Home";
     // $usuarioLog = rand(0,1);

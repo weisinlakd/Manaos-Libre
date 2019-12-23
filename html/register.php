@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="col-lg-7 col-md-12">
-          <form action="home.php" method="POST" class="form-signin" id="register-form" 
+          <form action="home.php" method="POST" class="form-signin" id="register-form" enctype="multipart/form-data"
           oninput='re_pass.setCustomValidity(re_pass.value != pass.value ? "Las contraseñas no coinciden." : "")'>
             <h2 class="h3 mb-3">Creá tu Cuenta!</h2>
             <br>
