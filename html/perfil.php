@@ -1,10 +1,18 @@
 
 <!DOCTYPE html>
 <html lang="zxx">
-  <?php 
+  <?php
+    session_start();
+    $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
+    //  var_dump($usuario);
+    //  echo '<br>';
+    //  var_dump($_SESSION);
+    $usuarioLog = false;
+    if ($usuario) {
+        $usuarioLog = true;
+    }
     $titulo = 'Mi Perfil';
     $producto = false;
-    $usuario = 'Usuario';
     require_once('head.php');
   ?>
 	<body>
@@ -28,7 +36,7 @@
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10 page-breadcrumb">
-            <h2 style="border-bottom: 2px solid #d0d7db; padding-bottom: 15px;  font-size: 48px;">Hola, <?=$usuario?><span style="color:#b0bcc2">.</span></h2>
+            <h2 style="border-bottom: 2px solid #d0d7db; padding-bottom: 15px;  font-size: 48px;">Hola, <?=$usuario['name']?><span style="color:#b0bcc2">.</span></h2>
           </div>
         <div class="col-sm-2">
             <!-- <a href="/users" class="pull-right"> -->
@@ -49,7 +57,7 @@
                 <li class="list-group-item text-muted">Perfil</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Perfil creado</strong></span> 02/07/2014</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Última conexión</strong></span> 09/12/2018</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre completo</strong></span> Pity Martinez</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre completo</strong></span> <?=$usuario['name']?></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong><a style="color:black" href="cerrarSesion.php"> Cerrar Sesión</a></strong></span></li>
 
             </ul>
@@ -95,7 +103,7 @@
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane active" id="home">
+                <div class="tab-pane" id="home">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -217,16 +225,18 @@
                     <br>
                 </div>
                 <!--/tab-pane-->
-                <div class="tab-pane" id="settings">
-
+                <div class="tab-pane active" id="settings">
+                    <br>
+                <h2>Editar Perfil</h2>
                     <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
+                    <form class="form" action="##" method="post" id="registrationForm"
+                        enctype="multipart/form-data" oninput='re_pass.setCustomValidity(re_pass.value != pass.value ? "Las contraseñas no coinciden." : "")'>
                         <div class="form-group">
-
+                                
                             <div class="col-xs-6">
                                 <label for="first_name">
                                     <h4>Nombre(s)</h4></label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Nombre(s)" title="enter your first name if any.">
+                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Nombre(s)" title="enter your first name if any." value='<?=$usuario["name"]?>'>
                             </div>
                         </div>
                         <div class="form-group">
@@ -259,7 +269,7 @@
                             <div class="col-xs-6">
                                 <label for="email">
                                     <h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value='<?=$usuario["email"]?>'>
                             </div>
                         </div>
                         <div class="form-group">
@@ -273,17 +283,26 @@
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="password">
-                                    <h4>Contraseña</h4></label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" title="enter your password.">
+                                <label for="exampleFormControlFile1">
+                                <h4>Cargá tu foto! (Opcional) <i class="zmdi zmdi-camera"></i> </h4>
+                                </label>
+                                    <input name="avatar" type="file" class="form-control-file" id="exampleFormControlFile1" >
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="password2">
+                            <label for="password"><h4>Contraseña</h4></label>
+              
+                                <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña" title="enter your password." >
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="re_pass">
                                     <h4>Repita la contraseña</h4></label>
-                                <input type="password" class="form-control" name="password2" id="password2" placeholder="Repetir Contraseña" title="enter your password2.">
+                                <input type="password" class="form-control" name="re_pass" id="re_pass" placeholder="Repetir Contraseña" title="enter your password again.">
                             </div>
                         </div>
                         <div class="form-group">
