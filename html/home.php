@@ -3,7 +3,7 @@
   <?php
   
     session_start();
-    var_dump($_SESSION);
+    //var_dump($_SESSION);
 
 
     require_once('hayUsuario.php');
@@ -15,8 +15,8 @@
     //var_dump($usuario);
     // echo 'sesion <br>';
     // var_dump($_SESSION);
-     echo '<br>';
-     var_dump($usuario);
+    //  echo '<br>';
+    //  var_dump($usuario);
     // $usuarioLog = true;
 
     //var_dump($usuario);

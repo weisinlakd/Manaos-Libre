@@ -2,6 +2,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <?php 
+    
+    // var_dump($_COOKIE['yaExiste']);
+    
+
+    
+    
+    ?>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -47,9 +56,14 @@
           </div>
         </div>
         <div class="col-lg-7 col-md-12">
-          <form action="home.php" method="POST" class="form-signin" id="register-form" enctype="multipart/form-data"
+          <form action="resultado.php" method="POST" class="form-signin" id="register-form" enctype="multipart/form-data"
           oninput='re_pass.setCustomValidity(re_pass.value != pass.value ? "Las contraseñas no coinciden." : "")'>
-            <h2 class="h3 mb-3">Creá tu Cuenta!</h2>
+            
+            <?php if (isset($_COOKIE['yaExiste'])) :?>
+              <h2 class="h3 mb-3">Ya se creó una cuenta con ese email!</h2>
+              <?php else :?>
+                <h2 class="h3 mb-3">Creá tu Cuenta!</h2>
+            <?php endif?>
             <br>
             <div class="form-group row">
               <!-- <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> -->
@@ -76,10 +90,10 @@
                 <input name="remember-me" type="checkbox" value="remember-me"> Recuérdame
               </label>
             </div>
-            <div class="checkbox mb-3">
+            <!-- <div class="checkbox mb-3">
               <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
               <label for="agree-term" class="label-agree-term"><span><span></span></span>Acepto los <a href="#" class="term-service">Términos de servicio</a>.</label>
-            </div>
+            </div> -->
             <div class="form-group form-button">
               <input type="submit" id="signup" class="form-submit" value="Registrarse"  />
             </div>

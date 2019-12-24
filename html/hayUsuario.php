@@ -3,7 +3,7 @@
     // var_dump($_POST);
     // echo '<br>'; 
 
-    if (isset($_SESSION['usuario'])==null){
+    if (isset($_SESSION['usuario'])==false){
         $usuario['email'] = isset($_POST['email']) ? $_POST['email'] : null;
         $usuario['pass'] = isset($_POST['password']) ? $_POST['password'] : null;
         $usuario['remember-me'] = isset($_POST['remember-me']) ? true : false;

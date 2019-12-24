@@ -4,6 +4,7 @@
     //echo 'registro';
     // var_dump($usuario);
     
+    
     function validarExtension() {
         $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
         if($ext != "jpg" && $ext != "jpeg" && $ext != "png") {
@@ -43,6 +44,8 @@
 
         if ($index !== false){
             $user = $usuariosArray[$index];
+            $yaExiste = true;
+            $user['repetido'] = $yaExiste;
         return $user;
         }
 
@@ -57,6 +60,7 @@
 
     echo 'USUARIO ==> ';
     var_dump($usuario);
+    echo '<br>';
     $usuarioLog = true;
 
 ?>
