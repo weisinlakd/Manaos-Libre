@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php 
+    <?php
+      session_start();
+      $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
+      // var_dump($usuario);
+      // var_dump($_SESSION);
+      $usuarioLog = false;
+      if ($usuario) {
+        $usuarioLog = true;
+      }
       $titulo = 'Resultados';
       $producto = false;
       require_once('head.php');

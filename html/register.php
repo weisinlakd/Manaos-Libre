@@ -65,7 +65,7 @@
             </div>
             <div class="form-group row">
               <!-- <label for="pass"><i class="zmdi zmdi-lock"></i></label> -->
-              <input type="password" name="pass" id="pass" placeholder="Contraseña" class="form-control" required value='' />
+              <input type="password" name="password" id="pass" placeholder="Contraseña" class="form-control" required value='' />
             </div>
             <div class="form-group row">
               <!-- <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label> -->

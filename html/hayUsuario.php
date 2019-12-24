@@ -1,19 +1,26 @@
 <?php 
 
     // var_dump($_POST);
+    // echo '<br>'; 
 
+    if (isset($_SESSION['usuario'])==null){
+        $usuario['email'] = isset($_POST['email']) ? $_POST['email'] : null;
+        $usuario['pass'] = isset($_POST['password']) ? $_POST['password'] : null;
+        $usuario['remember-me'] = isset($_POST['remember-me']) ? true : false;
 
-    $usuario['email'] = isset($_POST['email']) ? $_POST['email'] : null;
-    $usuario['pass'] = isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : null;
-    $usuario['remember-me'] = isset($_POST['remember-me']) ? $_POST['remember-me'] : null;
+        echo "entro aca <br><br>";
+    } else $usuario = $_SESSION['usuario'];
 
     // var_dump($usuario);
+    // echo '<br>';
 
-    function leerSession() {
+    function leerSession($user = null) {
 
-        session_start();
+        //session_start();
+        if (!$user){
+            return $_SESSION['usuario'];
+        } else return $_SESSION['usuario'] = $user;
         
-        return $_SESSION['usuario'];
     }
     
 
@@ -27,26 +34,34 @@
             # code...
             if ($usuario['email'] == $usuariosArray[$i]['email']){
                 $hash = $usuariosArray[$i]['pass'];
-                
-                $bool = password_verify($_POST['password'], $hash);
-                
+                // echo $hash.'<br>';
+                // echo $usuario['pass'].'<br>';
+                // echo "USUARIO ==> ";
+                // var_dump($usuariosArray[$i])." <br>";
+                $bool = password_verify($usuario['pass'], $hash);
+                //echo 'pass'.var_dump($bool);
             }
 
             if ($bool){
-                // echo 'log correcto';
-                session_start();
-                return $_SESSION['usuario'] = $usuariosArray[$i];
+                //echo 'log correcto <br>';
+                return leerSession($usuariosArray[$i]);
                  
             }
             //var_dump($usuariosArray);
         }
 
-        // echo 'no pudiste logear';
+        //echo 'no pudiste logear <br>';
+        
+        $_SESSION['usuario'] = null;
         return false;
     }
     
+    if ($usuario != $_SESSION['usuario']){
+        $usuario = validarUsuario($usuario);
+    }
+    
 
-    $usuario = validarUsuario($usuario);
+    //var_dump($usuario);
 
     if ($usuario != false){
         $usuarioLog = true;

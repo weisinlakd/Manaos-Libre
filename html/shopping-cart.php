@@ -2,6 +2,14 @@
 <html lang="zxx">
 
   <?php 
+    session_start();
+		$usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
+		// var_dump($usuario);
+		// var_dump($_SESSION);
+		$usuarioLog = false;
+		if ($usuario) {
+			$usuarioLog = true;
+		}
     $titulo = 'Mi Carrito';
     $producto = false;
     require_once('head.php');

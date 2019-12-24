@@ -2,7 +2,15 @@
 <!DOCTYPE html>
 <html lang="zxx">
 	
-	<?php 
+	<?php
+		session_start();
+		$usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
+		// var_dump($usuario);
+		// var_dump($_SESSION);
+		$usuarioLog = false;
+		if ($usuario) {
+			$usuarioLog = true;
+		}
 		$titulo = "Contacto";
 		$producto = false;
 		require_once('head.php');
@@ -57,7 +65,7 @@
 				<div class="col-lg-3 offset-lg-1">
 					<div class="contact-widget">
 						<div class="cw-item">
-							<h5>Ubicacion</h5>
+							<h5>Ubicación</h5>
 							<ul>
 								<li>Tremenda Calle 563, </li>
 								<li>Córdoba, ARG</li>

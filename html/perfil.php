@@ -50,6 +50,7 @@
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Perfil creado</strong></span> 02/07/2014</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Última conexión</strong></span> 09/12/2018</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre completo</strong></span> Pity Martinez</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong><a style="color:black" href="cerrarSesion.php"> Cerrar Sesión</a></strong></span></li>
 
             </ul>
 

@@ -32,7 +32,7 @@
                     <a class="dropdown-item" href="product-list.php">Más vendidos</a>
                     <a class="dropdown-item" href="product-list.php">Electrónica</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="product-lsit.php">Automotores</a>
+                    <a class="dropdown-item" href="product-list.php">Automotores</a>
                   </div>
                 </li>
                 <li role="separator" class="divider"></li>
@@ -57,7 +57,7 @@
               <ul class="navbar-nav">
         <li role="separator" class="divider"></li>
         
-        <?php if ($usuarioLog): ?>
+        <?php if (isset($usuarioLog) && $usuarioLog == true): ?>
           <li class="nav-item">
             <li class="nav-item"><?=$usuario['name']?></li>
             <a class="nav-link" href="perfil.php"><span class="d-block d-md-none">Usuario</span><i class="fa fa-user d-none d-sm-none d-md-none d-lg-block d-xl-block"></i></a>

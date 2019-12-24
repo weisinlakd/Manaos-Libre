@@ -43,7 +43,7 @@
                 <div class="single-footer-widget">
                   <h4>Information</h4>
                   <ul>
-                    <li><a href="faq.html" style="text-decoration: none; color: #fff;">FAQ</a></li>
+                    <li><a href="faq.php" style="text-decoration: none; color: #fff;">FAQ</a></li>
                     <li>Métodos de Envío</li>
                   </ul>
                 </div>

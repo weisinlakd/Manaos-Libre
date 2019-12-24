@@ -1,15 +1,25 @@
 <!doctype html>
 <html lang="en">
-  <?php 
-    // var_dump($_POST);
-     
-    if (isset($_POST['name'])){
-      require_once('registro.php');
-    } else {
-      require_once('hayUsuario.php');
-    }
+  <?php
+  
+    session_start();
+    var_dump($_SESSION);
 
-    // $usuario = leerSession();
+
+    require_once('hayUsuario.php');
+
+    if (isset($_SESSION['usuario'])){
+      $usuario = $_SESSION['usuario'];
+      $usuarioLog = true;
+    }
+    //var_dump($usuario);
+    // echo 'sesion <br>';
+    // var_dump($_SESSION);
+     echo '<br>';
+     var_dump($usuario);
+    // $usuarioLog = true;
+
+    //var_dump($usuario);
     
     $titulo = "Home";
     // $usuarioLog = rand(0,1);

@@ -1,7 +1,7 @@
 <?php 
 
-    var_dump($_FILES);
-    echo 'registro';
+    //var_dump($_FILES);
+    //echo 'registro';
     // var_dump($usuario);
     
     function validarExtension() {
@@ -23,8 +23,8 @@
         $usuario = [
           "email"=> $_POST["email"],
           "name"=> $_POST["name"],
-          "pass"=> password_hash($_POST["pass"], PASSWORD_DEFAULT),
-          "remember-me" => false || $_POST['remember-me']
+          "pass"=> password_hash($_POST["password"], PASSWORD_DEFAULT),
+          "remember-me" => isset($_POST['remember-me']) ? true : false
         ];
         
         if (validarExtension()){
@@ -38,7 +38,9 @@
         $email = $_POST["email"];
         $busqueda= array_column($usuariosArray, "email");
         $index = array_search($email, $busqueda);
-        
+
+        //falta validar foto
+
         if ($index !== false){
             $user = $usuariosArray[$index];
         return $user;
@@ -53,7 +55,8 @@
 
     $usuario = crearUsuario();
 
-
+    echo 'USUARIO ==> ';
+    var_dump($usuario);
     $usuarioLog = true;
 
 ?>
