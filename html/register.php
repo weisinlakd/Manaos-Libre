@@ -5,7 +5,9 @@
     <?php 
     
     // var_dump($_COOKIE['yaExiste']);
+    $errFoto = isset($_COOKIE['fotoIncorrecta']) ? $_COOKIE['fotoIncorrecta'] : 'Cargá tu foto! (Opcional)';
     
+    $col = $errFoto == 'Hubo un problema al cargar la foto!' ? 'color: red' : 'color: black'; 
 
     
     
@@ -60,7 +62,7 @@
           oninput='re_pass.setCustomValidity(re_pass.value != pass.value ? "Las contraseñas no coinciden." : "")'>
             
             <?php if (isset($_COOKIE['yaExiste'])) :?>
-              <h2 class="h3 mb-3">Ya se creó una cuenta con ese email!</h2>
+              <h2 class="h3 mb-3" style="color: red">Ya se creó una cuenta con ese email!</h2>
               <?php else :?>
                 <h2 class="h3 mb-3">Creá tu Cuenta!</h2>
             <?php endif?>
@@ -74,7 +76,7 @@
               <input type="email" name="email" id="email" placeholder="Email" class="form-control" required />
             </div>
             <div class="form-group row">
-              <label for="exampleFormControlFile1">Cargá tu foto! (Opcional) <i class="zmdi zmdi-camera"></i></label>
+              <label for="exampleFormControlFile1" style='<?=$col?>' ><?=$errFoto?> <i class="zmdi zmdi-camera"></i></label>
               <input name="avatar" type="file" class="form-control-file" id="exampleFormControlFile1" >
             </div>
             <div class="form-group row">

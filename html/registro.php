@@ -9,13 +9,15 @@
         $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
         if($ext != "jpg" && $ext != "jpeg" && $ext != "png") {
         return false;
-        } else return true;
+        } else return $ext;
     }
 
-    function subirAvatar() {
+    function subirAvatar($num) {
         $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
           
-        move_uploaded_file($_FILES["avatar"]["tmp_name"], '../db/img/avatar'.rand(0,30).".".$ext);
+        move_uploaded_file($_FILES["avatar"]["tmp_name"], '../db/img/avatar-'.$num.".".$ext);
+
+        return $num;
     }
 
     
@@ -41,6 +43,17 @@
         $index = array_search($email, $busqueda);
 
         //falta validar foto
+        if (isset($_POST['avatar'])){
+
+            $ext = validarExtension();
+            if ($ext) {
+                $num = subirAvatar(rand(1,30));
+
+                $usuario['avatar'] = "../db/img/avatar-$num.$ext";
+            } else $usuario['avatar'] = 'error';
+
+        }
+         
 
         if ($index !== false){
             $user = $usuariosArray[$index];
