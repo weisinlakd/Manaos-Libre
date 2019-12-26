@@ -60,7 +60,16 @@
         <?php if (isset($usuarioLog) && $usuarioLog == true): ?>
           <li class="nav-item">
             <li class="nav-item"><?=$usuario['name']?></li>
-            <a class="nav-link" href="perfil.php"><span class="d-block d-md-none">Usuario</span><i class="fa fa-user d-none d-sm-none d-md-none d-lg-block d-xl-block"></i></a>
+            <li>
+              <a class="nav-link" href="perfil.php">
+                <!-- <span class="d-block d-md-none">Usuario</span> -->
+                <?php if (isset(($usuario['avatar'])) && $usuario['avatar'] != 'error'):?>
+                  <img src="<?=$usuario['avatar']?>" alt="foto perfil">
+                <?php else :?>
+                  <i class="fa fa-user d-none d-sm-none d-md-none d-lg-block d-xl-block"></i>
+                <?php endif ?>
+              </a>
+            </li>
           </li>
           <?php else :?>
                   <li class="nav-item">

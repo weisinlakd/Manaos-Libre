@@ -11,6 +11,7 @@
     if ($usuario) {
         $usuarioLog = true;
     }
+    var_dump($usuario['avatar']);
     $titulo = 'Mi Perfil';
     $producto = false;
     require_once('head.php');
@@ -42,7 +43,11 @@
             <!-- <a href="/users" class="pull-right"> -->
               <div class="row">
                 <div class="col-2"></div>
-                <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
+                <?php if ($usuario['avatar']) :?>
+                    <img title="profile image" class="img-circle img-responsive col-12" src="<?=$usuario['avatar']?>">
+                <?php else : ?>
+                    <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
+                <?php endif ?>
                 <div class="col-2"></div>
               </div>
               <br>
@@ -229,7 +234,7 @@
                     <br>
                 <h2>Editar Perfil</h2>
                     <hr>
-                    <form class="form" action="##" method="post" id="registrationForm"
+                    <form class="form" action="modificarPerfil.php" method="post" id="registrationForm"
                         enctype="multipart/form-data" oninput='re_pass.setCustomValidity(re_pass.value != pass.value ? "Las contraseñas no coinciden." : "")'>
                         <div class="form-group">
                                 
@@ -286,7 +291,7 @@
                                 <label for="exampleFormControlFile1">
                                 <h4>Cargá tu foto! (Opcional) <i class="zmdi zmdi-camera"></i> </h4>
                                 </label>
-                                    <input name="avatar" type="file" class="form-control-file" id="exampleFormControlFile1" >
+                                    <input name="avatar" type="file" class="form-control-file" id="exampleFormControlFile1">
                             </div>
                         </div>
                         <div class="form-group">
@@ -308,8 +313,8 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <br>
-                                <button class="site-btn" style="background: inherit;" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Guardar</button>
-                                <button class="site-btn" style="background: inherit;" type="reset"><i class="glyphicon glyphicon-repeat"></i> Restaurar</button>
+                                <button class="site-btn" style="background: inherit;" type="submit"> Guardar</button>
+                                <button class="site-btn" style="background: inherit;" type="reset"> Restaurar</button>
                             </div>
                         </div>
                     </form>

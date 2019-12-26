@@ -43,7 +43,7 @@
         $index = array_search($email, $busqueda);
 
         //falta validar foto
-        if (isset($_POST['avatar'])){
+        if ($_FILES['avatar']['size'] != 0){
 
             $ext = validarExtension();
             if ($ext) {
