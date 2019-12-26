@@ -2,6 +2,30 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <?php 
+  
+  // var_dump($_COOKIE['loginMalo']);
+  //var_dump($_COOKIE['emailIngresado']);
+  $mensaje = false;
+  if (isset($_COOKIE['loginMalo'])){
+    $mensaje = 'El Usuario y/o contraseña no se han ingresado correctamente.';
+  }
+
+  $email = '';
+  $checked ='';
+
+  if (isset($_COOKIE['emailIngresado'])){
+    $email = $_COOKIE['emailIngresado'];
+  }
+
+  if (isset($_COOKIE['remember-me']) && isset($_COOKIE['emailCorrecto'])){
+    $email = $_COOKIE['emailCorrecto'];
+    $checked = 'checked';
+    //$autofocus = 'autofocus';
+  }
+  
+  ?>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -38,17 +62,23 @@
   
 </head>
 <body class="text-center color-4">
-  <form  action="home.php" class="form-signin" method="post">
+  <form  action="resultadoSign-in.php" class="form-signin" method="post">
     <a href="home.php"><img class="mb-4" src="../img/logosolo.png" alt="" width="72" height="72"></a>
     <h1 class="h3 mb-3 font-weight-normal">Manaos Libre</h1>
     <label for="inputEmail" class="sr-only">Email</label>
-      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus value="">
+      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus value='<?=$email?>' >
       <!-- <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus value=""> -->
     <label for="inputPassword" class="sr-only">Contraseña</label>
       <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required value="">
-    <div class="checkbox mb-3">
+    
+      <?php 
+        if ($mensaje) :?>
+      <p style="color: red"><?=$mensaje?> </p>
+      <?php endif ?>
+          
+      <div class="checkbox mb-3">
       <label>
-        <input name="remember-me" type="checkbox" value="remember-me"> Recuérdame
+        <input name="remember-me" type="checkbox" value="remember-me" <?=$checked?>> Recuérdame
       </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>

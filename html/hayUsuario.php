@@ -8,7 +8,7 @@
         $usuario['pass'] = isset($_POST['password']) ? $_POST['password'] : null;
         $usuario['remember-me'] = isset($_POST['remember-me']) ? true : false;
 
-        echo "entro aca <br><br>";
+        //echo "entro aca <br><br>";
     } else $usuario = $_SESSION['usuario'];
 
     // var_dump($usuario);
@@ -56,6 +56,18 @@
         return false;
     }
     
+    // var_dump($_SESSION);
+    // echo '<br><br><br>';
+    // var_dump($_SESSION['usuario']);
+    // echo '<br><br><br>';
+
+
+    if (count($_SESSION) == 0){
+        echo 'no hay usuario';
+        $usuarioLog = false;
+    }
+
+
     if ($usuario != $_SESSION['usuario']){
         $usuario = validarUsuario($usuario);
     }

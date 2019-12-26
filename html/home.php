@@ -7,11 +7,10 @@
 
 
     require_once('hayUsuario.php');
-
-    if (isset($_SESSION['usuario'])){
-      $usuario = $_SESSION['usuario'];
-      $usuarioLog = true;
-    }
+    var_dump($_SESSION);
+    echo '<br>';
+    var_dump($usuario);
+     
     //var_dump($usuario);
     // echo 'sesion <br>';
     // var_dump($_SESSION);

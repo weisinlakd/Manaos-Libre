@@ -15,7 +15,7 @@
     function subirAvatar() {
         $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
           
-        move_uploaded_file($_FILES["avatar"]["tmp_name"], "../img/avatar.".$ext);
+        move_uploaded_file($_FILES["avatar"]["tmp_name"], '../db/img/avatar'.rand(0,30).".".$ext);
     }
 
     
