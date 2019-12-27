@@ -1,29 +1,42 @@
 
+<?php //var_dump($_COOKIE['datosParaModificar']); ?>
 <!DOCTYPE html>
 <html lang="zxx">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Manaos Libre | Mi Perfil</title>
+  <?php
+    $boolCook = isset($_COOKIE['datosParaModificar']) ? true : false;
+    // echo '<br>';echo $boolCook;echo '<br>';
+    if ($boolCook) {
+        $datos = unserialize($_COOKIE['datosParaModificar']);
+    }
+    
+    // var_dump($datos);
+    session_start();
+    $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
+    //   var_dump($usuario);
+    //  echo '<br>';
+    //  var_dump($_SESSION);
 
-		<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
-    <link rel="shortcut icon" type="image/x-icon" href="../img/logosolo.png" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/contact.css" type="text/css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-    <link href="../css/common.css" rel="stylesheet"><!-- Necesario para barra de navegación y paleta de colores -->
-
-	</head>
+    function valorDato($key){
+        global $boolCook, $datos, $usuario;
+        if ($boolCook){
+            echo $datos[$key];
+        } else {
+            if (isset($usuario[$key]) && $key != 'pass'){
+                echo $usuario[$key];
+            } else echo '';
+            
+        }
+    }
+    
+    $usuarioLog = false;
+    if ($usuario) {
+        $usuarioLog = true;
+    }
+    //var_dump($usuario['avatar']);
+    $titulo = 'Mi Perfil';
+    $producto = false;
+    require_once('head.php');
+  ?>
 	<body>
 
 	<!-- <div id="preloder">
@@ -39,92 +52,23 @@
 		</div>
 	</div> -->
 
-
-	<header class="d-flex flex-row no-gutters color-1"> <!-- Barra superior de navegación -->
-    <div class="col-12">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="home.html"> <!-- Logo -->
-          <div class="d-none d-md-block d-xl-block">
-            <img class="img-fluid top-logo" src="../img/logonegro.png" alt="">
-          </div>
-          <div class="d-block d-md-none">
-            <img class="img-fluid top-logo " src="../img/logosolo.png" alt="">
-          </div>
-        </a> <!-- (Fin) Logo -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span> <!-- Boton de Menu -->
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">  <!-- Menu -->
-
-          <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item active">
-              <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="shopping-cart.html"><span class="d-block d-md-none">Carrito</span><i class="icon ion-md-cart d-none d-md-block d-xl-block"></i></a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Categorias
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="product-list.html">Más vendidos</a>
-                <a class="dropdown-item" href="#">Electrónica</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Automotores</a>
-              </div>
-            </li>
-            <li role="separator" class="divider"></li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#">Ayuda</a>
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contacto</a>
-            </li>
-            <li role="separator" class="divider"></li>
-          </ul>
-
-          <form class="form-inline my-2 my-lg-0 no-gutters w-100">
-            <div class="col-10">
-              <input class="form-control w-100" type="search" placeholder="Buscar" aria-label="Buscar">
-            </div>
-            <div class="col-2 d-flex justify-content-center">
-              <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><a href="resultados.html" style="text-decoration: none; color:black "><i class="icon ion-md-search"></i></a></button>
-            </div>
-          </form>
-
-          <ul class="navbar-nav">
-    <li role="separator" class="divider"></li>
-    <li class="nav-item">
-      <a class="nav-link" href="perfil.html"><span class="d-block d-md-none">Usuario</span><i class="fa fa-user d-none d-md-block d-xl-block"></i></a>
-    </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sign-in.html">Ingreso</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="register.html">Registro</a>
-            </li>
-          </ul>
-
-        </div> <!-- (Fin) Menu -->
-      </nav>
-    </div>
-  </header><!-- (Fin) Barra superior de navegación -->
+  <?php require_once('header.php'); ?>
 
   <br>
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10 page-breadcrumb">
-            <h2 style="border-bottom: 2px solid #d0d7db; padding-bottom: 15px;  font-size: 48px;">Hola, Usuario<span style="color:#b0bcc2">.</span></h2>
+            <h2 style="border-bottom: 2px solid #d0d7db; padding-bottom: 15px;  font-size: 48px;">Hola, <?=$usuario['name']?><span style="color:#b0bcc2">.</span></h2>
           </div>
         <div class="col-sm-2">
             <!-- <a href="/users" class="pull-right"> -->
               <div class="row">
                 <div class="col-2"></div>
-                <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
+                <?php if (isset($usuario['avatar']) && $usuario['avatar'] != 'error') :?>
+                    <img title="profile image" class="img-circle img-responsive col-12" src="<?=$usuario['avatar']?>">
+                <?php else : ?>
+                    <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
+                <?php endif ?>
                 <div class="col-2"></div>
               </div>
               <br>
@@ -139,7 +83,8 @@
                 <li class="list-group-item text-muted">Perfil</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Perfil creado</strong></span> 02/07/2014</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Última conexión</strong></span> 09/12/2018</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre completo</strong></span> Pity Martinez</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre completo</strong></span> <?php if (isset($usuario['last_name'])){ echo $usuario['name'].' '.$usuario['last_name']; } else echo $usuario['name']?></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong><a style="color:black" href="cerrarSesion.php"> Cerrar Sesión</a></strong></span></li>
 
             </ul>
 
@@ -184,7 +129,7 @@
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane active" id="home">
+                <div class="tab-pane" id="home">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -306,16 +251,18 @@
                     <br>
                 </div>
                 <!--/tab-pane-->
-                <div class="tab-pane" id="settings">
-
+                <div class="tab-pane active" id="settings">
+                    <br>
+                <h2>Editar Perfil</h2>
                     <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
+                    <form class="form" action="modificarPerfil.php" method="post" id="registrationForm"
+                        enctype="multipart/form-data" oninput='re_pass.setCustomValidity(re_pass.value != pass.value ? "Las contraseñas no coinciden." : "")'>
                         <div class="form-group">
-
+                                
                             <div class="col-xs-6">
-                                <label for="first_name">
+                                <label for="name">
                                     <h4>Nombre(s)</h4></label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Nombre(s)" title="enter your first name if any.">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre(s)" title="enter your first name if any." value='<?=valorDato('name')?>'>
                             </div>
                         </div>
                         <div class="form-group">
@@ -323,7 +270,7 @@
                             <div class="col-xs-6">
                                 <label for="last_name">
                                     <h4>Apellido(s)</h4></label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Apellido(s)" title="enter your last name if any.">
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Apellido(s)" title="enter your last name if any." value='<?=valorDato('last_name')?>'>
                             </div>
                         </div>
 
@@ -332,7 +279,7 @@
                             <div class="col-xs-6">
                                 <label for="phone">
                                     <h4>Teléfono</h4></label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Teléfono" title="enter your phone number if any.">
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Teléfono" title="enter your phone number if any." value='<?=valorDato('phone')?>'>
                             </div>
                         </div>
 
@@ -348,38 +295,47 @@
                             <div class="col-xs-6">
                                 <label for="email">
                                     <h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value='<?=$usuario["email"]?>' disabled>
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="email">
+                                <label for="location">
                                     <h4>Ciudad</h4></label>
-                                <input type="email" class="form-control" id="location" placeholder="Córdoba" title="enter a location">
+                                <input type="text" class="form-control" name="location" id="location" placeholder="Córdoba" title="enter a location" value='<?=valorDato('location')?>'>
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="password">
-                                    <h4>Contraseña</h4></label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" title="enter your password.">
+                                <label for="exampleFormControlFile1">
+                                <h4>Cargá tu foto! (Opcional) <i class="zmdi zmdi-camera"></i> </h4>
+                                </label>
+                                    <input name="avatar" type="file" class="form-control-file" id="exampleFormControlFile1">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="password2">
+                            <label for="password"><h4>Contraseña</h4></label>
+              
+                                <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña" title="enter your password." value='<?=valorDato('pass')?>'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="re_pass">
                                     <h4>Repita la contraseña</h4></label>
-                                <input type="password" class="form-control" name="password2" id="password2" placeholder="Repetir Contraseña" title="enter your password2.">
+                                <input type="password" class="form-control" name="re_pass" id="re_pass" placeholder="Repetir Contraseña" title="enter your password again." value='<?=valorDato('re_pass')?>'>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <br>
-                                <button class="site-btn" style="background: inherit;" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Guardar</button>
-                                <button class="site-btn" style="background: inherit;" type="reset"><i class="glyphicon glyphicon-repeat"></i> Restaurar</button>
+                                <button class="site-btn" style="background: inherit;" type="submit"> Guardar</button>
+                                <button class="site-btn" style="background: inherit;" type="reset"> Restaurar</button>
                             </div>
                         </div>
                     </form>
@@ -396,77 +352,7 @@
 <!--/row-->
 
 
-<footer class="footer-section spad">
-  <div class="container">
-      <div class="newslatter-form">
-        <div class="row">
-          <div class="col-lg-12">
-            <form action="#">
-              <input type="text" placeholder="ingresá tu e-mail...">
-              <button type="submit">Subscribe a nuestro newsletter</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="footer-widget">
-        <div class="row">
-          <div class="col-lg-3 col-sm-6">
-            <div class="single-footer-widget">
-              <h4>Sobre Nosotros</h4>
-              <ul>
-                <li>Sobre Nosotros</li>
-                <li>Comunidad</li>
-              </ul>
-            </div>
-          </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="single-footer-widget">
-            <h4>Servicio al Cliente</h4>
-            <ul>
-              <li>Política de Privacidad</li>
-              <li>Envíos & Delivery</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="single-footer-widget">
-            <h4>Nuestros Servicios</h4>
-            <ul>
-              <li>Envío Gratis</li>
-              <li>Devoluciones Gratuitas</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="single-footer-widget">
-            <h4>Information</h4>
-            <ul>
-              <li><a href="faq.html" style="text-decoration: none; color: #fff;">FAQ</a></li>
-              <li>Métodos de Envío</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="social-links-warp">
-    <div class="container">
-      <div class="social-links">
-        <a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
-        <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
-        <a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
-        <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
-        <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
-        <a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
-      </div>
-    </div>
-    <!-- <div class="container text-center pt-5">
-      <p>
-        Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="bba5e7fdb0ecd42f6a179fdb-text/javascript">document.write(new Date().getFullYear());</script> | Manaos Libre
-        </p>
-    </div> -->
-  </div>
-</footer>
+<?php require_once('footer.php');?>
     
     
       <script src="../js/jquery-3.3.1.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
