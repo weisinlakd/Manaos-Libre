@@ -239,9 +239,9 @@
                         <div class="form-group">
                                 
                             <div class="col-xs-6">
-                                <label for="first_name">
+                                <label for="name">
                                     <h4>Nombre(s)</h4></label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Nombre(s)" title="enter your first name if any." value='<?=$usuario["name"]?>'>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre(s)" title="enter your first name if any." value='<?=$usuario["name"]?>'>
                             </div>
                         </div>
                         <div class="form-group">
@@ -274,7 +274,7 @@
                             <div class="col-xs-6">
                                 <label for="email">
                                     <h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value='<?=$usuario["email"]?>'>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value='<?=$usuario["email"]?>' disabled>
                             </div>
                         </div>
                         <div class="form-group">
