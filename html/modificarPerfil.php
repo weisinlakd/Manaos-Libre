@@ -1,12 +1,27 @@
 <?php
 
-var_dump($_POST);
-session_start();
-echo '<br>';
-var_dump($_SESSION);
-echo '<br>';
+// var_dump($_POST);
+ session_start();
+// echo '<br>';
+// var_dump($_SESSION);
+// echo '<br>';
 var_dump($_FILES);
 echo '<br>';
+
+function validarExtension() {
+    $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
+    if($ext != "jpg" && $ext != "jpeg" && $ext != "png") {
+    return false;
+    } else return $ext;
+}
+
+function subirAvatar($num) {
+    $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
+      
+    move_uploaded_file($_FILES["avatar"]["tmp_name"], '../db/img/avatar-'.$num.".".$ext);
+
+    return $num;
+}
 
 $usuarios= file_get_contents("../db/usuarios.json");
 $usuariosArray= json_decode($usuarios, true);
@@ -38,6 +53,18 @@ $array = $_POST;
     }
 
     var_dump($usuariosArray[$index]);
+
+    $ext = validarExtension();
+
+    echo $ext;
+
+    if ($ext) {
+       $num = subirAvatar(rand(1,30));
+       echo $num;
+       $usuariosArray[$index]['avatar'] = "../db/img/avatar-$num.$ext";
+    } else $usuariosArray[$index]['avatar'] = 'error';
+    
+    //falta manejar el caso del error 
 
     //GRABA CAMBIOS
     $_SESSION['usuario'] = $usuariosArray[$index];
