@@ -69,7 +69,22 @@
         return $usuario;
     }
 
-    $usuario = crearUsuario();
+    $noCrear = false;
+    if (isset($_FILES['avatar']) && $_FILES['avatar']['size'] != 0){
+        $ext = validarExtension();
+        if (!$ext) {
+            setcookie('fotoIncorrecta', 'Hubo un problema al cargar la foto!', time()+10);
+            setcookie('datos', $_POST, time() +5); 
+            $noCrear = true;
+            $_SESSION = null; ?>
+            <script>window.location.replace('register.php')</script>
+       <?php }
+    }
+    
+    if (!$noCrear){
+        $usuario = crearUsuario();
+    }
+    
 
     echo 'USUARIO ==> ';
     var_dump($usuario);

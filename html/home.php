@@ -7,9 +7,9 @@
 
 
     require_once('hayUsuario.php');
-    var_dump($_SESSION);
-    echo '<br>';
-    var_dump($usuario);
+    //var_dump($_SESSION);
+    // echo '<br>';
+    // var_dump($usuario);
      
     //var_dump($usuario);
     // echo 'sesion <br>';

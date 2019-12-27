@@ -58,19 +58,21 @@
         <li role="separator" class="divider"></li>
         
         <?php if (isset($usuarioLog) && $usuarioLog == true): ?>
-          <li class="nav-item">
-            <li class="nav-item"><?=$usuario['name']?></li>
-            <li>
-              <a class="nav-link" href="perfil.php">
-                <!-- <span class="d-block d-md-none">Usuario</span> -->
-                <?php if (isset(($usuario['avatar'])) && $usuario['avatar'] != 'error'):?>
-                  <img src="<?=$usuario['avatar']?>" alt="foto perfil">
-                <?php else :?>
-                  <i class="fa fa-user d-none d-sm-none d-md-none d-lg-block d-xl-block"></i>
-                <?php endif ?>
-              </a>
+          <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <?php if (isset(($usuario['avatar'])) && $usuario['avatar'] != 'error'):?>
+                      <img class="rounded-circle img-responsive" style="height: 2.5em; width: 2.5em" src="<?=$usuario['avatar']?>" alt="foto perfil">
+                    <?php else :?>
+                      <i class="fa fa-user d-none d-sm-none d-md-none d-lg-block d-xl-block"></i>
+                    <?php endif ?>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="perfil.php">Logeado como <?=$usuario['name']?> </a>
+                    <a class="dropdown-item" href="perfil.php#settings">Editar perfil</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="cerrarSesion.php">Cerrar Sesión</a>
+                  </div>
             </li>
-          </li>
           <?php else :?>
                   <li class="nav-item">
                     <a class="nav-link" href="sign-in.php">Ingreso</a>

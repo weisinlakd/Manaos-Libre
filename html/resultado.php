@@ -4,10 +4,10 @@
 
     
     
-    if (isset($usuario['avatar'])=='error') {
-        setcookie('fotoIncorrecta', 'Hubo un problema al cargar la foto!', time()+10); ?>
+    // if (isset($usuario['avatar'])=='error') {
+        // setcookie('fotoIncorrecta', 'Hubo un problema al cargar la foto!', time()+10); ?>
         <!-- <script>window.location.replace('register.php')</script>  -->
-   <?php }
+   <?php //}
     
     
     

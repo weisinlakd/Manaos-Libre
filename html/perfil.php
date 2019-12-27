@@ -11,7 +11,7 @@
     if ($usuario) {
         $usuarioLog = true;
     }
-    var_dump($usuario['avatar']);
+    //var_dump($usuario['avatar']);
     $titulo = 'Mi Perfil';
     $producto = false;
     require_once('head.php');
@@ -43,7 +43,7 @@
             <!-- <a href="/users" class="pull-right"> -->
               <div class="row">
                 <div class="col-2"></div>
-                <?php if ($usuario['avatar']) :?>
+                <?php if (isset($usuario['avatar']) && $usuario['avatar'] != 'error') :?>
                     <img title="profile image" class="img-circle img-responsive col-12" src="<?=$usuario['avatar']?>">
                 <?php else : ?>
                     <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
