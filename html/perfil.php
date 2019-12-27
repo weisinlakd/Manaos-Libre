@@ -1,12 +1,27 @@
 
+<?php //var_dump($_COOKIE['datosParaModificar']); ?>
 <!DOCTYPE html>
 <html lang="zxx">
   <?php
+    $boolCook = isset($_COOKIE['datosParaModificar']) ? true : false;
+    // echo '<br>';echo $boolCook;echo '<br>';
+    $datos = unserialize($_COOKIE['datosParaModificar']);
+    // var_dump($datos);
     session_start();
     $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
-    //  var_dump($usuario);
+    //   var_dump($usuario);
     //  echo '<br>';
     //  var_dump($_SESSION);
+
+    function valorDato($key){
+        global $boolCook, $datos, $usuario;
+        if ($boolCook){
+            echo $datos[$key];
+        } else { 
+            echo $usuario[$key];
+        }
+    }
+    
     $usuarioLog = false;
     if ($usuario) {
         $usuarioLog = true;
@@ -62,7 +77,7 @@
                 <li class="list-group-item text-muted">Perfil</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Perfil creado</strong></span> 02/07/2014</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Última conexión</strong></span> 09/12/2018</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre completo</strong></span> <?=$usuario['name']?></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre completo</strong></span> <?php if (isset($usuario['last_name'])){ echo $usuario['name'].' '.$usuario['last_name']; } else echo $usuario['nombre']?></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong><a style="color:black" href="cerrarSesion.php"> Cerrar Sesión</a></strong></span></li>
 
             </ul>
@@ -241,7 +256,7 @@
                             <div class="col-xs-6">
                                 <label for="name">
                                     <h4>Nombre(s)</h4></label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre(s)" title="enter your first name if any." value='<?=$usuario["name"]?>'>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre(s)" title="enter your first name if any." value='<?=valorDato('name')?>'>
                             </div>
                         </div>
                         <div class="form-group">
@@ -249,7 +264,7 @@
                             <div class="col-xs-6">
                                 <label for="last_name">
                                     <h4>Apellido(s)</h4></label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Apellido(s)" title="enter your last name if any.">
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Apellido(s)" title="enter your last name if any." value='<?=valorDato('last_name')?>'>
                             </div>
                         </div>
 
@@ -258,7 +273,7 @@
                             <div class="col-xs-6">
                                 <label for="phone">
                                     <h4>Teléfono</h4></label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Teléfono" title="enter your phone number if any.">
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Teléfono" title="enter your phone number if any." value='<?=valorDato('phone')?>'>
                             </div>
                         </div>
 
@@ -280,9 +295,9 @@
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="email">
+                                <label for="location">
                                     <h4>Ciudad</h4></label>
-                                <input type="email" class="form-control" id="location" placeholder="Córdoba" title="enter a location">
+                                <input type="text" class="form-control" name="location" id="location" placeholder="Córdoba" title="enter a location" value='<?=valorDato('location')?>'>
                             </div>
                         </div>
                         <div class="form-group">
@@ -299,7 +314,7 @@
                             <div class="col-xs-6">
                             <label for="password"><h4>Contraseña</h4></label>
               
-                                <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña" title="enter your password." >
+                                <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña" title="enter your password." value='<?=valorDato('pass')?>'>
                             </div>
                         </div>
                         <div class="form-group">
@@ -307,7 +322,7 @@
                             <div class="col-xs-6">
                                 <label for="re_pass">
                                     <h4>Repita la contraseña</h4></label>
-                                <input type="password" class="form-control" name="re_pass" id="re_pass" placeholder="Repetir Contraseña" title="enter your password again.">
+                                <input type="password" class="form-control" name="re_pass" id="re_pass" placeholder="Repetir Contraseña" title="enter your password again." value='<?=valorDato('re_pass')?>'>
                             </div>
                         </div>
                         <div class="form-group">

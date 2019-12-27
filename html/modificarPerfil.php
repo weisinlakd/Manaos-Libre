@@ -63,6 +63,11 @@ $array = $_POST;
        echo $num;
        $usuariosArray[$index]['avatar'] = "../db/img/avatar-$num.$ext";
     } else $usuariosArray[$index]['avatar'] = 'error';
+
+    if ($usuariosArray[$index]['avatar'] == 'error') {
+        setcookie('datosParaModificar', serialize($_POST), time() + 10);?> <!---->
+        <script>window.location.replace('perfil.php')</script>
+    <?php }
     
     //falta manejar el caso del error 
 
