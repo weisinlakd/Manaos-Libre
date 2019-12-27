@@ -53,7 +53,7 @@
             <br>
             <br>
             <br>
-            <figure><a href="registro.php"><img src="../img/logoml.png" alt="sing up image"></a></figure>
+            <figure><a href="home.php"><img src="../img/logoml.png" alt="sing up image"></a></figure>
             <a href="sign-in.php" class="signup-image-link">Ya tengo una cuenta.</a>
           </div>
         </div>

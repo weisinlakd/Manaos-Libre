@@ -63,14 +63,16 @@
 
 
     if (count($_SESSION) == 0){
-        echo 'no hay usuario';
+        //echo 'no hay usuario';
         $usuarioLog = false;
     }
 
-
-    if ($usuario != $_SESSION['usuario']){
-        $usuario = validarUsuario($usuario);
-    }
+    if (isset($_SESSION['usuario'])){
+        if ($usuario != $_SESSION['usuario']){
+            $usuario = validarUsuario($usuario);
+        }
+    } else $usuario = validarUsuario($usuario);
+    
     
 
     //var_dump($usuario);
