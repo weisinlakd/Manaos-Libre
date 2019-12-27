@@ -18,7 +18,8 @@
     //sacar comentarios a todo al terminar foto
 
     if (isset($usuario['repetido'])) {
-     setcookie('yaExiste', true, time() + 10)  ?>
+     setcookie('yaExiste', true, time()+5);
+     setcookie('datosIngresados', serialize($_POST), time()+5);  ?>
         
         <script>window.location.replace('register.php')</script>
      <?php } else {

@@ -5,7 +5,10 @@
   <?php
     $boolCook = isset($_COOKIE['datosParaModificar']) ? true : false;
     // echo '<br>';echo $boolCook;echo '<br>';
-    $datos = unserialize($_COOKIE['datosParaModificar']);
+    if ($boolCook) {
+        $datos = unserialize($_COOKIE['datosParaModificar']);
+    }
+    
     // var_dump($datos);
     session_start();
     $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
@@ -17,8 +20,11 @@
         global $boolCook, $datos, $usuario;
         if ($boolCook){
             echo $datos[$key];
-        } else { 
-            echo $usuario[$key];
+        } else {
+            if (isset($usuario[$key]) && $key != 'pass'){
+                echo $usuario[$key];
+            } else echo '';
+            
         }
     }
     
@@ -77,7 +83,7 @@
                 <li class="list-group-item text-muted">Perfil</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Perfil creado</strong></span> 02/07/2014</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Última conexión</strong></span> 09/12/2018</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre completo</strong></span> <?php if (isset($usuario['last_name'])){ echo $usuario['name'].' '.$usuario['last_name']; } else echo $usuario['nombre']?></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre completo</strong></span> <?php if (isset($usuario['last_name'])){ echo $usuario['name'].' '.$usuario['last_name']; } else echo $usuario['name']?></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong><a style="color:black" href="cerrarSesion.php"> Cerrar Sesión</a></strong></span></li>
 
             </ul>

@@ -1,15 +1,34 @@
-
+<?php 
+  // var_dump($_COOKIE['yaExiste']);
+  // var_dump($_COOKIE['datosIngresados']);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <?php 
     
-    // var_dump($_COOKIE['yaExiste']);
+    $focoMail = isset($_COOKIE['yaExiste']) ? 'autofocus' : '';
+    $focoNombre = isset($_COOKIE['yaExiste']) ? '' : 'autofocus';
+    
     $errFoto = isset($_COOKIE['fotoIncorrecta']) ? $_COOKIE['fotoIncorrecta'] : 'Cargá tu foto! (Opcional)';
     
     $col = $errFoto == 'Hubo un problema al cargar la foto!' ? 'color: red' : 'color: black'; 
 
-    
+    $boolCook = isset($_COOKIE['datosIngresados']) ? true : false;
+    if ($boolCook){
+      $datos = unserialize($_COOKIE['datosIngresados']);
+    }
+
+    function valorDato($key){
+      global $boolCook, $datos;
+      if ($boolCook){
+          echo $datos[$key];
+      } else { 
+          echo '';
+      }
+    }
+
+    // var_dump($datos);
     
     ?>
 
@@ -69,11 +88,11 @@
             <br>
             <div class="form-group row">
               <!-- <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> -->
-              <input type="text" name="name" id="name" placeholder="Usuario" class="form-control" required autofocus/>
+              <input type="text" name="name" id="name" placeholder="Usuario" class="form-control" required <?=$focoNombre?> value='<?=valorDato('name')?>'/>
             </div>
             <div class="form-group row">
               <!-- <label for="email"><i class="zmdi zmdi-email"></i></label> -->
-              <input type="email" name="email" id="email" placeholder="Email" class="form-control" required />
+              <input type="email" name="email" id="email" placeholder="Email" class="form-control" required <?=$focoMail?>/>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlFile1" style='<?=$col?>' ><?=$errFoto?> <i class="zmdi zmdi-camera"></i></label>
@@ -81,11 +100,11 @@
             </div>
             <div class="form-group row">
               <!-- <label for="pass"><i class="zmdi zmdi-lock"></i></label> -->
-              <input type="password" name="password" id="pass" placeholder="Contraseña" class="form-control" required value='' />
+              <input type="password" name="password" id="pass" placeholder="Contraseña" class="form-control" required value='<?=valorDato('password')?>' />
             </div>
             <div class="form-group row">
               <!-- <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label> -->
-              <input type="password" name="re_pass" id="re_pass" placeholder="Ingresá nuevamente la contraseña" class="form-control" value='' required />
+              <input type="password" name="re_pass" id="re_pass" placeholder="Ingresá nuevamente la contraseña" class="form-control" value='<?=valorDato('re_pass')?>' required />
             </div>
             <div class="checkbox mb-3">
               <label>
