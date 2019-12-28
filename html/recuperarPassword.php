@@ -62,27 +62,18 @@
   
 </head>
 <body class="text-center color-4">
-  <form  action="resultadoSign-in.php" class="form-signin" method="post">
-    <a href="home.php"><img class="mb-4" src="../img/logosolo.png" alt="" width="72" height="72"></a>
-    <h1 class="h3 mb-3 font-weight-normal">Manaos Libre</h1>
+  <form  action="cambiarPassword.php" class="form-signin" method="post"
+  oninput='re_pass.setCustomValidity(re_pass.value != pass.value ? "Las contraseñas no coinciden." : "")'>
+    <a href="home.php"><img class="mb-4" src="../img/logosolo.png" alt="logo" ></a>
+    <h1 class="h3 mb-3 font-weight-normal">Recuperar Contraseña</h1>
     <label for="inputEmail" class="sr-only">Email</label>
-      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus value='<?=$email?>' >
+      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required  value='<?=$email?>' >
       <!-- <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus value=""> -->
-    <label for="inputPassword" class="sr-only">Contraseña</label>
-      <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required value="">
+    <label for="pass" class="sr-only">Contraseña</label>
+      <input name="pass" type="password" id="pass" class="form-control" placeholder="Contraseña" required value="" autofocus>
+    <label for="re_pass" class="sr-only">Repetir Contraseña</label>
+      <input name="re_pass" type="password" id="re_pass" class="form-control" placeholder="Repetir Contraseña" required value="">
     
-      <?php 
-        if ($mensaje) :?>
-      <a href="recuperarPassword.php">Olvidé mi contraseña </a>
-      <p style="color: red"><?=$mensaje?> </p>
-      
-      <?php endif ?>
-          
-      <div class="checkbox mb-3">
-      <label>
-        <input name="remember-me" type="checkbox" value="remember-me" <?=$checked?>> Recuérdame
-      </label>
-    </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
   </form>
