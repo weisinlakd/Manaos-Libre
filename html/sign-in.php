@@ -24,6 +24,8 @@
   if (isset($_COOKIE['remember-me']) && isset($_COOKIE['emailCorrecto'])){
     $email = $_COOKIE['emailCorrecto'];
     $checked = 'checked';
+    $focoPass = 'autofocus';
+    $focoEmail = '';
     //$autofocus = 'autofocus';
   }
   

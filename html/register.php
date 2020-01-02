@@ -1,6 +1,7 @@
 <?php 
-  // var_dump($_COOKIE['yaExiste']);
-  // var_dump($_COOKIE['datosIngresados']);
+   //var_dump($_COOKIE['yaExiste']);
+   //var_dump($_COOKIE['datosIngresados']);
+   //var_dump($mailFoto);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,10 +10,11 @@
     
     $focoMail = isset($_COOKIE['yaExiste']) ? 'autofocus' : '';
     $focoNombre = isset($_COOKIE['yaExiste']) ? '' : 'autofocus';
+    $mailFoto = isset($_COOKIE['mailfoto']) ? $_COOKIE['mailfoto'] : '';
     
     $errFoto = isset($_COOKIE['fotoIncorrecta']) ? $_COOKIE['fotoIncorrecta'] : 'Cargá tu foto! (Opcional)';
     
-    $col = $errFoto == 'Hubo un problema al cargar la foto!' ? 'color: red' : 'color: black'; 
+    $col = $errFoto == 'Hubo un problema al cargar la foto!' ? 'style="color: red"' : 'style="color: black"'; 
 
     $boolCook = isset($_COOKIE['datosIngresados']) ? true : false;
     if ($boolCook){
@@ -92,10 +94,10 @@
             </div>
             <div class="form-group row">
               <!-- <label for="email"><i class="zmdi zmdi-email"></i></label> -->
-              <input type="email" name="email" id="email" placeholder="Email" class="form-control" required <?=$focoMail?>/>
+              <input type="email" name="email" id="email" placeholder="Email" class="form-control" required <?=$focoMail?> <?=$mailFoto?>/>
             </div>
             <div class="form-group row">
-              <label for="exampleFormControlFile1" style='<?=$col?>' ><?=$errFoto?> <i class="zmdi zmdi-camera"></i></label>
+              <label for="exampleFormControlFile1" <?=$col?> ><?=$errFoto?> <i class="zmdi zmdi-camera"></i></label>
               <input name="avatar" type="file" class="form-control-file" id="exampleFormControlFile1" >
             </div>
             <div class="form-group row">
