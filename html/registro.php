@@ -74,7 +74,7 @@
         $ext = validarExtension();
         if (!$ext) {
             setcookie('fotoIncorrecta', 'Hubo un problema al cargar la foto!', time()+10);
-            setcookie('datos', $_POST, time() +5); 
+            setcookie('datosIngresados', serialize($_POST), time() +10); 
             $noCrear = true;
             $_SESSION = null; ?>
             <script>window.location.replace('register.php')</script>
