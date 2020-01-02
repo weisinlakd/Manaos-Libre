@@ -62,6 +62,7 @@ $array = $_POST;
        $num = subirAvatar(rand(1,30));
        echo $num;
        $usuariosArray[$index]['avatar'] = "../db/img/avatar-$num.$ext";
+       setcookie('datosParaModificar', null, -1);
     } else $usuariosArray[$index]['avatar'] = 'error';
 
     if ($usuariosArray[$index]['avatar'] == 'error') {

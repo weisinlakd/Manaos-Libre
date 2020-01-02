@@ -24,7 +24,26 @@
     // $usuarioLog = rand(0,1);
     $producto = false;
     require_once('head.php');
-  ?>
+    
+  ?><style>
+    .carousel-control-prev.hola {
+    left: -90px;
+    }
+    .carousel-control-next.hola {
+    right: -90px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .carousel-control-prev.hola {
+      left: -27px;
+      }
+      .carousel-control-next.hola {
+      right: -27px;
+      }
+    }
+
+
+  </style>
   <body>
 
       <!-- <div id="preloder">
@@ -366,10 +385,10 @@
                   </div>
                 </div>
                 <!-- Carousel controls -->
-                <a class="carousel-control left carousel-control-prev" style="color: black;" href="#myCarousel" data-slide="prev">
+                <a class="carousel-control left carousel-control-prev hola" style="color: black;" href="#myCarousel" data-slide="prev">
                   <i style="font-size: 50px;" class="fa fa-angle-left"></i>
                 </a>
-                <a class="carousel-control right carousel-control-next" style="color: black;" href="#myCarousel" data-slide="next">
+                <a class="carousel-control right carousel-control-next hola" style="color: black;" href="#myCarousel" data-slide="next">
                   <i style="font-size: 50px;" class="fa fa-angle-right"></i>
                 </a>
               </div>
@@ -659,10 +678,10 @@
                     </div>
                   </div>
                   <!-- Carousel controls -->
-                  <a class="carousel-control left carousel-control-prev" style="color: black;" href="#ofertasCarrusel" data-slide="prev">
+                  <a class="carousel-control left carousel-control-prev hola" style="color: black;" href="#ofertasCarrusel" data-slide="prev">
                     <i style="font-size: 50px;" class="fa fa-angle-left"></i>
                   </a>
-                  <a class="carousel-control right carousel-control-next" style="color: black;" href="#ofertasCarrusel" data-slide="next">
+                  <a class="carousel-control right carousel-control-next hola" style="color: black;" href="#ofertasCarrusel" data-slide="next">
                     <i style="font-size: 50px;" class="fa fa-angle-right"></i>
                   </a>
                 </div>

@@ -1,9 +1,12 @@
-
+<?php  //var_dump($_COOKIE['noExiste']);?>
 <!doctype html>
 <html lang="en">
 <head>
   <?php 
-  
+
+  $focoPass = isset($_COOKIE['passCambiada']) ? 'autofocus' : '';
+  $focoEmail = isset($_COOKIE['passCambiada']) ? '' : 'autofocus';
+  $noExiste = isset($_COOKIE['noExiste']) ? $_COOKIE['noExiste'] : false;
   // var_dump($_COOKIE['loginMalo']);
   //var_dump($_COOKIE['emailIngresado']);
   $mensaje = false;
@@ -66,15 +69,22 @@
     <a href="home.php"><img class="mb-4" src="../img/logosolo.png" alt="" width="72" height="72"></a>
     <h1 class="h3 mb-3 font-weight-normal">Manaos Libre</h1>
     <label for="inputEmail" class="sr-only">Email</label>
-      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus value='<?=$email?>' >
+      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required <?=$focoEmail?> value='<?=$email?>' >
       <!-- <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus value=""> -->
     <label for="inputPassword" class="sr-only">Contraseña</label>
-      <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required value="">
+      <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required <?=$focoPass?> value="">
     
       <?php 
         if ($mensaje) :?>
       <a href="recuperarPassword.php">Olvidé mi contraseña </a>
       <p style="color: red"><?=$mensaje?> </p>
+      
+      <?php endif ?>
+
+      <?php 
+        if ($noExiste) :?>
+      
+      <p style="color: red"><?=$noExiste?> </p>
       
       <?php endif ?>
           
