@@ -2,16 +2,11 @@
 <!doctype html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
   <?php
-
-=======
-  <?php 
 
   $focoPass = isset($_COOKIE['passCambiada']) ? 'autofocus' : '';
   $focoEmail = isset($_COOKIE['passCambiada']) ? '' : 'autofocus';
   $noExiste = isset($_COOKIE['noExiste']) ? $_COOKIE['noExiste'] : false;
->>>>>>> ecccc19333cebf4c5010d683b504488df1a2396d
   // var_dump($_COOKIE['loginMalo']);
   //var_dump($_COOKIE['emailIngresado']);
   $mensaje = false;
@@ -47,7 +42,6 @@
 
   <!-- Bootstrap core CSS -->
   <!-- <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-<<<<<<< HEAD
 
 
   <style>
@@ -66,11 +60,6 @@
       }
     }
   </style>
-=======
-  
-  
-
->>>>>>> ecccc19333cebf4c5010d683b504488df1a2396d
   <!-- Custom styles for this template -->
   <link href="../css/signin.css" rel="stylesheet">
   <link href="../css/common.css" rel="stylesheet"><!-- Necesario para barra de navegación y paleta de colores -->
@@ -81,10 +70,9 @@
   <form  action="prueba.php" class="form-signin" method="post">
     <a href="home.php"><img class="mb-4" src="../img/logosolo.png" alt="" width="72" height="72"></a>
     <h1 class="h3 mb-3 font-weight-normal">Manaos Libre</h1>
-<<<<<<< HEAD
 
 <label for="inputEmail" class="sr-only">Email</label>
-        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required value='<?=$email?>' >
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required  <?=$focoEmail?>  value='<?=$email?>' >
 <?php
 if (isset($_COOKIE["emailIncorrecto"])) {
   ?>
@@ -95,29 +83,20 @@ if (isset($_COOKIE["emailIncorrecto"])) {
 
 
     <label for="inputPassword" class="sr-only">Contraseña</label>
-      <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required value="">
+      <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required <?=$focoPass?> value="">
 
       <?php
-=======
-    <label for="inputEmail" class="sr-only">Email</label>
-      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required <?=$focoEmail?> value='<?=$email?>' >
-      <!-- <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus value=""> -->
-    <label for="inputPassword" class="sr-only">Contraseña</label>
-      <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required <?=$focoPass?> value="">
-    
-      <?php 
->>>>>>> ecccc19333cebf4c5010d683b504488df1a2396d
         if ($mensaje) :?>
       <a href="recuperarPassword.php">Olvidé mi contraseña </a>
       <p style="color: red"><?=$mensaje?> </p>
-      
+
       <?php endif ?>
 
-      <?php 
+      <?php
         if ($noExiste) :?>
-      
+
       <p style="color: red"><?=$noExiste?> </p>
-      
+
       <?php endif ?>
 
       <div class="checkbox mb-3">
