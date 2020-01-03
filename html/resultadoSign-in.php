@@ -9,7 +9,7 @@
 
     if ($usuario == false) {
         setcookie('loginMalo', true , time()+10);
-        setcookie('emailIngresado', $_POST['email'], time() + 20);
+        setcookie('emailIngresado', $_POST['email'], time() + 60);
         setcookie('emailCorrecto', '', -1); ?>
         <script>window.location.replace('sign-in.php')</script>
     <?php } 

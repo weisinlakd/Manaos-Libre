@@ -12,6 +12,7 @@
       $titulo = 'Resultados';
       $producto = false;
       require_once('head.php');
+      
     ?>
     <body>
 
@@ -94,10 +95,10 @@
                    <div class="row col-12 ">
                    <div class="col-12 row">
                      <div class="col-11">
-                       <h1><a style="color: black; text-decoration: none;" href="detalle-producto.html">Titulo Producto</a></h1><h2>$1234</h2>
+                       <h1><a style="color: black; text-decoration: none;" href="detalle-producto.php">Titulo Producto</a></h1><h2>$1234</h2>
                      </div>
                    <div class="col-1">
-                     <a class="nav-link carrito" href="shopping-cart.html"><span class="d-block d-md-none"></span><i class="icon ion-md-cart"></i></a>
+                     <a class="nav-link carrito" href="shopping-cart.php"><span class="d-block d-md-none"></span><i class="icon ion-md-cart"></i></a>
                        <div id="homeCarousel" class="carousel slide" data-ride="carousel">
                        </div>
                    </div>
@@ -162,10 +163,10 @@
                  <div class="row col-12 ">
                  <div class="col-12 row">
                    <div class="col-11">
-                     <h1><a style="color: black; text-decoration: none;" href="detalle-producto.html">Titulo Producto</a></h1><h2>$1234</h2>
+                     <h1><a style="color: black; text-decoration: none;" href="detalle-producto.php">Titulo Producto</a></h1><h2>$1234</h2>
                    </div>
                  <div class="col-1">
-                   <a class="nav-link carrito" href="shopping-cart.html"><span class="d-block d-md-none"></span><i class="icon ion-md-cart "></i></a>
+                   <a class="nav-link carrito" href="shopping-cart.php"><span class="d-block d-md-none"></span><i class="icon ion-md-cart "></i></a>
                      <div id="homeCarousel" class="carousel slide" data-ride="carousel">
                      </div>
                  </div>
@@ -231,10 +232,10 @@
                  <div class="row col-12 ">
                  <div class="col-12 row">
                    <div class="col-11">
-                     <h1><a style="color: black; text-decoration: none;" href="detalle-producto.html">Titulo Producto</a></h1><h2>$1234</h2>
+                     <h1><a style="color: black; text-decoration: none;" href="detalle-producto.php">Titulo Producto</a></h1><h2>$1234</h2>
                    </div>
                  <div class="col-1">
-                   <a class="nav-link carrito" href="shopping-cart.html"><span class="d-block d-md-none"></span><i class="icon ion-md-cart "></i></a>
+                   <a class="nav-link carrito" href="shopping-cart.php"><span class="d-block d-md-none"></span><i class="icon ion-md-cart "></i></a>
                      <div id="homeCarousel" class="carousel slide" data-ride="carousel">
                      </div>
                  </div>
@@ -299,10 +300,10 @@
                <div class="row col-12 ">
                <div class="col-12 row">
                  <div class="col-11">
-                   <h1><a style="color: black; text-decoration: none;" href="detalle-producto.html">Titulo Producto</a></h1><h2>$1234</h2>
+                   <h1><a style="color: black; text-decoration: none;" href="detalle-producto.php">Titulo Producto</a></h1><h2>$1234</h2>
                  </div>
                <div class="col-1">
-                 <a class="nav-link carrito" href="shopping-cart.html"><span class="d-block d-md-none"></span><i class="icon ion-md-cart "></i></a>
+                 <a class="nav-link carrito" href="shopping-cart.php"><span class="d-block d-md-none"></span><i class="icon ion-md-cart "></i></a>
                    <div id="homeCarousel" class="carousel slide" data-ride="carousel">
                    </div>
                </div>
@@ -366,10 +367,10 @@
                <div class="row col-12 ">
                <div class="col-12 row">
                  <div class="col-11">
-                   <h1><a style="color: black; text-decoration: none;" href="detalle-producto.html">Titulo Producto</a></h1><h2>$1234</h2>
+                   <h1><a style="color: black; text-decoration: none;" href="detalle-producto.php">Titulo Producto</a></h1><h2>$1234</h2>
                  </div>
                <div class="col-1">
-                 <a class="nav-link carrito" href="shopping-cart.html"><span class="d-block d-md-none"></span><i class="icon ion-md-cart"></i></a>
+                 <a class="nav-link carrito" href="shopping-cart.php"><span class="d-block d-md-none"></span><i class="icon ion-md-cart"></i></a>
                    <div id="homeCarousel" class="carousel slide" data-ride="carousel">
                    </div>
                </div>
@@ -433,10 +434,10 @@
               <div class="row col-12 ">
               <div class="col-12 row">
                 <div class="col-11">
-                  <h1><a style="color: black; text-decoration: none;" href="detalle-producto.html">Titulo Producto</a></h1><h2>$1234</h2>
+                  <h1><a style="color: black; text-decoration: none;" href="detalle-producto.php">Titulo Producto</a></h1><h2>$1234</h2>
                 </div>
               <div class="col-1">
-                <a class="nav-link carrito" href="shopping-cart.html"><span class="d-block d-md-none"></span><i class="icon ion-md-cart "></i></a>
+                <a class="nav-link carrito" href="shopping-cart.php"><span class="d-block d-md-none"></span><i class="icon ion-md-cart "></i></a>
                   <div id="homeCarousel" class="<carousel></carousel> slide" data-ride="carousel">
                   </div>
               </div>
@@ -468,5 +469,22 @@
               </nav>
 
         <?php require_once('footer.php');?>
-    </body>
+        <script src="../js/jquery-3.3.1.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/bootstrap.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/jquery.magnific-popup.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/jquery.slicknav.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/owl.carousel.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/jquery.nice-select.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/mixitup.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/main.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script type="bba5e7fdb0ecd42f6a179fdb-text/javascript">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-23581568-13');
+    </script>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="bba5e7fdb0ecd42f6a179fdb-|49" defer=""></script></body>
 </html>

@@ -107,9 +107,9 @@
             <ul>
               <li>Home - Con información general del proyecto</li>
               <li>F.A.Q. - Preguntas frecuentes</li>
-              <li>Formulario de Registro - Visual, pero no funcional</li>
-              <li>Formulario de Login - Visual, pero no funcional</li>
-              <li>Formulario de Contacto - Visual, pero no funcional</li>
+              <li>Formulario de Registro</li>
+              <li>Formulario de Login</li>
+              <li>Formulario de Contacto</li>
               <li>Perfil de Usuario</li>
               <li>Vista de listado de productos</li>
               <li>Vista del detalle de un producto</li>
@@ -123,9 +123,9 @@
           </div>
           <div class="col-12 text-left">
             <ul>
-              <li>Luciano Laurent - Scrum Master</li>
+              <!-- <li>Luciano Laurent - Scrum Master</li> -->
               <li>Fausto Castillo - Product Owner</li>
-              <li>Agustin Magliola - Dev</li>
+              <!-- <li>Agustin Magliola - Dev</li> -->
               <li>Luciano Ludueña - Dev</li>
             </ul>
           </div>
