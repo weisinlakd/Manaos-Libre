@@ -46,7 +46,7 @@ $array = $_POST;
             $value = password_hash($value, PASSWORD_DEFAULT);
         }
         if ($key == 're_pass') continue;
-        echo $key." =>   ".$value.'<br>';
+        // echo $key." =>   ".$value.'<br>';
         $usuariosArray[$index][$key] = $value;
     }
 
@@ -60,7 +60,7 @@ $array = $_POST;
 
     if ($ext) {
        $num = subirAvatar(rand(1,300));
-       echo $num;
+    //    echo $num;
        $usuariosArray[$index]['avatar'] = "../db/img/avatar-$num.$ext";
        setcookie('datosParaModificar', null, -1);
     } else $usuariosArray[$index]['avatar'] = 'error';
