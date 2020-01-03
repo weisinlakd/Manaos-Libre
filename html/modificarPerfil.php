@@ -5,8 +5,8 @@
 // echo '<br>';
 // var_dump($_SESSION);
 // echo '<br>';
-var_dump($_FILES);
-echo '<br>';
+//var_dump($_FILES);
+//echo '<br>';
 
 function validarExtension() {
     $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
@@ -31,9 +31,9 @@ $email = $_SESSION['usuario']["email"];
 $busqueda= array_column($usuariosArray, "email");
 $index = array_search($email, $busqueda);
 
-echo '<br>';echo '<br>';echo '<br>';
-echo $index;
-echo '<br>';
+// echo '<br>';echo '<br>';echo '<br>';
+// echo $index;
+// echo '<br>';
 
 $array = $_POST;
 
@@ -52,14 +52,14 @@ $array = $_POST;
 
     }
 
-    var_dump($usuariosArray[$index]);
+    // var_dump($usuariosArray[$index]);
 
     $ext = validarExtension();
 
-    echo $ext;
+    // echo $ext;
 
     if ($ext) {
-       $num = subirAvatar(rand(1,30));
+       $num = subirAvatar(rand(1,300));
        echo $num;
        $usuariosArray[$index]['avatar'] = "../db/img/avatar-$num.$ext";
        setcookie('datosParaModificar', null, -1);

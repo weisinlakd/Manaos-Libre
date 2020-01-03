@@ -47,7 +47,7 @@
 
             $ext = validarExtension();
             if ($ext) {
-                $num = subirAvatar(rand(1,30));
+                $num = subirAvatar(rand(1,300));
 
                 $usuario['avatar'] = "../db/img/avatar-$num.$ext";
             } else $usuario['avatar'] = 'error';
@@ -86,9 +86,9 @@
     }
     
 
-    echo 'USUARIO ==> ';
-    var_dump($usuario);
-    echo '<br>';
+    // echo 'USUARIO ==> ';
+    // var_dump($usuario);
+    // echo '<br>';
     $usuarioLog = true;
 
 ?>
