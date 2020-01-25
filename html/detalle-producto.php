@@ -45,20 +45,15 @@
     <h2>Producto<span>.</span></h2>
     </div>
     <form>
-  <p class="clasificacion">
-    <p>  Opiniones </p>
-    <input id="radio1" type="radio" name="estrellas" value="1"><!--
-    --><label for="radio1">★</label><!--
-    --><input id="radio2" type="radio" name="estrellas" value="2"><!--
-    --><label for="radio2">★</label><!--
-    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-    --><label for="radio3">★</label><!--
-    --><input id="radio4" type="radio" name="estrellas" value="4"><!--
-    --><label for="radio4">★</label><!--
-    --><input id="radio5" type="radio" name="estrellas" value="5"><!--
-    --><label for="radio5">★</label>  </p>
+      
+      <!-- cambios a las estrellas -->
+      <p class="clasificacion">
+       
+        <?php require_once('ratings.php') ?>
+      </p>
+      </form>
 
-</form>
+      
 
 <div class="container mx-auto">
 
@@ -240,3 +235,17 @@
     </script>
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="bba5e7fdb0ecd42f6a179fdb-|49" defer=""></script></body>
 </html>
+
+<!-- estrellas originales -->
+<p class="clasificacion">
+        <p>  Opiniones </p>
+        <input id="radio5" type="radio" name="estrellas" value="5"><!--
+        --><label for="radio5">★</label><!--
+        --><input id="radio4" type="radio" name="estrellas" value="4"><!--
+        --><label for="radio4">★</label><!--
+        --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+        --><label for="radio3">★</label><!--
+        --><input id="radio2" type="radio" name="estrellas" value="2"><!--
+        --><label for="radio2">★</label><!--
+        --><input id="radio1" type="radio" name="estrellas" value="1"><!--
+        --><label for="radio1">★</label>  </p>

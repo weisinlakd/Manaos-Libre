@@ -7,7 +7,7 @@
 					</div>
 				</div>
 				<div class="col-lg-8">
-					<img src="../img/banner-placeholder.jpg" alt="descuento/anuncio">
+					<img src="../img/anuncio-ml-<?=rand(1,3)?>.png" alt="descuento/anuncio">
 				</div>
 			</div>
 		</div>

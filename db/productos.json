@@ -1,0 +1,21 @@
+[{
+    "nombre": "iphone",
+    "precio": "300",
+    "descripcion": "iphone x con pantalla rota",
+    "isUsado": true,
+    "foto": "./img/avatar-2.png"
+},
+{
+    "nombre": "samsung s3",
+    "precio": "300",
+    "descripcion": "samsung s3 con pantalla rota",
+    "isUsado": true,
+    "foto": "./img/avatar-2.png"
+},
+{
+    "nombre": "auto",
+    "precio": "300",
+    "descripcion": "auto 0km",
+    "isUsado": false,
+    "foto": "./img/avatar-2.png"
+}]
