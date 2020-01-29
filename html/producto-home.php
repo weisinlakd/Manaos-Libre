@@ -5,13 +5,13 @@
         </div>
         <div class="thumb-content">
             <br>
-            <h4>Apple iPad</h4>
+            <h4><?=$tituloProd?></h4>
             <p class="item-price">
                 <?php if (isset($ofertas)) :?>
-                    <strike>$350.00</strike> 
-                    <span>$369.00</span>
+                    <strike style="color: red">$<?=$precio?></strike> 
+                    <span class="importante">$<?=$precio -(($precio / 100) *20)?></span>
                 <?php else : ?> 
-                    <span>$369.00</span>
+                    <span class="importante">$<?=$precio?></span>
                 <?php endif ?>
             </p>
             <!-- <div class="star-rating">

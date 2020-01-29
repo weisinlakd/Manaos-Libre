@@ -16,7 +16,10 @@
                     <div class="row">
                       <?php for ($i=1;$i <= 4; $i++) {
                           $idProducto = $i*$multiplo;
-                          $imagen = rand(0,3);
+                          $rand = rand(0,3);
+                          $imagen = $rand;
+                          $tituloProd = $arrayProd[$rand];
+                          $precio = $arrayPrecios[$rand];
                         require('producto-home.php');
                       }
                       ?>

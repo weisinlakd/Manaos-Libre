@@ -42,6 +42,9 @@
       }
     }
 
+    .importante {
+      color: black;
+    }
 
   </style>
   <body>
@@ -66,7 +69,8 @@
           $id = 1;
           $titulo = "Más Vendidos";
           $multiplo = 2;
-          
+          $arrayProd = ['Iphone X','Televisor', 'Adidas Roteiro','PS4 500GB' ];
+          $arrayPrecios = [35000, 20000, 500 , 16000 ];
           require('slider-4-productos.php'); 
         ?>
 
