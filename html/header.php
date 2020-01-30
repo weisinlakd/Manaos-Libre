@@ -69,6 +69,7 @@
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="perfil.php">Logeado como <?=$usuario['name']?> </a>
                     <a class="dropdown-item" href="perfil.php#settings">Editar perfil</a>
+                    <a class="dropdown-item" href="crearPublicacion.php">Crear Publicación</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="cerrarSesion.php">Cerrar Sesión</a>
                   </div>
