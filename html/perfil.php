@@ -11,7 +11,9 @@
     
     // var_dump($datos);
     session_start();
-    $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
+    require_once('classes/Usuario.php');
+    $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
+    if ($usuario) $usuarioLog = true;
     //   var_dump($usuario);
     //  echo '<br>';
     //  var_dump($_SESSION);
@@ -28,10 +30,7 @@
         }
     }
     
-    $usuarioLog = false;
-    if ($usuario) {
-        $usuarioLog = true;
-    }
+    
     //var_dump($usuario['avatar']);
     $titulo = 'Mi Perfil';
     $producto = false;

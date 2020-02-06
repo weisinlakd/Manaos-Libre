@@ -3,13 +3,9 @@
 
   <?php
     session_start();
-    $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
-    // var_dump($usuario);
-    // var_dump($_SESSION);
-    $usuarioLog = false;
-    if ($usuario) {
-      $usuarioLog = true;
-    }
+    require_once('classes/Usuario.php');
+    $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
+    if ($usuario) $usuarioLog = true;
     $titulo = 'Producto';
     $producto = true;
     require_once('head.php');

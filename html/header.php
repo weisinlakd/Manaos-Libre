@@ -45,9 +45,9 @@
                 <li role="separator" class="divider"></li>
               </ul>
 
-              <form method="GET" action="resultados.php" class="form-inline my-2 my-lg-0 no-gutters w-100">
+              <form method="GET" action="resultados.php?" class="form-inline my-2 my-lg-0 no-gutters w-100">
                 <div class="col-10">
-                  <input class="form-control w-100" type="search" placeholder="Buscar" aria-label="Buscar">
+                  <input class="form-control w-100" type="search" placeholder="Buscar" aria-label="Buscar" name="buscar">
                 </div>
                 <div class="col-2 d-flex justify-content-center">
                   <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="icon ion-md-search"></i></button>
@@ -60,14 +60,14 @@
         <?php if (isset($usuarioLog) && $usuarioLog == true): ?>
           <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?php if (isset(($usuario['avatar'])) && $usuario['avatar'] != 'error'):?>
-                      <img class="rounded-circle img-responsive" style="height: 2.5em; width: 2.5em" src="<?=$usuario['avatar']?>" alt="foto perfil">
+                    <?php if ($usuario->foto() != 'error'):?>
+                      <img class="rounded-circle img-responsive" style="height: 2.5em; width: 2.5em" src="<?=$usuario->foto()?>" alt="foto perfil">
                     <?php else :?>
                       <i class="fa fa-user d-none d-sm-none d-md-none d-lg-block d-xl-block"></i>
                     <?php endif ?>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="perfil.php">Logeado como <?=$usuario['name']?> </a>
+                    <a class="dropdown-item" href="perfil.php">Logeado como <?=$usuario->name()?> </a>
                     <a class="dropdown-item" href="perfil.php#settings">Editar perfil</a>
                     <a class="dropdown-item" href="crearPublicacion.php">Crear Publicación</a>
                     <div class="dropdown-divider"></div>

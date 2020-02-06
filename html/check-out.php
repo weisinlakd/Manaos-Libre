@@ -2,14 +2,17 @@
 <html lang="zxx">
 
   <?php
+    
     session_start();
-		$usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
+    require_once('classes/Usuario.php');
+    $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
+    if ($usuario) $usuarioLog = true;
 		// var_dump($usuario);
 		// var_dump($_SESSION);
-		$usuarioLog = false;
-		if ($usuario) {
-			$usuarioLog = true;
-		}
+		// $usuarioLog = false;
+		// if ($usuario) {
+		// 	$usuarioLog = true;
+		// }
     $titulo = "Check Out";
     $producto = false;
     require_once('head.php'); 

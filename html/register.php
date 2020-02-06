@@ -79,7 +79,8 @@
           </div>
         </div>
         <div class="col-lg-7 col-md-12">
-          <form action="resultado.php" method="POST" class="form-signin" id="register-form" enctype="multipart/form-data"
+          <!-- tests/crearUsuario.php -->
+          <form action="crearUsuario.php" method="POST" class="form-signin" id="register-form" enctype="multipart/form-data"
           oninput='re_pass.setCustomValidity(re_pass.value != pass.value ? "Las contraseñas no coinciden." : "")'>
             
             <?php if (isset($_COOKIE['yaExiste'])) :?>

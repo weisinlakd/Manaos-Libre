@@ -3,20 +3,24 @@
   <?php
   
     session_start();
-    //var_dump($_SESSION);
-
-
-    require_once('hayUsuario.php');
+    require_once('classes/Usuario.php');
+    $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
+    if ($usuario) $usuarioLog = true;
+    // require_once('login.php');
     //var_dump($_SESSION);
     // echo '<br>';
+    // $usuario = unserialize($usuario);
     // var_dump($usuario);
-     
     //var_dump($usuario);
     // echo 'sesion <br>';
     // var_dump($_SESSION);
     //  echo '<br>';
     //  var_dump($usuario);
-    // $usuarioLog = true;
+    // $usuarioLog = true; //COMENTAR DESPUES DE HAY USUARIO
+
+    // var_dump($usuario->name());
+    // var_dump($usuario->foto());
+
 
     //var_dump($usuario);
     

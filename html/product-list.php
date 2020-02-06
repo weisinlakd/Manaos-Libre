@@ -4,14 +4,10 @@
   <?php
     
     session_start();
-		$usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
-		// var_dump($usuario);
-		// var_dump($_SESSION);
-		$usuarioLog = false;
-		if ($usuario) {
-			$usuarioLog = true;
-		}
-    $titulo = "Home";
+    require_once('classes/Usuario.php');
+    $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
+    if ($usuario) $usuarioLog = true;
+    $titulo = "Productos";
     // $usuarioLog = rand(0,1);
     $producto = false;
     require_once('head.php');
