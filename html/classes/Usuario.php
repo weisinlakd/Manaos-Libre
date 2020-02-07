@@ -46,6 +46,7 @@
                 $result = $query->execute();
                 if ($result){
                     $this->subirFoto();
+                $this->id = $conn->lastInsertId(); //SI SE ROMPIO ALGO BORRAR ESTO
                     echo "usuario creado!";
                     return true;
                 }
