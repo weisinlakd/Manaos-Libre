@@ -3,8 +3,8 @@
     require_once('classes/Connection.php');
     require_once('classes/Usuario.php');
 
-    var_dump($_POST);
-    echo "<br>";
+    // var_dump($_POST);
+    // echo "<br>";
 
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -21,7 +21,7 @@
         
         $usuario = $usuarioTemp->restaurarUsuario($usuarioDB);
         
-        var_dump($usuario);
+        // var_dump($usuario);
         
     }
     // $usuario2 = new Usuario($usuarioDB->name,$usuarioDB->email,$usuarioDB->password,$usuarioDB->foto,$usuarioDB->rememberMe);

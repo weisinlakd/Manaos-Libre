@@ -7,6 +7,7 @@
         private $password;
         private $isAdmin = 0;
         private $apellido;
+        private $direccionID;
         private $telefono;
         private $fechaCreacion;
         private $foto;
@@ -19,7 +20,7 @@
             $this->email = $email;
             $this->password = password_hash($password, PASSWORD_DEFAULT);
             $ext = $this->validarExtension();
-            $this->foto = $foto == true ? "../db/img/$this->email".".".$ext : 'error';
+            $this->foto = $foto != 'error' ? "../db/img/$this->email".".".$ext : 'error';
             $this->rememberMe = $rememberMe; 
         }  
         
@@ -46,7 +47,7 @@
                 if ($result){
                     $this->subirFoto();
                     echo "usuario creado!";
-                    return false;
+                    return true;
                 }
             } catch (\Exception $e) {
                 //throw $th;
@@ -73,8 +74,59 @@
             return $this->foto;
         }
 
+        public function setFoto ($ext) {
+            if ($ext){
+
+                $this->foto = "../db/img/$this->email".".".$ext;
+            } else return;
+        }
+
         public function name () {
             return $this->name;
+        }
+
+        public function setName ($name) {
+            $this->name = $name;
+        }
+
+        public function apellido () {
+            return $this->apellido;
+        }
+
+        public function setApellido ($apellido) {
+            $this->apellido = $apellido;
+        }
+
+        public function fechaCreacion () {
+            return $this->fechaCreacion;
+        }
+
+        public function email () {
+            return $this->email;
+        }
+
+        public function direccionID () {
+            return $this->direccionID;
+        }
+
+        public function setDireccionID ($direccionID) {
+            $this->direccionID = $direccionID;
+        }
+
+        public function telefono () {
+            return $this->telefono;
+        }
+
+        public function setTelefono ($telefono) {
+            $this->telefono = $telefono;
+        }
+
+        public function password () {
+            return $this->password;
+        }
+
+        public function setPassword ($password) {
+            $this->password = $password;
         }
 
         public function iniciarSesion (PDO $conn , string $email, string $passsword) {
@@ -115,7 +167,7 @@
 
         public function subirFoto () {
             // $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
-            echo $this->foto;
+            // echo $this->foto;
             if ($this->foto == 'error') return false;
               
             $result = move_uploaded_file($_FILES["avatar"]["tmp_name"], $this->foto);
@@ -148,6 +200,44 @@
             $this->estado = 1;
 
             return $this;
+            
+        }
+
+        public function updateUsuario (PDO $conn) {
+            # code...
+            # falta direccionID en sql xq no hay tabla ciudades ni direcciones!
+            $sql = "UPDATE usuarios 
+                set name = :name , 
+                telefono = :telefono,
+                apellido = :apellido,
+                password = :password, 
+                foto = :foto 
+                
+                WHERE id = :id ";
+            $query = $conn->prepare($sql);
+            $query->bindValue(":name",$this->name, PDO::PARAM_STR);
+            $query->bindValue(":id",$this->id, PDO::PARAM_INT);
+            $query->bindValue(":password",$this->password, PDO::PARAM_STR);
+            $query->bindValue(":apellido",$this->apellido, PDO::PARAM_STR);
+            $query->bindValue(":telefono",$this->telefono, PDO::PARAM_INT);
+            $query->bindValue(":foto",$this->foto, PDO::PARAM_STR);
+           
+
+            try {
+                //code...
+                $result = $query->execute();
+                if ($result){
+                    $this->subirFoto();
+                    // echo "usuario modificado!";
+                    return true;
+                }
+            } catch (\Exception $e) {
+                //throw $th;
+                echo $e . "<br>";
+                $a = $e->getCode();
+            
+                return false;
+            }
             
         }
     }

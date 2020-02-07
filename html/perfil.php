@@ -4,15 +4,24 @@
 <html lang="zxx">
   <?php
     $boolCook = isset($_COOKIE['datosParaModificar']) ? true : false;
+    $error = isset($_COOKIE['errorEnActualizacion']) ? true : false;
+    $errorFoto = isset($_COOKIE['fotoIncorrecta']) ? true : false;
     // echo '<br>';echo $boolCook;echo '<br>';
+    $errFoto = isset($_COOKIE['fotoIncorrecta']) ? $_COOKIE['fotoIncorrecta'] : 'Cargá tu foto! (Opcional)';
+    
+    $col = $errFoto == 'Hubo un problema al cargar la foto!' ? 'style="color: red"' : 'style="color: black"';
+    
+    // var_dump($_COOKIE);
     if ($boolCook) {
         $datos = unserialize($_COOKIE['datosParaModificar']);
     }
+
+    
     
     // var_dump($datos);
     session_start();
     require_once('classes/Usuario.php');
-    $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
+    $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
     if ($usuario) $usuarioLog = true;
     //   var_dump($usuario);
     //  echo '<br>';
@@ -20,12 +29,14 @@
 
     function valorDato($key){
         global $boolCook, $datos, $usuario;
+        
         if ($boolCook){
             echo $datos[$key];
         } else {
-            if (isset($usuario[$key]) && $key != 'pass'){
-                echo $usuario[$key];
-            } else echo '';
+            // if (isset($usuario[$key]) && $key != 'pass'){
+            //     echo $usuario[$key];
+            // } else 
+            echo '';
             
         }
     }
@@ -57,14 +68,17 @@
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10 page-breadcrumb">
-            <h2 style="border-bottom: 2px solid #d0d7db; padding-bottom: 15px;  font-size: 48px;">Hola, <?=$usuario['name']?><span style="color:#b0bcc2">.</span></h2>
+            <h2 style="border-bottom: 2px solid #d0d7db; padding-bottom: 15px;  font-size: 48px;">Hola, <?=$usuario->name()?><span style="color:#b0bcc2">.</span></h2>
+            <?php if ($error) : ?>
+                <h2 style="color: red">Hubo un error al actualizar los datos</h2>
+                <?php endif ?>
           </div>
         <div class="col-sm-2">
             <!-- <a href="/users" class="pull-right"> -->
               <div class="row">
                 <div class="col-2"></div>
-                <?php if (isset($usuario['avatar']) && $usuario['avatar'] != 'error') :?>
-                    <img title="profile image" class="img-circle img-responsive col-12" src="<?=$usuario['avatar']?>">
+                <?php if ($usuario->foto() != 'error') :?>
+                    <img title="profile image" class="img-circle img-responsive col-12" src="<?=$usuario->foto()?>">
                 <?php else : ?>
                     <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
                 <?php endif ?>
@@ -80,10 +94,18 @@
 
             <ul class="list-group">
                 <li class="list-group-item text-muted">Perfil</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Perfil creado</strong></span> 02/07/2014</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Última conexión</strong></span> 09/12/2018</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre completo</strong></span> <?php if (isset($usuario['last_name'])){ echo $usuario['name'].' '.$usuario['last_name']; } else echo $usuario['name']?></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong><a style="color:black" href="cerrarSesion.php"> Cerrar Sesión</a></strong></span></li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left">
+                        <strong>Perfil creado</strong></span> <?=$usuario->fechaCreacion()?></li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left">
+                        <strong>Última conexión</strong></span> 09/12/2018</li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left">
+                        <strong>Nombre completo</strong></span> <?php if ($usuario->apellido()){ echo $usuario->name().' '.$usuario->apellido(); } else echo $usuario->name()?></li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left">
+                        <strong><a style="color:black" href="cerrarSesion.php"> Cerrar Sesión</a></strong></span></li>
 
             </ul>
 
@@ -254,7 +276,7 @@
                     <br>
                 <h2>Editar Perfil</h2>
                     <hr>
-                    <form class="form" action="modificarPerfil.php" method="post" id="registrationForm"
+                    <form class="form" action="updateUsuario.php" method="post" id="registrationForm"
                         enctype="multipart/form-data" oninput='re_pass.setCustomValidity(re_pass.value != pass.value ? "Las contraseñas no coinciden." : "")'>
                         <div class="form-group">
                                 
@@ -294,7 +316,7 @@
                             <div class="col-xs-6">
                                 <label for="email">
                                     <h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value='<?=$usuario["email"]?>' disabled>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value='<?=$usuario->email()?>' disabled>
                             </div>
                         </div>
                         <div class="form-group">
@@ -308,8 +330,7 @@
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="exampleFormControlFile1">
-                                <h4>Cargá tu foto! (Opcional) <i class="zmdi zmdi-camera"></i> </h4>
+                                <label for="exampleFormControlFile1"  > <h4 <?=$col?>> <?=$errFoto?> <i class="zmdi zmdi-camera"></i> </h4>
                                 </label>
                                     <input name="avatar" type="file" class="form-control-file" id="exampleFormControlFile1">
                             </div>
