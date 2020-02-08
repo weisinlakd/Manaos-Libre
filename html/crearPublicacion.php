@@ -3,13 +3,10 @@
 
   <?php
     session_start();
-		$usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : false;
-		// var_dump($usuario);
-		// var_dump($_SESSION);
-		$usuarioLog = false;
-		if ($usuario) {
-			$usuarioLog = true;
-		}
+    require_once('classes/Usuario.php');
+    $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
+    if ($usuario) $usuarioLog = true;
+
     $titulo = "Publicar Producto";
     $producto = false;
     require_once('head.php'); 
@@ -45,47 +42,47 @@
     <form class="container-fluid col-8" method="POST" action="newPublicacion.php">
     <div class="form-group">
         <label for="nombreProducto">Nombrá tu publicación:</label>
-        <input type="nombre" class="form-control" id="nombreProducto" placeholder="Iphone X 128GB" required autofocus>
+        <input name="name" type="nombre" class="form-control" id="nombreProducto" placeholder="Iphone X 128GB" required autofocus>
     </div>
     <div class="form-group">
-        <label for="cantidadProducto">Cantidad:</label>
-        <input type="number" class="form-control" id="cantidadProducto" placeholder="1" required >
+        <label for="ciudad">Ciudad</label>
+        <input name="ciudad_id" type="number" class="form-control" id="ciudad" placeholder="1" required >
     </div>
     <div class="form-group">
         <label for="categoriaProducto">Selecciona todas las categorías que creas convenientes:</label>
-        <select multiple class="form-control" id="categoriaProducto" data-live-search="true">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+        <select name="categoria" multiple class="form-control" id="categoriaProducto" data-live-search="true">
+        <option name="1">1</option>
+        <option name="2">2</option>
+        <option name="3">3</option>
+        <option name="4">4</option>
+        <option name="5">5</option>
         </select>
     </div>
     <div class="form-group">
         <label for="descripcionProducto">Descripción</label>
-        <textarea class="form-control" id="descripcionProducto" rows="3"></textarea>
+        <textarea name="descripcion" class="form-control" id="descripcionProducto" rows="3"></textarea>
     </div>
     <div class="form-row">
     <div class="col-md-4 mb-3">
         <div class="form-check">
     <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
+        <label name="is_usado"class="form-check-label" for="defaultCheck1">
            ¿Es usado?
         </label></div>
     </div>
     <div class="col-md-4 mb-3">
-    <label for="cantidadProducto">Cantidad de Años</label>
-        <input type="number" class="form-control" id="cantidadProducto" placeholder="1" required >
+    <label for="cantidadProducto">Cantidad de Meses de uso</label>
+        <input name="meses_uso" type="number" class="form-control" id="cantidadProducto" placeholder="1" required >
     </div>
     <div class="col-md-4 mb-3">
         <label for="categoriaProducto">Selecciona el estado más acorde a tu producto</label>
-        <select class="form-control custom-select " id="categoriaProducto" data-live-search="true">
-        <option>Semi-nuevo</option>
-        <option>Uso regular</option>
-        <option>Uso intenso</option>
-        <option>Daños anormales por uso</option>
-        <option>Daños intensos</option>
-        <option>Venta como partes para repuesto</option>
+        <select name="estado_uso" class="form-control custom-select " id="categoriaProducto" data-live-search="true">
+        <option name="1">Semi-nuevo</option>
+        <option name="2">Uso regular</option>
+        <option name="3">Uso intenso</option>
+        <option name="4">Daños anormales por uso</option>
+        <option name="5">Daños intensos</option>
+        <option name="6">Venta como partes para repuesto</option>
         </select>
     </div>
   </div>
@@ -99,11 +96,11 @@
         <div class="input-group-prepend">
           <div class="input-group-text">$</div>
         </div>
-        <input type="number" class="form-control" id="inlineFormInputGroup" placeholder="Precio">
+        <input name="precio" type="number" class="form-control" id="inlineFormInputGroup" placeholder="Precio">
       </div>
     <div class="form-group custom-file">
         <label for="fotoProducto" class="custom-file-label" lang="es">Agregá tu foto</label>
-        <input type="file" class="custom-file-input" id="fotoProducto">
+        <input name="foto" type="file" class="custom-file-input" id="fotoProducto">
     </div>
     <br>
     <div class="form-check">

@@ -75,6 +75,10 @@
             return $this->foto;
         }
 
+        public function id () {
+            return $this->id;
+        }
+
         public function setFoto ($ext) {
             if ($ext){
 
@@ -228,8 +232,9 @@
                 //code...
                 $result = $query->execute();
                 if ($result){
-                    $this->subirFoto();
+                    $res = $this->subirFoto();
                     // echo "usuario modificado!";
+                    var_dump($res);
                     return true;
                 }
             } catch (\Exception $e) {
