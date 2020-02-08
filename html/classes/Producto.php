@@ -7,12 +7,13 @@ class Producto {
     private $descripcion;
     private $precio;
     private $ciudad_id;
-    private $fechaCreacion; 
+    private $fecha; 
     private $categoria_id;
     private $valoracion = 0;
     private $is_usado = 0;
     private $meses_uso;
     private $estado = 1;
+    private $cantidad;
 
     public function __construct (int $id_usuario ,string $name, string $descripcion, 
                                 float $precio, int $ciudad_id, int $categoria_id,
@@ -71,6 +72,124 @@ class Producto {
                 return false;
             }
         }
+    }
+
+    public function id () {
+        return $this->id;
+    }
+
+    public function name () {
+        return $this->name;
+    }
+
+    public function precio () {
+        return $this->precio;
+    }
+
+    public function descripcion () {
+        return $this->descripcion;
+    }
+    public function cantidad () {
+        return $this->cantidad;
+    }
+
+    public function ciudad (PDO $conn) {
+
+        $sql = "select nombre from ciudades where id = :id";
+        $query = $conn->prepare($sql);
+        $query->bindValue(":id",$this->ciudad_id, PDO::PARAM_INT);
+        
+        try {
+            //code...
+            // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_OBJ);
+            return $result->nombre;
+        } catch (\Exception $e) {
+            //throw $th;
+            echo $e . "<br>";
+            return $e;
+        }
+        
+    }
+
+    public function getProductos (PDO $conn, $offset = null) {
+        
+        $sql = "select * from productos where estado = 1 limit 8 ";
+        if ($offset) $sql = $sql. " offset ". 8*$offset;
+        $query = $conn->prepare($sql);
+        
+        try {
+            //code...
+            // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_OBJ);
+            $productos = array();
+            foreach ($result as $producto) {
+                // var_dump($producto); die;
+                // $productoActual+= 1; 
+                $productoActual = new Producto(1,"2","3",3,4,5);
+                $productoActual = $productoActual->restaurarProducto($producto);
+                
+                // var_dump($productoActual); die;
+                $productoActual->cantidad = $productoActual->getTotalProductos($conn);
+                // var_dump($producto); die;
+                $productos[] = $productoActual;
+                // $productoActual = null;
+                // var_dump($productos); echo "<br><br><br>";
+                // echo $productoActual->id();
+                
+                
+            }
+            
+            return $productos;
+
+        } catch (\Exception $e) {
+            //throw $th;
+            echo $e . "<br>";
+            return $e;
+        }
+    }
+
+    public function getTotalProductos (PDO $conn) {
+        
+        $sql = "select count(*) as total from productos where estado = 1";
+        $query = $conn->prepare($sql);
+        
+        try {
+            //code...
+            // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_OBJ);
+            $this->cantidad = $result->total;
+            return $result->total;
+
+        } catch (\Exception $e) {
+            //throw $th;
+            echo $e . "<br>";
+            return $e;
+        }
+    }
+
+    public function restaurarProducto (object $productoDB) {
+
+        $this->id = $productoDB->id;
+        $this->id_usuario = $productoDB->id_usuario;        
+        $this->name = $productoDB->name;    
+        $this->descripcion = $productoDB->descripcion;   
+        $this->precio = $productoDB->precio;
+        $this->ciudad_id = $productoDB->ciudad_id;  
+        $this->fecha = $productoDB->fecha;    
+        $this->categoria_id = $productoDB->categoria_id;
+        $this->valoracion = $productoDB->valoracion;    
+        $this->is_usado = $productoDB->is_usado;
+        $this->meses_uso = $productoDB->meses_uso;
+        $this->estado_uso = $productoDB->estado_uso;
+        $this->estado = $productoDB->estado;
+        $this->cantidad;
+
+        return $this;
+        
     }
 
 }
