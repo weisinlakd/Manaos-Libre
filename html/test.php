@@ -15,11 +15,11 @@ $producto = new Producto(2, "hola", "hola wacho", 400, 2, 405);
 // var_dump($producto);
 
 
+$productoID = $producto->getProductoById($pdo, 300);
+// $productos = $producto->getProductos($pdo);
 
-$productos = $producto->getProductos($pdo);
 
-
-var_dump($productos);
+var_dump($productoID);
 echo "<br>";
 echo "<br>";
 echo "<br>";

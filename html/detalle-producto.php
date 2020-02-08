@@ -4,11 +4,27 @@
   <?php
     session_start();
     require_once('classes/Usuario.php');
+    require_once('classes/Connection.php');
+    require_once('classes/Producto.php');
     $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
     if ($usuario) $usuarioLog = true;
     $titulo = 'Producto';
     $producto = true;
-    require_once('head.php');
+    // var_dump($_GET);
+    $id = isset($_GET["id"]) ? $_GET["id"] : false;
+    // var_dump($id);
+    if ($id){
+      
+      $prod = new Producto(2, "hola", "hola wacho", 400, 2, 405);
+      $conn = new Connection();
+      $pdo = $conn->start();
+      $productoDB = $prod->getProductoById($pdo, $id);
+      
+      var_dump($productoDB);
+    }
+
+      require_once('head.php');
+
   ?>
 
   <body>
@@ -29,6 +45,12 @@
 
     <?php 
      require_once('header.php');
+
+     if (!$id || !$productoDB) {
+       echo "<br><br><h1>No existe ese producto</h1><br><br>";
+       require_once('footer.php');
+       die;
+     }
     ?>
 <div class="container">
   <div class="row col-12 mx-0">
@@ -38,7 +60,7 @@
     <div class="row">
     <div class="col-12">
     <div class="page-breadcrumb">
-    <h2>Producto<span>.</span></h2>
+    <h2><?=$productoDB->name()?><span>.</span></h2>
     </div>
     <form>
       
@@ -107,11 +129,9 @@
 
       <div class="col-lg-3 col-xs-12 mx-auto mx-0 fluid float-lg-left">
 
-    <p>Descripcion del producto: <br> </p>
-        <p> - <br> </p>
-          <p> - <br> </p>
-            <p> - <br> </p>
-    <p> Precio: 23$</p>
+    <h4>Descripcion del producto: <br> </h4>
+        <p><?=$productoDB->descripcion()?></p>
+    <h2>$ <?=$productoDB->precio()?></h2>
     <br>
     <a class="btn btn-primary" href="#" role="button">Agregar al Carrito</a>
       </div>
@@ -232,16 +252,19 @@
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="bba5e7fdb0ecd42f6a179fdb-|49" defer=""></script></body>
 </html>
 
-<!-- estrellas originales -->
-<p class="clasificacion">
-        <p>  Opiniones </p>
-        <input id="radio5" type="radio" name="estrellas" value="5"><!--
-        --><label for="radio5">★</label><!--
-        --><input id="radio4" type="radio" name="estrellas" value="4"><!--
-        --><label for="radio4">★</label><!--
-        --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-        --><label for="radio3">★</label><!--
-        --><input id="radio2" type="radio" name="estrellas" value="2"><!--
-        --><label for="radio2">★</label><!--
-        --><input id="radio1" type="radio" name="estrellas" value="1"><!--
-        --><label for="radio1">★</label>  </p>
+<?php 
+// estrellas originales
+// <p class="clasificacion">
+//         <p>  Opiniones </p>
+//         <input id="radio5" type="radio" name="estrellas" value="5"><!--
+//         --><label for="radio5">★</label><!--
+//         --><input id="radio4" type="radio" name="estrellas" value="4"><!--
+//         --><label for="radio4">★</label><!--
+//         --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+//         --><label for="radio3">★</label><!--
+//         --><input id="radio2" type="radio" name="estrellas" value="2"><!--
+//         --><label for="radio2">★</label><!--
+//         --><input id="radio1" type="radio" name="estrellas" value="1"><!--
+//         --><label for="radio1">★</label>  </p>
+
+?>

@@ -128,7 +128,7 @@ class Producto {
             foreach ($result as $producto) {
                 // var_dump($producto); die;
                 // $productoActual+= 1; 
-                $productoActual = new Producto(1,"2","3",3,4,5);
+                $productoActual = new Producto(1,"2","3",3,4,5); //PREGUNTAR QUE PASA ACÁ
                 $productoActual = $productoActual->restaurarProducto($producto);
                 
                 // var_dump($productoActual); die;
@@ -169,6 +169,28 @@ class Producto {
             echo $e . "<br>";
             return $e;
         }
+    }
+
+    public function getProductoById (PDO $conn, $id) {
+
+        $sql = "select * from productos where id = :id";
+        $query = $conn->prepare($sql);
+        $query->bindValue(":id",$id, PDO::PARAM_INT);
+        
+        try {
+            //code...
+            // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_OBJ);
+            if ($result)
+            return $result = $this->restaurarProducto($result);
+            else return false;
+        } catch (\Exception $e) {
+            //throw $th;
+            echo $e . "<br>";
+            
+        }
+
     }
 
     public function restaurarProducto (object $productoDB) {
