@@ -214,6 +214,30 @@ class Producto {
         
     }
 
+    public function getVendedor ($conn) {
+        
+
+        $id = $this->id_usuario;   
+        $sql = "select * from usuarios where id = :buscador and estado = 1";
+        $query = $conn->prepare($sql);
+        $query->bindValue(":buscador",$id, PDO::PARAM_STR);
+        
+        try {
+            //code...
+            // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_OBJ);
+            // var_dump($result);
+            return $result->name;
+        } catch (\Exception $e) {
+            //throw $th;
+            echo $e . "<br>";
+            
+        }
+
+
+    }
+
 }
 
 ?>

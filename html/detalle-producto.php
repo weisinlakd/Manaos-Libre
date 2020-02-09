@@ -20,7 +20,8 @@
       $pdo = $conn->start();
       $productoDB = $prod->getProductoById($pdo, $id);
       
-      var_dump($productoDB);
+      // var_dump($productoDB);
+      
     }
 
       require_once('head.php');
@@ -129,9 +130,11 @@
 
       <div class="col-lg-3 col-xs-12 mx-auto mx-0 fluid float-lg-left">
 
-    <h4>Descripcion del producto: <br> </h4>
-        <p><?=$productoDB->descripcion()?></p>
+    <h5>Descripcion del producto: <br> </h5>
+        <h4><?=$productoDB->descripcion()?></h4>
     <h2>$ <?=$productoDB->precio()?></h2>
+    <p>Vendedor: <?= $productoDB->getVendedor($pdo);?> 
+    <br>(para más información comprar el producto)</p>
     <br>
     <a class="btn btn-primary" href="#" role="button">Agregar al Carrito</a>
       </div>
