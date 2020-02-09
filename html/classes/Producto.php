@@ -151,9 +151,12 @@ class Producto {
         }
     }
 
-    public function getTotalProductos (PDO $conn) {
+    public function getTotalProductos (PDO $conn, $isBusqueda = false ) {
         
         $sql = "select count(*) as total from productos where estado = 1";
+        if ($isBusqueda) {
+            $sql = "select count(*) as total from productos where estado = 1 and name like '%$isBusqueda%' ";
+        }
         $query = $conn->prepare($sql);
         
         try {
@@ -173,7 +176,7 @@ class Producto {
 
     public function getProductoById (PDO $conn, $id) {
 
-        $sql = "select * from productos where id = :id";
+        $sql = "select * from productos where id = :id and estado = 1";
         $query = $conn->prepare($sql);
         $query->bindValue(":id",$id, PDO::PARAM_INT);
         
@@ -185,6 +188,48 @@ class Producto {
             if ($result)
             return $result = $this->restaurarProducto($result);
             else return false;
+        } catch (\Exception $e) {
+            //throw $th;
+            echo $e . "<br>";
+            
+        }
+
+    }
+
+    public function getProductoByName (PDO $conn, $name , $offset = null) {
+
+        $sql = "select * from productos where name like :name and estado = 1 limit 8 ";
+        if ($offset) $sql = $sql. " offset ". 8*$offset;
+        $query = $conn->prepare($sql);
+        $query->bindValue(":name","%$name%", PDO::PARAM_STR);
+        
+        try {
+            //code...
+            // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_OBJ);
+            if ($result) {
+
+                $productos = array();
+                foreach ($result as $producto) {
+                    // var_dump($producto); die;
+                    // $productoActual+= 1; 
+                    $productoActual = new Producto(1,"2","3",3,4,5); //PREGUNTAR QUE PASA ACÁ
+                    $productoActual = $productoActual->restaurarProducto($producto);
+                    
+                    // var_dump($productoActual); die;
+                    $productoActual->cantidad = $productoActual->getTotalProductos($conn,$name);
+                    // var_dump($producto); die;
+                    $productos[] = $productoActual;
+                    // $productoActual = null;
+                    // var_dump($productos); echo "<br><br><br>";
+                    // echo $productoActual->id();
+                }
+                    
+                return $productos;
+                
+            } else return false;
+            
         } catch (\Exception $e) {
             //throw $th;
             echo $e . "<br>";

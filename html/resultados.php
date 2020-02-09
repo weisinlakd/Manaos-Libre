@@ -7,6 +7,29 @@
       if ($usuario) $usuarioLog = true;
       $titulo = 'Resultados';
       $producto = false;
+      
+
+      $busqueda  = isset($_GET["buscar"]) ? $_GET["buscar"] : false;
+      
+
+      if ($busqueda){
+      
+        require_once('buscar.php');
+        
+      }
+
+      $res = isset($resultado[1]) ? true : false;
+      // $cantidad = [1,2,3,4,5,6,7,8];
+      // var_dump($res);
+      // var_dump($resultado);
+      if ($res){
+        $resultados = $resultado[0]->cantidad(); 
+        $paginas = round($resultados/8, 0, PHP_ROUND_HALF_ODD) ? round($resultados/8, 0, PHP_ROUND_HALF_ODD) : 1;
+        setcookie("resultados", $paginas, time()+60*7);
+      } else {
+        $resultados = 'No hay resultados';
+        $paginas = $_COOKIE["resultados"];
+      }
       require_once('head.php');
       
     ?>
@@ -27,11 +50,16 @@
 
     <?php
       $cantidad = [1,2,3,4,5,6,7,8];
-      $resultados = rand(0,400);
-      $paginas = round($resultados/8, 0, PHP_ROUND_HALF_UP);
+     
 
       $tituloPag = "Resultados (<span>1</span>/$resultados)";
+
       require_once('header.php');
+      if (!$busqueda || !$resultado) {
+        echo "<br><br><h1>No existe ese producto</h1><br><br>";
+        require_once('footer.php');
+        die;
+      }
       require_once('anuncios.php');
       require_once('anuncioYtitulo.php');
     ?>
@@ -60,14 +88,26 @@
           
           <div class="row">
             
-            <?php foreach ($cantidad as $producto) {
-              $rand = rand(0,2);
-              $id = $producto;
-              $titulo = $prod[$rand];
-              $precio = rand( 200, 400);
-              $ubicacion = $ubis[$rand];
-              $descripcion = $desc[$rand];
-              $imagen = $rand;
+            <?php 
+            // foreach ($cantidad as $producto) {
+            //   $rand = rand(0,2);
+            //   $id = $producto;
+            //   $titulo = $prod[$rand];
+            //   $precio = rand( 200, 400);
+            //   $ubicacion = $ubis[$rand];
+            //   $descripcion = $desc[$rand];
+            //   $imagen = $rand;
+            //   require('producto.php');
+            // }
+            foreach ($resultado as $producto) {
+      
+              $id = $producto->id();
+              $titulo = $producto->name();
+              $precio = $producto->precio();
+              $ubicacion = $producto->ciudad($pdo);
+              // var_dump($ubicacion); die;
+              $descripcion = $producto->descripcion();
+              $imagen = rand(0,3);
               require('producto.php');
             }
             ?>             

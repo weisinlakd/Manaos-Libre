@@ -1,6 +1,6 @@
 <?php 
 
-session_start();    
+// session_start();    
 require_once('classes/Usuario.php');
 require_once('classes/Connection.php');
 require_once('classes/Producto.php');
@@ -15,14 +15,14 @@ $producto = new Producto(2, "hola", "hola wacho", 400, 2, 405);
 // var_dump($producto);
 
 
-$productoID = $producto->getProductoByName($pdo, 'samsung');
+$resultado = $producto->getProductoByName($pdo, $busqueda);
 // $productos = $producto->getProductos($pdo);
 
 
-var_dump($productoID);
-echo "<br>";
-echo "<br>";
-echo "<br>";
+// var_dump($resultado);
+// echo "<br>";
+// echo "<br>";
+// echo "<br>";
 // $result = [];
 // foreach ($productos as $productoDB) {
 //     // var_dump($producto); die;
