@@ -13,7 +13,7 @@
             <link rel="stylesheet" href="../css/detalle-producto.css" type="text/css">
         
     <?php endif?>
-
+    <script src="../js/usado.js"></script>
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../css/nice-select.css" type="text/css">

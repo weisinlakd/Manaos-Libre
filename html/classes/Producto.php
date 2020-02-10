@@ -59,7 +59,7 @@ class Producto {
                 
             $this->id = $conn->lastInsertId(); 
                 echo "producto creado!";
-                return true;
+                return $this;
             }
         } catch (\Exception $e) {
             //throw $th;
@@ -76,6 +76,10 @@ class Producto {
 
     public function id () {
         return $this->id;
+    }
+
+    public function id_usuario () {
+        return $this->id_usuario;
     }
 
     public function name () {
