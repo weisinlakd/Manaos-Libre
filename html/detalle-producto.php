@@ -6,6 +6,7 @@
     require_once('classes/Usuario.php');
     require_once('classes/Connection.php');
     require_once('classes/Producto.php');
+    require_once('classes/FotoProducto.php');
     $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
     if ($usuario) $usuarioLog = true;
     $titulo = 'Producto';
@@ -16,9 +17,11 @@
     if ($id){
       
       $prod = new Producto(2, "hola", "hola wacho", 400, 2, 405);
+      $foto = new FotoProducto(1,"","");
       $conn = new Connection();
       $pdo = $conn->start();
       $productoDB = $prod->getProductoById($pdo, $id);
+      $fotos = $foto->getFotoProductoByIdProducto($pdo, $id);
       
       // var_dump($productoDB);
       
@@ -89,26 +92,26 @@
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="d-block d-md-none">
-                <img src="../img/placeholder-big.jpg" class="d-block w-100" alt="...">
+                <img src="<?=$fotos[0]->path?>" class="d-block w-100" alt="...">
               </div>
               <div class="d-none d-md-block d-xl-block">
-                <img src="../img/banner-placeholder.jpg" class="d-block w-100 " alt="...">
+                <img src="<?=$fotos[0]->path?>" class="d-block w-100 " alt="...">
               </div>
             </div>
             <div class="carousel-item">
               <div class="d-block d-md-none">
-                <img src="../img/placeholder-big.jpg" class="d-block w-100" alt="...">
+                <img src="<?=$fotos[1]->path?>" class="d-block w-100" alt="...">
               </div>
               <div class="d-none d-md-block d-xl-block">
-                <img src="../img/banner-placeholder.jpg" class="d-block w-100" alt="...">
+                <img src="<?=$fotos[1]->path?>" class="d-block w-100" alt="...">
               </div>
             </div>
             <div class="carousel-item">
               <div class="d-block d-md-none">
-                <img src="../img/placeholder-big.jpg" class="d-block w-100" alt="...">
+                <img src="<?=$fotos[2]->path?>" class="d-block w-100" alt="...">
               </div>
               <div class="d-none d-md-block d-xl-block">
-                <img src="../img/banner-placeholder.jpg" class="d-block w-100" alt="...">
+                <img src="<?=$fotos[2]->path?>" class="d-block w-100" alt="...">
               </div>
             </div>
           </div>

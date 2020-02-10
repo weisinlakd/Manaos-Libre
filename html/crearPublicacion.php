@@ -4,6 +4,17 @@
   <?php
     session_start();
     require_once('classes/Usuario.php');
+    require_once('classes/Ciudad.php');
+    require_once('classes/Categoria.php');
+    require_once('classes/Connection.php');
+    $conn = new Connection();
+    $pdo = $conn->start();
+    $ciudad = new Ciudad("","");
+    $ciudades = $ciudad->getCiudades($pdo);
+    $categoria = new Categoria("","");
+    $categorias = $categoria->getCategorias($pdo);
+
+
     $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
     if ($usuario) $usuarioLog = true;
     //foto cookie
@@ -64,21 +75,24 @@
     </div>
     <div class="form-group">
         <label for="ciudad">Ciudad</label>
-        <input name="ciudad_id" type="number" class="form-control" id="ciudad" placeholder="1" required value='<?=valorDato('ciudad_id')?>'>
+        <!-- <input name="ciudad_id" type="number" class="form-control" id="ciudad" placeholder="1" required > -->
+        <select name="ciudad" id="ciudad"  class="js-example-basic-single" placeholder="buscá tu ciudad" value='<?=valorDato('ciudad_id')?>' required>
+        <?php foreach ($ciudades as $ciudad) : ?>
+        <option value="<?=$ciudad->id?>" name="ciudad_id" > <?=$ciudad->nombre?> </option> 
+        <?php endforeach ?>
+    </select>
     </div>
     <div class="form-group">
         <label for="categoriaProducto">Selecciona la categoría que creas conveniente:</label>
-        <select name="categoria" class="form-control" id="categoriaProducto" data-live-search="true" value='<?=valorDato('categoria')?>'>
-        <option name="1" value='400'>1</option>
-        <option name="2" value='400'>2</option>
-        <option name="3" value='400'>3</option>
-        <option name="4" value='400'>4</option>
-        <option name="5" value='400'>5</option>
-        </select>
+        <!-- <select name="categoria" class="form-control" id="categoriaProducto" data-live-search="true" > -->
+        <select name="categoria" id="categoriaProducto"  class="js-example-basic-single" placeholder="buscá tu categoría" value='<?=valorDato('categoria')?>' required>
+        <?php foreach ($categorias as $categoria) : ?>
+        <option value="<?=$categoria->id?>" name="categoria" > <?=$categoria->name?> </option> 
+        <?php endforeach ?>
     </div>
     <div class="form-group">
         <label for="descripcionProducto">Descripción</label>
-        <textarea name="descripcion" class="form-control" id="descripcionProducto" rows="3" value='<?=valorDato('descripcion')?>'></textarea>
+        <textarea name="descripcion" class="form-control" id="descripcionProducto" rows="3" value='<?=valorDato('descripcion')?>' placeholder="Ingresá una descripción apropiada de tu producto..."></textarea>
     </div>
     <div class="form-row">
     <div class="col-md-4 mb-3">
@@ -94,13 +108,13 @@
       <input name="meses_uso" type="number" class="form-control" id="cantidadMesesUso" placeholder="1" required  disabled>
   
       <label for="estadoUsoProducto">Selecciona el estado más acorde a tu producto</label>
-      <select name="estado_uso[]" class="form-control custom-select " id="estadoUsoProducto" data-live-search="true" disabled>
-      <option name="1">Semi-nuevo</option>
-      <option name="2">Uso regular</option>
-      <option name="3">Uso intenso</option>
-      <option name="4">Daños anormales por uso</option>
-      <option name="5">Daños intensos</option>
-      <option name="6">Venta como partes para repuesto</option>
+      <select name="estado_uso" class="form-control custom-select " id="estadoUsoProducto" data-live-search="true" disabled>
+      <option value="1">Semi-nuevo</option>
+      <option value="2">Uso regular</option>
+      <option value="3">Uso intenso</option>
+      <option value="4">Daños anormales por uso</option>
+      <option value="5">Daños intensos</option>
+      <option value="6">Venta como partes para repuesto</option>
       </select>
     </div>
   </div>
@@ -146,6 +160,7 @@
 <?php 
         require_once('footer.php');
       ?>
+      <!-- </div> -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
         <script src="../js/jquery-3.3.1.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
@@ -182,6 +197,12 @@
                     estadoUso.disabled = true;
                 }
             }
+
+            $(document).ready(function () {
+                $('.js-example-basic-single').selectize({
+                    sortField: 'text'
+                });
+            });
         </script>
         <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="bba5e7fdb0ecd42f6a179fdb-|49" defer=""></script></body>
   </html>

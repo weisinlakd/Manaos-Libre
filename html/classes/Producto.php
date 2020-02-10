@@ -13,11 +13,12 @@ class Producto {
     private $is_usado = 0;
     private $meses_uso;
     private $estado = 1;
+    private $estado_uso;
     private $cantidad;
 
     public function __construct (int $id_usuario ,string $name, string $descripcion, 
                                 float $precio, int $ciudad_id, int $categoria_id,
-                                 int $is_usado = 0, int $meses_uso = null) {
+                                 int $is_usado = 0, int $meses_uso = null, int $estado_uso = null) {
                             
 
         $this->id_usuario = $id_usuario;
@@ -30,6 +31,7 @@ class Producto {
 
         if ($is_usado) $this->is_usado = $is_usado;
         if ($meses_uso) $this->meses_uso = $meses_uso;
+        if ($estado_uso) $this->estado_uso = $estado_uso;
 
     }
 
@@ -38,7 +40,7 @@ class Producto {
         $sql = "INSERT INTO productos 
                 set id_usuario = :id_usuario, name = :name , descripcion = :descripcion, precio = :precio, 
                 ciudad_id = :ciudad_id, categoria_id = :categoria_id, valoracion = :valoracion, 
-                is_usado = :is_usado, meses_uso = :meses_uso";
+                is_usado = :is_usado, meses_uso = :meses_uso, estado_uso = :estado_uso";
 
         $query = $conn->prepare($sql);
         $query->bindValue(":id_usuario",$this->id_usuario, PDO::PARAM_INT);
@@ -50,6 +52,7 @@ class Producto {
         $query->bindValue(":valoracion",$this->valoracion, PDO::PARAM_INT);
         $query->bindValue(":is_usado",$this->is_usado, PDO::PARAM_INT);
         $query->bindValue(":meses_uso",$this->meses_uso, PDO::PARAM_INT);
+        $query->bindValue(":estado_uso",$this->estado_uso, PDO::PARAM_INT);
         
 
         try {

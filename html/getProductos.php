@@ -4,13 +4,14 @@ require_once('classes/Usuario.php');
 require_once('classes/Connection.php');
 require_once('classes/Producto.php');
 require_once('classes/Categoria.php');
+require_once('classes/FotoProducto.php');
 
 $usuario = unserialize($_SESSION["usuario"]);
 
 $conn = new Connection();
 $pdo = $conn->start();
 $producto = new Producto(2, "hola", "hola wacho", 400, 2, 405);
-
+$foto  = new FotoProducto(1,"","");
 // var_dump($producto);
 
 // echo "<br>";

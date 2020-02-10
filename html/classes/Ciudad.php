@@ -14,9 +14,9 @@
     public function crearCiudad (PDO $conn) {
         # code...
         $sql = "INSERT INTO ciudades 
-            set ciudad = :ciudad , provincia = :provincia";
+            set nombre = :nombre , provincia = :provincia";
         $query = $conn->prepare($sql);
-        $query->bindValue(":ciudad",$this->ciudad, PDO::PARAM_STR);
+        $query->bindValue(":nombre",$this->ciudad, PDO::PARAM_STR);
         $query->bindValue(":provincia",$this->provincia, PDO::PARAM_STR);
         
 
@@ -44,7 +44,7 @@
 
     public function getCiudades (PDO $conn) {
         
-        $sql = "select * from ciudades";
+        $sql = "select * from ciudades order by nombre";
         $query = $conn->prepare($sql);
         
         

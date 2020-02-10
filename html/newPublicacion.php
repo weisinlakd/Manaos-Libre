@@ -29,10 +29,15 @@ $categoria_id = $_POST["categoria"];
 $meses_uso = isset($_POST["meses_uso"]) ? $_POST["meses_uso"] : null;
 $estado_uso = isset($_POST["estado_uso"]) ? $_POST["estado_uso"] : null;
 $precio = $_POST["precio"];
-$ciudad_id = $_POST["ciudad_id"];
+$ciudad_id = $_POST["ciudad"];
 $usuario_id = $usuario->id();
 
-$producto = new Producto($usuario_id, $name, $descripcion, $precio, $ciudad_id, $categoria_id);
+if (isset($_POST["meses_uso"])){
+    $producto = new Producto($usuario_id, $name, $descripcion, $precio, $ciudad_id, $categoria_id, 1, $meses_uso, $estado_uso);
+} else {
+
+    $producto = new Producto($usuario_id, $name, $descripcion, $precio, $ciudad_id, $categoria_id);
+}
 
 $foto = new FotoProducto(1, "asd", "asd");
 

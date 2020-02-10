@@ -18,8 +18,8 @@
     // die;
     $res = isset($productos[1]) ? true : false;
       // $cantidad = [1,2,3,4,5,6,7,8];
-      var_dump($res);
-      var_dump($productos);
+      // var_dump($res);
+      // var_dump($productos);
     if ($res){
       $resultados = $productos[0]->cantidad(); 
       $paginas = round($resultados/8, 0, PHP_ROUND_HALF_ODD) ? round($resultados/8, 0, PHP_ROUND_HALF_ODD) : 1;
@@ -87,6 +87,9 @@
       foreach ($productos as $producto) {
       
       $id = $producto->id();
+      $fotos = $foto->getFotoProductoByIdProducto($pdo, $id);
+      // var_dump($fotos[0]->path);
+      // die;
       $titulo = $producto->name();
       $precio = $producto->precio();
       $ubicacion = $producto->ciudad($pdo);
