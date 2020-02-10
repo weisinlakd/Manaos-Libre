@@ -98,6 +98,10 @@
             return $this->apellido;
         }
 
+        public function last_name () {
+            return $this->apellido;
+        }
+
         public function setApellido ($apellido) {
             $this->apellido = $apellido;
         }
@@ -119,6 +123,10 @@
         }
 
         public function telefono () {
+            return $this->telefono;
+        }
+
+        public function phone () {
             return $this->telefono;
         }
 
@@ -202,6 +210,7 @@
             $this->fechaCreacion = $usuarioDB->fecha_creacion;
             $this->foto = $usuarioDB->foto;    
             $this->rememberMe = $usuarioDB->remember_me;
+            $this->direccionID = $usuarioDB->id_direccion;
             $this->estado = 1;
 
             return $this;
@@ -216,7 +225,8 @@
                 telefono = :telefono,
                 apellido = :apellido,
                 password = :password, 
-                foto = :foto 
+                foto = :foto,
+                id_direccion = :id_direccion 
                 
                 WHERE id = :id ";
             $query = $conn->prepare($sql);
@@ -225,6 +235,7 @@
             $query->bindValue(":password",$this->password, PDO::PARAM_STR);
             $query->bindValue(":apellido",$this->apellido, PDO::PARAM_STR);
             $query->bindValue(":telefono",$this->telefono, PDO::PARAM_INT);
+            $query->bindValue(":id_direccion",$this->direccionID, PDO::PARAM_INT);
             $query->bindValue(":foto",$this->foto, PDO::PARAM_STR);
            
 

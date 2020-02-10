@@ -7,7 +7,7 @@
         private $isDepartamento;
         private $departamento;
 
-        public function __construct($direccion, $ciudad_id, $isDepartamento = null, $departamento = null)   {
+        public function __construct(string $direccion, int $ciudad_id, int $isDepartamento = null, string $departamento = null)   {
             
             $this->direccion = $direccion;
             $this->ciudad_id = $ciudad_id;
@@ -15,6 +15,10 @@
             if ($isDepartamento) $this->isDepartamento = $isDepartamento;
             if ($departamento) $this->departamento = $departamento;
 
+        }
+
+        public function id () {
+            return $this->id;
         }
 
         public function crearDireccion (PDO $conn) {
@@ -27,7 +31,7 @@
             $query = $conn->prepare($sql);
             $query->bindValue(":direccion",$this->direccion, PDO::PARAM_STR);
             $query->bindValue(":ciudad_id",$this->ciudad_id, PDO::PARAM_INT);
-            
+            $query->bindValue(":departamento",$this->departamento, PDO::PARAM_INT);
             
     
             try {

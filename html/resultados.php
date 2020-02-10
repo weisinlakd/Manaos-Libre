@@ -52,7 +52,7 @@
       $cantidad = [1,2,3,4,5,6,7,8];
      
 
-      $tituloPag = "Resultados (<span>1</span>/$resultados)";
+      $tituloPag = "Resultados de <span>'$busqueda'</span> : ($resultados)";
 
       require_once('header.php');
       if (!$busqueda || !$resultado) {
@@ -105,6 +105,7 @@
               $titulo = $producto->name();
               $precio = $producto->precio();
               $ubicacion = $producto->ciudad($pdo);
+              $fotos = $foto->getFotoProductoByIdProducto($pdo, $id);
               // var_dump($ubicacion); die;
               $descripcion = $producto->descripcion();
               $imagen = rand(0,3);

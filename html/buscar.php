@@ -5,6 +5,7 @@ require_once('classes/Usuario.php');
 require_once('classes/Connection.php');
 require_once('classes/Producto.php');
 require_once('classes/Categoria.php');
+require_once('classes/FotoProducto.php');
 
 $usuario = unserialize($_SESSION["usuario"]);
 
@@ -14,8 +15,9 @@ $producto = new Producto(2, "hola", "hola wacho", 400, 2, 405);
 
 // var_dump($producto);
 
-
-$resultado = $producto->getProductoByName($pdo, $busqueda);
+$offset = isset($_GET["offset"]) ? $_GET["offset"] : null;
+$resultado = $producto->getProductoByName($pdo, $busqueda, $offset);
+$foto  = new FotoProducto(1,"","");
 // $productos = $producto->getProductos($pdo);
 
 

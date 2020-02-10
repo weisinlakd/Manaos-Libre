@@ -21,22 +21,30 @@
     // var_dump($datos);
     session_start();
     require_once('classes/Usuario.php');
+    require_once('classes/Connection.php');
+    require_once('classes/Ciudad.php');
+    $conn = new Connection();
+    $pdo = $conn->start();
+    $ciudad = new Ciudad("","");
+    $ciudades = $ciudad->getCiudades($pdo);
     $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
     if ($usuario) $usuarioLog = true;
     //   var_dump($usuario);
     //  echo '<br>';
     //  var_dump($_SESSION);
-
+    // var_dump($usuario->fechaCreacion());die;
     function valorDato($key){
         global $boolCook, $datos, $usuario;
         
         if ($boolCook){
             echo $datos[$key];
-        } else {
+        } if ($key == 'ciudad_id' || $key == 'location' || $key == 'pass' || $key == 're_pass'){
+            echo '';
+        }else {
             // if (isset($usuario[$key]) && $key != 'pass'){
             //     echo $usuario[$key];
             // } else 
-            echo '';
+            echo $usuario->$key();
             
         }
     }
@@ -45,6 +53,7 @@
     //var_dump($usuario['avatar']);
     $titulo = 'Mi Perfil';
     $producto = false;
+    $fecha = $usuario->fechaCreacion() != null ? $usuario->fechaCreacion() : 'relogueá para obtener la informacion!';
     require_once('head.php');
   ?>
 	<body>
@@ -96,7 +105,7 @@
                 <li class="list-group-item text-muted">Perfil</li>
                 <li class="list-group-item text-right">
                     <span class="pull-left">
-                        <strong>Perfil creado</strong></span> <?=$usuario->fechaCreacion()?></li>
+                        <strong>Perfil creado</strong></span> <?=$fecha?></li>
                 <li class="list-group-item text-right">
                     <span class="pull-left">
                         <strong>Última conexión</strong></span> 09/12/2018</li>
@@ -319,14 +328,27 @@
                                 <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value='<?=$usuario->email()?>' disabled>
                             </div>
                         </div>
+                        
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                            <label for="ciudad"><h4>Ciudad y Dirección</h4></label><br>
+                            <select name="ciudad" id="ciudad"  class="js-example-basic-single" placeholder="buscá tu ciudad" value='<?=valorDato('ciudad_id')?>'>
+                            <?php foreach ($ciudades as $ciudad) : ?>
+                            <option value="<?=$ciudad->id?>" name="ciudad_id" > <?=$ciudad->nombre?> </option> 
+                            <?php endforeach ?>
+                            </div>
+                        </div>
+                        
                         <div class="form-group">
 
                             <div class="col-xs-6">
                                 <label for="location">
-                                    <h4>Ciudad</h4></label>
-                                <input type="text" class="form-control" name="location" id="location" placeholder="Córdoba" title="enter a location" value='<?=valorDato('location')?>'>
+                                    <h4>Dirección</h4></label>
+                                <input type="text" class="form-control" name="location" id="location" placeholder="Avenida San Martín 150" title="enter a location" value='<?=valorDato('location')?>'>
                             </div>
                         </div>
+
                         <div class="form-group">
 
                             <div class="col-xs-6">
@@ -375,22 +397,29 @@
 <?php require_once('footer.php');?>
     
     
-      <script src="../js/jquery-3.3.1.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
-      <script src="../js/bootstrap.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
-      <script src="../js/jquery.magnific-popup.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
-      <script src="../js/jquery.slicknav.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
-      <script src="../js/owl.carousel.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
-      <script src="../js/jquery.nice-select.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
-      <script src="../js/mixitup.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
-      <script src="../js/main.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
-      <script type="bba5e7fdb0ecd42f6a179fdb-text/javascript">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-23581568-13');
-      </script>
-      <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="bba5e7fdb0ecd42f6a179fdb-|49" defer=""></script></body>
+    <script src="../js/jquery-3.3.1.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/bootstrap.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/jquery.magnific-popup.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/jquery.slicknav.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/owl.carousel.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/jquery.nice-select.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/mixitup.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script src="../js/main.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
+    <script type="bba5e7fdb0ecd42f6a179fdb-text/javascript">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-23581568-13');
+    </script>
+    <script>
+    $(document).ready(function () {
+        $('.js-example-basic-single').selectize({
+            sortField: 'text'
+        });
+    });
+    </script>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="bba5e7fdb0ecd42f6a179fdb-|49" defer=""></script></body>
 </html>
