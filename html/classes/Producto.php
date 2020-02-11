@@ -227,6 +227,7 @@ class Producto {
                     // var_dump($productoActual); die;
                     $productoActual->cantidad = $productoActual->getTotalProductos($conn,$name);
                     // var_dump($producto); die;
+                    $productoActual->setValoracion($conn);//borrar si rompi algo
                     $productos[] = $productoActual;
                     // $productoActual = null;
                     // var_dump($productos); echo "<br><br><br>";
@@ -317,6 +318,93 @@ class Producto {
 
     }
 
+
+
+    public function getMasVotados (PDO $conn) {
+        
+        $sql = "select avg(valoracion) as promedio, id_producto from valoraciones 
+            group by id_producto order by promedio desc limit 12";
+
+        $query = $conn->prepare($sql);
+        
+        try {
+            //code...
+            // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_OBJ);
+            // var_dump($result); 
+            // die;
+            $productos = array();
+            foreach ($result as $producto) {
+                // var_dump($producto); die;
+                // $productoActual+= 1;
+                $id = $producto->id_producto;
+                // var_dump($id); die; 
+                $productoActual = new Producto(1,"2","3",3,4,5); //PREGUNTAR QUE PASA ACÁ
+                
+                $productoActual = $productoActual->getProductoById($conn,$id);
+                
+                // var_dump($productoActual); die;
+                $productoActual->cantidad = $productoActual->getTotalProductos($conn);
+                // var_dump($producto); die;
+                $productoActual->setValoracion($conn);
+                $productos[] = $productoActual;
+                // $productoActual = null;
+                // var_dump($productos); echo "<br><br><br>";
+                // echo $productoActual->id();
+                
+                
+            }
+            
+            return $productos;
+
+        } catch (\Exception $e) {
+            //throw $th;
+            echo $e . "<br>";
+            return $e;
+        }
+    }
+    
+
+    public function getMasBaratos (PDO $conn) {
+        
+        $sql = "select * from productos order by precio asc limit 12";
+
+        $query = $conn->prepare($sql);
+        
+        try {
+            //code...
+            // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_OBJ);
+            // var_dump($result); 
+            // die;
+            $productos = array();
+            foreach ($result as $producto) {
+                // var_dump($producto); die;
+                // $productoActual+= 1; 
+                $productoActual = new Producto(1,"2","3",3,4,5); //PREGUNTAR QUE PASA ACÁ
+                $productoActual = $productoActual->restaurarProducto($producto);
+                
+                // var_dump($productoActual); die;
+                $productoActual->cantidad = $productoActual->getTotalProductos($conn);
+                // var_dump($producto); die;
+                $productoActual->setValoracion($conn);//borrar si rompi algo
+                $productos[] = $productoActual;
+                // $productoActual = null;
+                // var_dump($productos); echo "<br><br><br>";
+                // echo $productoActual->id();
+            }
+                    
+                 
+            return $productos;
+
+        } catch (\Exception $e) {
+            //throw $th;
+            echo $e . "<br>";
+            return $e;
+        }
+    }
 }
 
 ?>

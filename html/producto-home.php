@@ -1,7 +1,7 @@
 <div class="col-sm-2 col-md-3">
     <div class="thumb-wrapper">
         <div class="img-box">
-            <img src="../img/productos/producto-<?=$imagen?>.jpg" class="img-responsive img-fluid" alt="">
+            <img src="<?=$imagen?>" class="img-responsive img-fluid img-home" alt="">
         </div>
         <div class="thumb-content">
             <br>
@@ -30,6 +30,7 @@
                 </div>
             </div>
             <br>
+            <a href="detalle-producto.php?id=<?=$idProducto?>" class="btn btn-primary">Ver</a>  
             <a href="shopping-cart.html" class="btn btn-primary">Comprar</a>
         </div>						
     </div>

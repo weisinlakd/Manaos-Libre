@@ -4,32 +4,35 @@
   
     session_start();
     require_once('classes/Usuario.php');
+    require_once('classes/Connection.php');
+    require_once('classes/Producto.php');
+    require_once('classes/Categoria.php');
+    require_once('classes/FotoProducto.php');
+    require_once('classes/Ciudad.php');
+    require_once('classes/Valoracion.php');
     $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
     if ($usuario) $usuarioLog = true;
-    // require_once('login.php');
-    //var_dump($_SESSION);
-    // echo '<br>';
-    // $usuario = unserialize($usuario);
-    // var_dump($usuario);
-    //var_dump($usuario);
-    // echo 'sesion <br>';
-    // var_dump($_SESSION);
-    //  echo '<br>';
-    //  var_dump($usuario);
-    // $usuarioLog = true; //COMENTAR DESPUES DE HAY USUARIO
 
-    // var_dump($usuario->name());
-    // var_dump($usuario->foto());
+    $conn = new Connection();
+    $pdo = $conn->start();
+    $producto = new Producto(2, "hola", "hola wacho", 400, 2, 405);
+    $ciudad = new Ciudad("","");
+    $foto = new FotoProducto(1,"","");
 
-
-    //var_dump($usuario);
-    
+    // var_dump($fotos[0]->path);
+    $masVotados = $producto->getMasVotados($pdo);
+    $masBaratos = $producto->getMasBaratos($pdo);
+    // var_dump($masBaratos);
+    // die;
     $titulo = "Home";
     // $usuarioLog = rand(0,1);
     $producto = false;
     require_once('head.php');
     
-  ?><style>
+  ?>
+  
+  
+  <style>
     .carousel-control-prev.hola {
     left: -90px;
     }
@@ -48,6 +51,13 @@
 
     .importante {
       color: black;
+    }
+
+    .img-home {
+      min-width: 12em;
+      max-width: 12em;
+      min-height: 12em;
+      max-height: 12em;
     }
 
   </style>
@@ -71,19 +81,16 @@
 
         <?php 
           $id = 1;
-          $titulo = "Más Vendidos";
-          $multiplo = 2;
-          $arrayProd = ['Iphone X','Televisor', 'Adidas Roteiro','PS4 500GB' ];
-          $arrayPrecios = [35000, 20000, 500 , 16000 ];
+          $titulo = "Más Votados";
           require('slider-4-productos.php'); 
         ?>
 
           <br>
         <?php
           $id = 2;
-          $titulo = "Ofertas";
+          $titulo = "Más Baratos";
           $ofertas = true;
-          $multiplo = 3;
+          $masVotados = $masBaratos;
           require('slider-4-productos.php') ?>
     
 

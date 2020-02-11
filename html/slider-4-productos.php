@@ -14,12 +14,19 @@
                 <div class="carousel-inner">
                   <div class="item carousel-item active">
                     <div class="row">
-                      <?php for ($i=1;$i <= 4; $i++) {
-                          $idProducto = $i*$multiplo;
-                          $rand = rand(0,3);
-                          $imagen = $rand;
-                          $tituloProd = $arrayProd[$rand];
-                          $precio = $arrayPrecios[$rand];
+                      <?php for ($i=0;$i < count($masVotados); $i++) {
+                        if ($i == 4) break;
+                        $idProducto = $masVotados[$i]->id();
+                        // $rand = rand(0,3);
+                        $imagen = $foto->getFotoProductoByIdProducto($pdo, $idProducto)[0];
+
+                        if (is_object($imagen)){
+                          $imagen = $imagen->path;
+                        } else $imagen = "../img/placeholder-home.jpg";
+                        // var_dump($imagen);
+                        // die;
+                        $tituloProd = $masVotados[$i]->name();
+                        $precio = $masVotados[$i]->precio();
                         require('producto-home.php');
                       }
                       ?>
@@ -27,8 +34,16 @@
                   <br></div>
                   <div class="item carousel-item">
                     <div class="row">
-                      <?php for ($i=1;$i <= 4; $i++) {
-                          $idProducto = $i*$multiplo*10;
+                      <?php for ($i=4;$i < count($masVotados); $i++) {
+                        if ($i == 8) break;
+                        $idProducto = $masVotados[$i]->id();
+                        // $rand = rand(0,3);
+                        $imagen = $foto->getFotoProductoByIdProducto($pdo, $idProducto)[0];
+                        if (is_object($imagen)){
+                          $imagen = $imagen->path;
+                        } else $imagen = "../img/placeholder-home.jpg";
+                        $tituloProd = $masVotados[$i]->name();
+                        $precio = $masVotados[$i]->precio();
                         require('producto-home.php');
                       }
                       ?>				
@@ -36,8 +51,16 @@
                   <br></div>
                   <div class="item carousel-item">
                     <div class="row">
-                      <?php for ($i=1;$i <= 4; $i++) {
-                          $idProducto = $i*$multiplo*20;
+                      <?php for ($i=8;$i < count($masVotados); $i++) {
+                        // if ($i == 8) break;
+                        $idProducto = $masVotados[$i]->id();
+                        // $rand = rand(0,3);
+                        $imagen = $foto->getFotoProductoByIdProducto($pdo, $idProducto)[0];
+                        if (is_object($imagen)){
+                          $imagen = $imagen->path;
+                        } else $imagen = "../img/placeholder-home.jpg";
+                        $tituloProd = $masVotados[$i]->name();
+                        $precio = $masVotados[$i]->precio();
                         require('producto-home.php');
                       }
                       ?>
