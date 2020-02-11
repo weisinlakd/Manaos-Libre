@@ -32,3 +32,14 @@
 
     <title><?=$titulo.' | Manaos Libre'?></title>
 </head>
+
+<style>
+.img-lista {
+    min-width: 14em;
+    max-width: 14em;
+    min-height: 14em;
+    max-height: 14em;
+    /* left: 10px; */
+
+}
+</style>

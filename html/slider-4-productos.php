@@ -27,6 +27,7 @@
                         // die;
                         $tituloProd = $masVotados[$i]->name();
                         $precio = $masVotados[$i]->precio();
+                        $alt = $masVotados[$i]->descripcion();
                         require('producto-home.php');
                       }
                       ?>
@@ -44,6 +45,7 @@
                         } else $imagen = "../img/placeholder-home.jpg";
                         $tituloProd = $masVotados[$i]->name();
                         $precio = $masVotados[$i]->precio();
+                        $alt = $masVotados[$i]->descripcion();
                         require('producto-home.php');
                       }
                       ?>				
@@ -61,6 +63,7 @@
                         } else $imagen = "../img/placeholder-home.jpg";
                         $tituloProd = $masVotados[$i]->name();
                         $precio = $masVotados[$i]->precio();
+                        $alt = $masVotados[$i]->descripcion();
                         require('producto-home.php');
                       }
                       ?>

@@ -1,7 +1,7 @@
 <div class="col-sm-2 col-md-3">
     <div class="thumb-wrapper">
         <div class="img-box">
-            <img src="<?=$imagen?>" class="img-responsive img-fluid img-home" alt="">
+            <img src="<?=$imagen?>" class="img-responsive img-fluid img-home" alt="<?=$alt?>">
         </div>
         <div class="thumb-content">
             <br>

@@ -71,9 +71,7 @@
       // echo $paginas;
 
       // echo count($cantidad);
-      $ubis = ["Córdoba", "Rosario", "Buenos Aires"];
-      $prod = ["Iphone", "Televisor", "Pelota"];
-      $desc = ['telefono muy bueno', 'televisor 40pulgadas', 'Pelota Adidas Roteiro'];
+      
       
 
     ?>
@@ -89,16 +87,7 @@
           <div class="row">
             
             <?php 
-            // foreach ($cantidad as $producto) {
-            //   $rand = rand(0,2);
-            //   $id = $producto;
-            //   $titulo = $prod[$rand];
-            //   $precio = rand( 200, 400);
-            //   $ubicacion = $ubis[$rand];
-            //   $descripcion = $desc[$rand];
-            //   $imagen = $rand;
-            //   require('producto.php');
-            // }
+            
             foreach ($resultado as $producto) {
       
               $id = $producto->id();
@@ -106,6 +95,12 @@
               $precio = $producto->precio();
               $ubicacion = $producto->ciudad($pdo);
               $fotos = $foto->getFotoProductoByIdProducto($pdo, $id);
+              if ($fotos === false) {
+        
+                $placeholder = new stdClass();
+                $placeholder->path = "../img/placeholder-home.jpg";
+                $fotos = array_fill(0,3, $placeholder);
+              }
               // var_dump($ubicacion); die;
               $descripcion = $producto->descripcion();
               $imagen = rand(0,3);

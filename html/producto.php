@@ -11,29 +11,29 @@
               <div class="carousel-item active">
                 <div class="d-block d-md-none img-fluid">
                   <!--  -->
-                  <img src="<?=$fotos[0]->path?>" class="d-block w-100" alt="...">
+                  <img src="<?=$fotos[0]->path?>" class="d-block w-100 img-lista" alt="...">
                 </div>
                 <div class="d-none d-md-block d-xl-block">
                   <!--  -->
-                  <img src="<?=$fotos[0]->path?>" class="d-block w-100" alt="...">
+                  <img src="<?=$fotos[0]->path?>" class="d-block w-100 img-lista" alt="...">
                 </div>
               </div>
               <div class="carousel-item">
                 <div class="d-block d-md-none">
-                  <img src="<?=$fotos[1]->path?>" class="d-block w-100" alt="...">
+                  <img src="<?=$fotos[1]->path?>" class="d-block w-100 img-lista" alt="...">
                 </div>
                 <div class="d-none d-md-block d-xl-block">
                   <!--  -->
-                  <img src="<?=$fotos[1]->path?>" class="d-block w-100" alt="...">
+                  <img src="<?=$fotos[1]->path?>" class="d-block w-100 img-lista" alt="...">
                 </div>
               </div>
               <div class="carousel-item">
                 <div class="d-block d-md-none">
-                  <img src="<?=$fotos[2]->path?>" class="d-block w-100" alt="...">
+                  <img src="<?=$fotos[2]->path?>" class="d-block w-100 img-lista" alt="...">
                 </div>
                 <div class="d-none d-md-block d-xl-block">
                   <!--  -->
-                  <img src="<?=$fotos[2]->path?>" class="d-block w-100" alt="...">
+                  <img src="<?=$fotos[2]->path?>" class="d-block w-100 img-lista" alt="...">
                 </div>
               </div>
             </div>

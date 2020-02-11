@@ -90,6 +90,12 @@
       $fotos = $foto->getFotoProductoByIdProducto($pdo, $id);
       // var_dump($fotos[0]->path);
       // die;
+      if ($fotos === false) {
+        
+        $placeholder = new stdClass();
+        $placeholder->path = "../img/placeholder-home.jpg";
+        $fotos = array_fill(0,3, $placeholder);
+      }
       $titulo = $producto->name();
       $precio = $producto->precio();
       $ubicacion = $producto->ciudad($pdo);
