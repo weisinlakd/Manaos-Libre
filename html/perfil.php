@@ -23,6 +23,7 @@
     require_once('classes/Usuario.php');
     require_once('classes/Connection.php');
     require_once('classes/Ciudad.php');
+    require_once('classes/Valoracion.php');
     $conn = new Connection();
     $pdo = $conn->start();
     $ciudad = new Ciudad("","");
@@ -33,6 +34,11 @@
     //  echo '<br>';
     //  var_dump($_SESSION);
     // var_dump($usuario->fechaCreacion());die;
+    $val = new Valoracion(1,1,"");
+    $totalVal = $val->getTotalValoraciones($pdo,$usuario->id());
+
+    // var_dump($totalVal);die;
+
     function valorDato($key){
         global $boolCook, $datos, $usuario;
         
@@ -106,9 +112,9 @@
                 <li class="list-group-item text-right">
                     <span class="pull-left">
                         <strong>Perfil creado</strong></span> <?=$fecha?></li>
-                <li class="list-group-item text-right">
+                <!-- <li class="list-group-item text-right">
                     <span class="pull-left">
-                        <strong>Última conexión</strong></span> 09/12/2018</li>
+                        <strong>Última conexión</strong></span> 09/12/2018</li> -->
                 <li class="list-group-item text-right">
                     <span class="pull-left">
                         <strong>Nombre completo</strong></span> <?php if ($usuario->apellido()){ echo $usuario->name().' '.$usuario->apellido(); } else echo $usuario->name()?></li>
@@ -127,9 +133,9 @@
             <ul class="list-group">
                 <li class="list-group-item text-muted">Actividad <i class="fa fa-dashboard fa-1x"></i></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Productos en Venta</strong></span> 125</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Mis Valoraciones</strong></span> <?=$totalVal?></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Comentarios</strong></span> 37</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Ratings</strong></span> 78</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Ratings a mis productos</strong></span> 78</li>
             </ul>
 
             <!-- <div class="panel panel-default">

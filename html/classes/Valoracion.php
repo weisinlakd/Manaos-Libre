@@ -109,6 +109,26 @@
                 return false;
             }
         }
+
+        public function getTotalValoraciones (PDO $conn, $idUsuario) {
+
+            $sql =  'select count(*) as total from valoraciones where id_usuario = :id_usuario';
+            
+            $query = $conn->prepare($sql);
+            $query->bindValue(":id_usuario",$idUsuario, PDO::PARAM_INT);
+            
+            try {
+                
+                $query->execute();
+                $result = $query->fetch(PDO::FETCH_OBJ);
+                return $result->total;
+            } catch (\Exception $e) {
+                //throw $th;
+                echo $e . "<br>";
+                return false;
+            }
+            
+        }
         
     }
 ?>

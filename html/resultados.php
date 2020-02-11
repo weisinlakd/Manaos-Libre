@@ -28,7 +28,7 @@
         setcookie("resultados", $paginas, time()+60*7);
       } else {
         $resultados = 'No hay resultados';
-        $paginas = $_COOKIE["resultados"];
+        $paginas = isset($_COOKIE["resultados"]) ? $_COOKIE["resultados"] : 0 ;
       }
       require_once('head.php');
       
@@ -56,7 +56,7 @@
 
       require_once('header.php');
       if (!$busqueda || !$resultado) {
-        echo "<br><br><h1>No existe ese producto</h1><br><br>";
+        echo "<br><br><br><h1>No existe ese producto</h1><br><br><br>";
         require_once('footer.php');
         die;
       }
