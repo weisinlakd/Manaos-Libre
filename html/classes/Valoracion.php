@@ -33,8 +33,8 @@
                 $result = $query->execute();
                 if ($result){
                     $this->id = $conn->lastInsertId();
-                    echo "valoracion creada!";
-                    return true;
+                    // echo "valoracion creada!";
+                    return $result;
                 }
             } catch (\Exception $e) {
                 //throw $th;
@@ -85,6 +85,28 @@
                 //throw $th;
                 echo $e . "<br>";
                 
+            }
+        }
+
+        public function yaVotaste (pdo $conn) {
+
+            $sql = "select * from valoraciones where id_usuario = :id_usuario 
+            and id_producto = :id_producto";
+
+            $query = $conn->prepare($sql);
+            $query->bindValue(":id_usuario",$this->idUsuario, PDO::PARAM_INT);
+            $query->bindValue(":id_producto",$this->idProducto, PDO::PARAM_INT);
+
+            try {
+                //code...
+                // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+                $query->execute();
+                $result = $query->fetchAll(PDO::FETCH_OBJ);
+                return $result;
+            } catch (\Exception $e) {
+                //throw $th;
+                echo $e . "<br>";
+                return false;
             }
         }
         

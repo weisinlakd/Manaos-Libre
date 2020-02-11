@@ -1,0 +1,10 @@
+INSERT INTO `valoraciones` (`id_usuario`,`id_producto`,`valoracion`) VALUES (1,60,2),(1,60,1),(1,81,7),(1,50,10),(1,71,4),(2,49,9),(1,94,10),(2,70,4),(2,91,4),(1,77,7);
+INSERT INTO `valoraciones` (`id_usuario`,`id_producto`,`valoracion`) VALUES (1,68,1),(1,49,7),(1,60,2),(2,89,8),(2,60,4),(1,90,4),(2,70,3),(1,60,1),(2,47,6),(1,88,6);
+INSERT INTO `valoraciones` (`id_usuario`,`id_producto`,`valoracion`) VALUES (1,90,2),(1,81,3),(1,77,1),(2,84,10),(2,66,9),(2,72,8),(2,65,6),(1,49,8),(2,79,6),(1,90,5);
+INSERT INTO `valoraciones` (`id_usuario`,`id_producto`,`valoracion`) VALUES (2,93,3),(2,78,1),(1,57,4),(1,89,6),(1,69,9),(1,57,8),(2,59,8),(2,62,2),(2,63,3),(1,51,1);
+INSERT INTO `valoraciones` (`id_usuario`,`id_producto`,`valoracion`) VALUES (1,89,3),(1,48,3),(2,62,4),(1,76,1),(1,48,6),(2,57,1),(1,70,5),(2,70,2),(1,66,10),(1,86,2);
+INSERT INTO `valoraciones` (`id_usuario`,`id_producto`,`valoracion`) VALUES (2,51,5),(2,90,8),(2,48,5),(1,89,9),(1,85,5),(1,62,8),(1,84,1),(1,50,10),(2,75,10),(1,83,1);
+INSERT INTO `valoraciones` (`id_usuario`,`id_producto`,`valoracion`) VALUES (1,65,1),(1,86,2),(2,58,5),(1,80,5),(1,92,7),(1,95,3),(2,86,10),(2,45,5),(1,90,9),(1,93,10);
+INSERT INTO `valoraciones` (`id_usuario`,`id_producto`,`valoracion`) VALUES (2,74,7),(1,55,4),(1,69,5),(2,60,5),(1,69,10),(2,62,1),(1,75,10),(1,57,10),(1,95,3),(1,73,3);
+INSERT INTO `valoraciones` (`id_usuario`,`id_producto`,`valoracion`) VALUES (1,84,9),(1,65,5),(1,62,4),(1,94,9),(1,45,6),(2,52,9),(1,47,1),(2,54,8),(1,49,10),(2,69,5);
+INSERT INTO `valoraciones` (`id_usuario`,`id_producto`,`valoracion`) VALUES (1,72,8),(1,80,9),(2,73,9),(2,90,1),(2,78,10),(2,52,2),(1,56,8),(1,92,10),(2,74,3),(2,71,2);

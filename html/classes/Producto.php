@@ -266,7 +266,7 @@ class Producto {
         
     }
 
-    public function getVendedor ($conn) {
+    public function getVendedor (PDO $conn) {
         
 
         $id = $this->id_usuario;   
@@ -287,6 +287,33 @@ class Producto {
             
         }
 
+
+    }
+
+    public function setValoracion (PDO $conn) {
+
+        $id = $this->id;
+
+        $sql = 'select avg(valoracion) as promedio from valoraciones where id_producto = :id';
+        $query = $conn->prepare($sql);
+        $query->bindValue(":id",$id, PDO::PARAM_INT);
+
+        try {
+            //code...
+            // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_OBJ);
+            if ($result){
+                
+                $this->valoracion = $result->promedio;
+                return $result->promedio;
+            }
+            // return $result->name;
+        } catch (\Exception $e) {
+            //throw $th;
+            echo $e . "<br>";
+            
+        }
 
     }
 
