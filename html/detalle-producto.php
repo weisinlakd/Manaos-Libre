@@ -22,6 +22,12 @@
       $pdo = $conn->start();
       $productoDB = $prod->getProductoById($pdo, $id);
       $fotos = $foto->getFotoProductoByIdProducto($pdo, $id);
+      if ($fotos === false) {
+        
+        $placeholder = new stdClass();
+        $placeholder->path = "../img/placeholder-home.jpg";
+        $fotos = array_fill(0,3, $placeholder);
+      }
       $valoracion = $prod->setValoracion($pdo)/2;
       
       $valoracion = floor($valoracion * 2) / 2;
@@ -270,18 +276,19 @@
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="bba5e7fdb0ecd42f6a179fdb-|49" defer=""></script></body>
 </html>
 
- 
+<?php
 // estrellas originales
-<p class="clasificacion">
-        <p>  Opiniones </p>
-        <input id="radio5" type="radio" name="estrellas" value="5"><!--
-        --><label for="radio5">★</label><!--
-        --><input id="radio4" type="radio" name="estrellas" value="4"><!--
-        --><label for="radio4">★</label><!--
-        --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-        --><label for="radio3">★</label><!--
-        --><input id="radio2" type="radio" name="estrellas" value="2"><!--
-        --><label for="radio2">★</label><!--
-        --><input id="radio1" type="radio" name="estrellas" value="1"><!--
-        --><label for="radio1">★</label>  </p>
+// <p class="clasificacion">
+//         <p>  Opiniones </p>
+//         <input id="radio5" type="radio" name="estrellas" value="5"><!--
+//         --><label for="radio5">★</label><!--
+//         --><input id="radio4" type="radio" name="estrellas" value="4"><!--
+//         --><label for="radio4">★</label><!--
+//         --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+//         --><label for="radio3">★</label><!--
+//         --><input id="radio2" type="radio" name="estrellas" value="2"><!--
+//         --><label for="radio2">★</label><!--
+//         --><input id="radio1" type="radio" name="estrellas" value="1"><!--
+//         --><label for="radio1">★</label>  </p>
 
+?>
