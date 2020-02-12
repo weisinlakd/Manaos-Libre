@@ -49,7 +49,7 @@
         public function getComentariosByProductoId (PDO $conn, $idProducto) {
         
             $sql = "select * from comentarios join productos on productos.id = comentarios.id_producto
-             where estado = 1 and productos.id = $idProducto";
+             where comentarios.estado = 1 and productos.id = $idProducto";
 
             $query = $conn->prepare($sql);
             
@@ -60,10 +60,10 @@
                 $query->execute();
                 $result = $query->fetchAll(PDO::FETCH_OBJ);
                 return $result;
-            } catch (\Exception $e) {
+            } catch (\Exception $e) { 
                 //throw $th;
                 echo $e . "<br>";
-                
+                return false;
             }
         }
 
@@ -85,6 +85,28 @@
                 //throw $th;
                 echo $e . "<br>";
                 
+            }
+        }
+
+        public function getComentariosByUsuariosToProductosOfUsuarioId (PDO $conn, $idUsuario ){
+
+            
+            $sql = " select comentarios.id, comentarios.id_producto, productos.name, comentarios.id_usuario, comentarios.comentario from comentarios join productos on productos.id = comentarios.id_producto 
+            where productos.id_usuario = :id_usuario  order by comentarios.id desc limit 10";
+ 
+
+            $query = $conn->prepare($sql);
+            $query->bindValue(":id_usuario",$idUsuario, PDO::PARAM_INT);
+            
+            try {
+                
+                $query->execute();
+                $result = $query->fetchAll(PDO::FETCH_OBJ);
+                return $result;
+            } catch (\Exception $e) {
+                //throw $th;
+                echo $e . "<br>";
+                return false;
             }
         }
         

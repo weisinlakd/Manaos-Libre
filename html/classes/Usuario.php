@@ -178,6 +178,30 @@
             
         }
 
+        public function getName (PDO $conn, int $id) {
+
+           
+            $sql = "select name from usuarios where id = :id and estado = 1";
+            $query = $conn->prepare($sql);
+            $query->bindValue(":id",$id, PDO::PARAM_INT);
+            
+            try {
+                //code...
+                // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+                $query->execute();
+                $result = $query->fetch(PDO::FETCH_OBJ);
+                return $result->name;
+            } catch (\Exception $e) {
+                //throw $th;
+                echo $e . "<br>";
+                return false;
+            }
+            
+            
+            
+            
+        }
+
         public function subirFoto () {
             // $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
             // echo $this->foto;

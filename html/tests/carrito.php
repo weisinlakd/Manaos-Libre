@@ -4,7 +4,7 @@
 }
 @media screen and (max-width: 600px) {
     table#cart tbody td .form-control{
-		width:20%;
+		/* width:20%; */
 		display: inline !important;
 	}
 	.actions .btn{

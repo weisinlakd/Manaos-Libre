@@ -26,6 +26,7 @@
     require_once('classes/Valoracion.php');
     require_once('classes/Producto.php');
     require_once('classes/Categoria.php');
+    require_once('classes/Comentario.php');
     $conn = new Connection();
     $pdo = $conn->start();
     $ciudad = new Ciudad("","");
@@ -43,9 +44,12 @@
     $prod = new Producto(1,"2","3",3,4,5);
     $misProd = $prod->getProductosByVendedor($pdo, $usuario->id());
 
+    $comentario = new Comentario(1,1,"");
+    $comentarios = $comentario->getComentariosByUsuariosToProductosOfUsuarioId($pdo, $usuario->id());
 
+    // var_dump($comentarios)
     
-    
+    // $comentarios = false;
     // $misProd = false;
     // var_dump($misProd);die;
 
@@ -238,15 +242,15 @@
 
                     <ul class="list-group">
                         <li class="list-group-item text-muted">Últimos comentarios en Mis Publicaciones</li>
-                        <li class="list-group-item text-right"><a href="#" class="pull-left">lorem ipsum...</a> 2.13.2014</li>
-                        <li class="list-group-item text-right"><a href="#" class="pull-left">lorem ipsum...</a> 2.11.2014</li>
-                        <li class="list-group-item text-right"><a href="#" class="pull-left">lorem ipsum...</a> 2.11.2014</li>
-                        <li class="list-group-item text-right"><a href="#" class="pull-left">lorem ipsum...</a> 2.11.2014</li>
-                        <li class="list-group-item text-right"><a href="#" class="pull-left">lorem ipsum...</a> 2.11.2014</li>
-                        <li class="list-group-item text-right"><a href="#" class="pull-left">lorem ipsum...</a> 2.11.2014</li>
-                        <li class="list-group-item text-right"><a href="#" class="pull-left">lorem ipsum...</a> 2.11.2014</li>
-                        <li class="list-group-item text-right"><a href="#" class="pull-left">lorem ipsum...</a> 2.11.2014</li>
+                        <?php 
+                        if (!$comentarios){
+                            echo '<li class="list-group-item text-center">No tenés productos publicados!</li>';
 
+                        } else {
+                            foreach ($comentarios as $comentario) : ?>
+                            <li class="list-group-item text-right"><a href="detalle-producto.php?id=<?=$comentario->id_producto?>" class="pull-left"><?=$comentario->comentario?></a> <?=$usuario->getName($pdo,$comentario->id_usuario)?></li>
+                        
+                        <?php endforeach; }?>
                     </ul>
                     <br>
                 </div>

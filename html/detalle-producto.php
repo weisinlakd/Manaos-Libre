@@ -7,6 +7,7 @@
     require_once('classes/Connection.php');
     require_once('classes/Producto.php');
     require_once('classes/FotoProducto.php');
+    require_once('classes/Comentario.php');
     $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
     if ($usuario) {$usuarioLog = true;} else $usuarioLog = false;
     $titulo = 'Producto';
@@ -18,6 +19,7 @@
       
       $prod = new Producto(2, "hola", "hola wacho", 400, 2, 405);
       $foto = new FotoProducto(1,"","");
+      $comentario = new Comentario(1,1,"");
       $conn = new Connection();
       $pdo = $conn->start();
       $productoDB = $prod->getProductoById($pdo, $id);
@@ -28,6 +30,16 @@
         $placeholder->path = "../img/placeholder-home.jpg";
         $fotos = array_fill(0,3, $placeholder);
       }
+
+      $comentarios = $comentario->getComentariosByProductoId($pdo, $id);
+      if ($comentarios === false) {
+        
+        $comentarioPlaceholder = new stdClass();
+        $comentarioPlaceholder->comentario = "No hay Comentarios!";
+        $comentarios = array_fill(0,1, $comentarioPlaceholder);
+      }
+
+      var_dump($comentarios);
       $valoracion = $prod->setValoracion($pdo)/2;
       
       $valoracion = floor($valoracion * 2) / 2;
