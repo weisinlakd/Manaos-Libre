@@ -24,9 +24,12 @@
     require_once('classes/Connection.php');
     require_once('classes/Ciudad.php');
     require_once('classes/Valoracion.php');
+    require_once('classes/Producto.php');
+    require_once('classes/Categoria.php');
     $conn = new Connection();
     $pdo = $conn->start();
     $ciudad = new Ciudad("","");
+    $categoria = new Categoria("", " ", "");
     $ciudades = $ciudad->getCiudades($pdo);
     $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
     if ($usuario) $usuarioLog = true;
@@ -37,7 +40,14 @@
     $val = new Valoracion(1,1,"");
     $totalVal = $val->getTotalValoraciones($pdo,$usuario->id());
 
-    // var_dump($totalVal);die;
+    $prod = new Producto(1,"2","3",3,4,5);
+    $misProd = $prod->getProductosByVendedor($pdo, $usuario->id());
+
+
+    
+    
+    // $misProd = false;
+    // var_dump($misProd);die;
 
     function valorDato($key){
         global $boolCook, $datos, $usuario;
@@ -132,10 +142,10 @@
 
             <ul class="list-group">
                 <li class="list-group-item text-muted">Actividad <i class="fa fa-dashboard fa-1x"></i></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Productos en Venta</strong></span> 125</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Productos en Venta</strong></span> <?php if ($misProd){echo count($misProd);}else echo 0;?></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Mis Valoraciones</strong></span> <?=$totalVal?></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Comentarios</strong></span> 37</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Ratings a mis productos</strong></span> 78</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Ratings a mis productos</strong></span> <?=$val->getValoracionesByUsuariosToProductosOfUsuarioId($pdo,$usuario->id())?></li>
             </ul>
 
             <!-- <div class="panel panel-default">
@@ -156,8 +166,8 @@
                       Menú
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" data-toggle="tab" href="#home">Últimas Actividades </a>
-                      <a class="dropdown-item" data-toggle="tab" href="#messages">Preguntas</a>
+                      <a class="dropdown-item" data-toggle="tab" href="#home">Mis Productos </a>
+                      <a class="dropdown-item" data-toggle="tab" href="#messages">Comentarios en Mis Publicaciones</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" data-toggle="tab" href="#settings">Editar Perfil</a>
                     </div>
@@ -165,93 +175,47 @@
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane" id="home">
+                <div class="tab-pane active" id="home">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Fecha</th>
-                                    <th>Descripción</th>
+                                    <th>Fecha de Creación</th>
+                                    <th>Nombre</th>
                                     <th>Precio</th>
-                                    <th>Vendedor</th>
+                                    <th>Categoría</th>
                                     <th>Ciudad</th>
                                     <th>Valoración</th>
-                                    <th>Recepción</th>
+                                    <th>Ver</th>
                                 </tr>
                             </thead>
                             <tbody id="items">
-                                <tr>
-                                    <td>1</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                    <td>lorem ipsum</td>
-                                </tr>
+                                <?php 
+                                if (!$misProd){
+                                    echo "<tr>
+                                    <td>No tenés productos publicados!</td>";
+
+                                } else {
+                                    foreach ($misProd as $producto) : ?>
+                                    <tr>
+                                        <td><?=$producto->fecha()?></td>
+                                        <td><?=$producto->name()?></td>
+                                        <td>$<?=$producto->precio()?></td>
+                                        <td><?php
+                                            $res = $categoria->getCategoriaById($pdo,$producto->categoria_id());
+                                            echo $res->name;
+                                            ?>
+                                        </td>
+                                        <td><?php
+                                            $res = $ciudad->getCiudadById($pdo,$producto->ciudad_id());
+                                            echo $res->nombre;
+                                            ?>
+                                        </td>
+                                        <td><?=round($producto->valoracion(),1, PHP_ROUND_HALF_DOWN)?> / 10</td>
+                                        <td><a href="detalle-producto.php?id=<?=$producto->id()?>" class="btn btn-primary">Ver</a></td>
+                                    </tr>
+                                    <?php endforeach; }?>
+                                
                                 
                             </tbody>
                         </table>
@@ -273,7 +237,7 @@
                     <h2></h2>
 
                     <ul class="list-group">
-                        <li class="list-group-item text-muted">Preguntas Recientes</li>
+                        <li class="list-group-item text-muted">Últimos comentarios en Mis Publicaciones</li>
                         <li class="list-group-item text-right"><a href="#" class="pull-left">lorem ipsum...</a> 2.13.2014</li>
                         <li class="list-group-item text-right"><a href="#" class="pull-left">lorem ipsum...</a> 2.11.2014</li>
                         <li class="list-group-item text-right"><a href="#" class="pull-left">lorem ipsum...</a> 2.11.2014</li>
@@ -287,7 +251,7 @@
                     <br>
                 </div>
                 <!--/tab-pane-->
-                <div class="tab-pane active" id="settings">
+                <div class="tab-pane" id="settings">
                     <br>
                 <h2>Editar Perfil</h2>
                     <hr>

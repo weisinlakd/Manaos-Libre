@@ -129,6 +129,28 @@
             }
             
         }
+
+        public function getValoracionesByUsuariosToProductosOfUsuarioId (PDO $conn, $idUsuario ){
+
+            
+            $sql = "select count(valoraciones.valoracion) as total from valoraciones 
+            join productos on productos.id = valoraciones.id_producto 
+            where productos.id_usuario = :id_usuario";
+
+            $query = $conn->prepare($sql);
+            $query->bindValue(":id_usuario",$idUsuario, PDO::PARAM_INT);
+            
+            try {
+                
+                $query->execute();
+                $result = $query->fetch(PDO::FETCH_OBJ);
+                return $result->total;
+            } catch (\Exception $e) {
+                //throw $th;
+                echo $e . "<br>";
+                return false;
+            }
+        }
         
     }
 ?>

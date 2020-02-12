@@ -81,6 +81,15 @@ class Producto {
         return $this->id;
     }
 
+    public function ciudad_id () {
+        return $this->ciudad_id;
+    }
+
+
+    public function fecha () {
+        return $this->fecha;
+    }
+
     public function id_usuario () {
         return $this->id_usuario;
     }
@@ -98,6 +107,10 @@ class Producto {
     }
     public function cantidad () {
         return $this->cantidad;
+    }
+
+    public function categoria_id () {
+        return $this->categoria_id;
     }
 
     public function valoracion () {
@@ -408,6 +421,50 @@ class Producto {
             echo $e . "<br>";
             return $e;
         }
+    }
+
+
+    public function getProductosByVendedor (PDO $conn, int $id, int $offset = null) {
+
+        $sql = "select * from productos where id_usuario = :id order by fecha desc limit 8";
+        if ($offset) $sql = $sql. " offset ". 8*$offset;
+        $query = $conn->prepare($sql);
+        $query->bindValue(":id",$id, PDO::PARAM_INT);
+        
+        try {
+            //code...
+            // $query->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_OBJ);
+            if ($result) {
+
+                $productos = array();
+                foreach ($result as $producto) {
+                    // var_dump($producto); die;
+                    // $productoActual+= 1; 
+                    $productoActual = new Producto(1,"2","3",3,4,5); //PREGUNTAR QUE PASA ACÁ
+                    $productoActual = $productoActual->restaurarProducto($producto);
+                    
+                    // var_dump($productoActual); die;
+                    $productoActual->cantidad = $productoActual->getTotalProductos($conn);
+                    // var_dump($producto); die;
+                    $productoActual->setValoracion($conn);//borrar si rompi algo
+                    $productos[] = $productoActual;
+                    // $productoActual = null;
+                    // var_dump($productos); echo "<br><br><br>";
+                    // echo $productoActual->id();
+                }
+                    
+                return $productos;
+                
+            } else return false;
+            
+        } catch (\Exception $e) {
+            //throw $th;
+            echo $e . "<br>";
+            
+        }
+
     }
 }
 
