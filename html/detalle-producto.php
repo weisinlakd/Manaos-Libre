@@ -78,7 +78,7 @@
      if (!$id || !$productoDB) {
        echo "<br><br><h1>No existe ese producto</h1><br><br>";
        require_once('footer.php');
-      //  die;
+       die;
      }
     ?>
 <div class="container">
