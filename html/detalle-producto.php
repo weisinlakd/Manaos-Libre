@@ -8,7 +8,7 @@
     require_once('classes/Producto.php');
     require_once('classes/FotoProducto.php');
     $usuario = $usuario = isset($_SESSION['usuario']) ? unserialize($_SESSION["usuario"]) : false;
-    if ($usuario) $usuarioLog = true;
+    if ($usuario) {$usuarioLog = true;} else $usuarioLog = false;
     $titulo = 'Producto';
     $producto = true;
     // var_dump($_GET);
@@ -31,14 +31,17 @@
       $valoracion = $prod->setValoracion($pdo)/2;
       
       $valoracion = floor($valoracion * 2) / 2;
-      
+      // $disabled = false;
+      if ($usuarioLog) {
+        
+        require_once('votar.php');
+      }
       // var_dump($valoracion);
-      require_once('votar.php');
     }
 
       require_once('head.php');
     $idProducto = $id;
-    
+    // var_dump($_POST);
   ?>
 
   <body>
@@ -63,7 +66,7 @@
      if (!$id || !$productoDB) {
        echo "<br><br><h1>No existe ese producto</h1><br><br>";
        require_once('footer.php');
-       die;
+      //  die;
      }
     ?>
 <div class="container">
@@ -86,10 +89,13 @@
         
       </p>
       <?php if (isset($disabled)) :?>
-        <?php $_POST = array(); ?>
-        <input type="submit" value="ya votaste!" class="hola" disabled>
+        <?php $_POST = array();
+        // die; ?>
+        <br><br><input type="submit" value="ya votaste!" class="btn btn-outline-secondary" disabled>
+      <?php elseif ($usuarioLog == false): ?>
+        <br><br><input type="submit" value="ingresá para votar!" class="btn btn-outline-secondary" disabled>
       <?php else : ?> 
-        <input type="submit" value="guardar" class="hola">
+        <br><br><input type="submit" value="guardar" class="btn btn-outline-secondary">
       <?php  endif ?>
     </form>
 
