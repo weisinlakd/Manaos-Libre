@@ -48,8 +48,9 @@
 
         public function getComentariosByProductoId (PDO $conn, $idProducto) {
         
-            $sql = "select * from comentarios join productos on productos.id = comentarios.id_producto
-             where comentarios.estado = 1 and productos.id = $idProducto";
+            $sql = "select * from comentarios join productos on productos.id = comentarios.id_producto join usuarios on
+                usuarios.id = comentarios.id_usuario 
+                where comentarios.estado = 1 and productos.id = $idProducto";
 
             $query = $conn->prepare($sql);
             
