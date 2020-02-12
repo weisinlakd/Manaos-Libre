@@ -28,6 +28,9 @@
                         $tituloProd = $masVotados[$i]->name();
                         $precio = $masVotados[$i]->precio();
                         $alt = $masVotados[$i]->descripcion();
+                        $valoracion = $masVotados[$i]->valoracion()/2;
+                        $valoracion = floor($valoracion * 2) / 2;
+                        // var_dump($valoracion);
                         require('producto-home.php');
                       }
                       ?>
@@ -46,6 +49,9 @@
                         $tituloProd = $masVotados[$i]->name();
                         $precio = $masVotados[$i]->precio();
                         $alt = $masVotados[$i]->descripcion();
+                        $valoracion = $masVotados[$i]->valoracion()/2;
+                        $valoracion = floor($valoracion * 2) / 2;
+                        // var_dump($valoracion);
                         require('producto-home.php');
                       }
                       ?>				
@@ -64,6 +70,9 @@
                         $tituloProd = $masVotados[$i]->name();
                         $precio = $masVotados[$i]->precio();
                         $alt = $masVotados[$i]->descripcion();
+                        $valoracion = $masVotados[$i]->valoracion()/2;
+                        $valoracion = floor($valoracion * 2) / 2;
+                        // var_dump($valoracion);
                         require('producto-home.php');
                       }
                       ?>

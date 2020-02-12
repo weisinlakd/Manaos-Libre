@@ -26,7 +26,10 @@
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-10">
-                     <?php  require('ratings.php')?> 
+                    <?php  
+                    
+                    require('ratings-detalle.php');
+                    ?> 
                 </div>
             </div>
             <br>

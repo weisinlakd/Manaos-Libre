@@ -100,6 +100,10 @@ class Producto {
         return $this->cantidad;
     }
 
+    public function valoracion () {
+        return $this->valoracion;
+    }
+
     public function ciudad (PDO $conn) {
 
         $sql = "select nombre from ciudades where id = :id";
