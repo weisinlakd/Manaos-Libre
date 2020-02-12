@@ -47,7 +47,7 @@
 
               <form method="GET" action="resultados.php?" class="form-inline my-2 my-lg-0 no-gutters w-100">
                 <div class="col-10">
-                  <input class="form-control w-100" type="search" placeholder="Buscar" aria-label="Buscar" name="buscar">
+                  <input class="form-control w-100" type="search" placeholder="Buscar" aria-label="Buscar" name="buscar" required>
                 </div>
                 <div class="col-2 d-flex justify-content-center">
                   <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="icon ion-md-search"></i></button>
