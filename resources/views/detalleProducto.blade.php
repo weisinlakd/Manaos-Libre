@@ -46,7 +46,7 @@
     
     <ul>
         
-        
+        <br>
         @if ($producto !=null)  
         <li>id: {{$producto->id}}</li>
         <li>nombre: {{$producto->name}}</li>
@@ -58,5 +58,13 @@
         @endif
 
     </ul>
+
+    <form action="/borrarPublicacion" method="POST">
+        {{ csrf_field() }}
+        <input type="hidden" name="id" value="{{$producto->id}}">
+        <input type="submit" value="Borrar Publicación">
+        
+    </form>
+    <br>
 @endsection
 

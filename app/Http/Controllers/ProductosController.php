@@ -9,7 +9,7 @@ class ProductosController extends Controller
 {
     //
     public function listado() {
-        $productos = Producto::paginate(8);
+        $productos = Producto::where('estado' ,'=', 1)->paginate(8);
 
         return view('test', compact('productos'));
     }
@@ -49,6 +49,20 @@ class ProductosController extends Controller
         $prodNuevo->precio = $req['precio'];
         $prodNuevo->save();
         
+        return redirect('/productos');
+    }
+
+
+    public function borrar(Request $req) {
+
+        $id = $req['id'];
+
+        $producto = Producto::find($id);
+
+        $producto->estado = 0;
+
+        $producto->save();
+
         return redirect('/productos');
     }
 }

@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('productos', 'ProductosController@listado');
 
-Route::get('detalleProducto/{id}', 'ProductosController@detalle');
+Route::get('producto/{id}', 'ProductosController@detalle');
 
 Route::get('productos/baratos', 'ProductosController@baratos');
 
@@ -34,7 +34,7 @@ Route::get('crearPublicacion', function () {
 
 Route::post('crearPublicacion','ProductosController@crear'); 
 
-
+Route::post('borrarPublicacion','ProductosController@borrar'); 
 
 
 Route::get('ciudades', 'CiudadesController@listado');
