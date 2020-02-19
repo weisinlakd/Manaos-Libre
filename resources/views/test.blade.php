@@ -16,7 +16,13 @@
         <li>precio: ${{$producto->precio}}</li>
         <li>descripción: {{$producto->descripcion}}</li>
         <li>valoración: {{$producto->valoracion}}</li>
-        <br>
+        <ul>fotos:
+            
+            @foreach ($producto->fotos as $foto)
+            <li>{{$foto->nombre}}</li>
+            @endforeach
+        </ul>
+            <br>
         @empty($productos)
             <li>No hay Productos</li>
         @endempty

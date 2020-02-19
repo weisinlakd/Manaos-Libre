@@ -18,10 +18,10 @@ class ProductosController extends Controller
     public function detalle($id) {
         $producto = Producto::find($id);
         // dd($producto);
-        $fotos = FotoProducto::where('id_producto', '=', $id)->get();
+        // $fotos = FotoProducto::where('id_producto', '=', $id)->get();
 
         // dd($foto);
-        return view('detalleProducto', compact('producto', 'fotos'));
+        return view('detalleProducto', compact('producto'));
     }
 
     public function baratos() {

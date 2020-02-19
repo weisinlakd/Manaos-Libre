@@ -54,7 +54,7 @@
         <li>descripción: {{$producto->descripcion}}</li>
         
 
-        @foreach ($fotos as $foto)
+        @foreach ($producto->fotos as $foto)
             <img src="/storage/{{$foto->nombre}}" alt="{{$producto->name}}">
             
         @endforeach
