@@ -38,7 +38,9 @@ class ProductosController extends Controller
 
             "name" => "string|min:5",
             "precio" => "numeric|min:10",
-            "fotos" => "file"
+            "fotos.*" => "required|image",
+            "fotos" => "|min:3|max:3",
+            "descripcion" => 'required'
         ];
 
         $messages = [
@@ -46,7 +48,9 @@ class ProductosController extends Controller
             "min" => "El campo :attribute tiene un mínimo de :min",
             "numeric" => "El campo :attribute debe ser un numero",
             "size" => "El campo :attribute debe tener :size ",
-            "file" => "El campo :attribute debe ser un archivo"
+            "required" => "El campo :attribute es obligatorio",
+            "mimes" => "el formato de :attribute debe ser :mimes ",
+            "max" => "El campo :attribute tiene un máximo de :max"
         ];
 
         $this->validate($req, $rules, $messages);
@@ -72,17 +76,23 @@ class ProductosController extends Controller
         $prodNuevo->precio = $req['precio'];
         $prodNuevo->save();
         
+        $fotos = $req->file('fotos');
+        foreach ($fotos as $foto) {
+            # code...
+            $ruta = $foto->store('public');
+            $nombreArchivo = basename($ruta);
+            
+            $fotoDB = new FotoProducto();
+
+            $fotoDB->nombre = $nombreArchivo;
+            $fotoDB->path = $ruta;
+            $fotoDB->id_producto = $prodNuevo->id;
+
+            $fotoDB->save();
+
+        }
+
         
-        $ruta = $req->file('fotos')->store('public');
-        $nombreArchivo = basename($ruta);
-
-        $foto = new FotoProducto();
-
-        $foto->nombre = $nombreArchivo;
-        $foto->path = $ruta;
-        $foto->id_producto = $prodNuevo->id;
-
-        $foto->save();
 
         return redirect('/productos');
     }

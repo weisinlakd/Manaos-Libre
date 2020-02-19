@@ -135,7 +135,7 @@
       </div>
       <div class="form-group custom-file">
         <label for="fotoProducto" class="custom-file-label" lang="es" <?=$col?> ><?=$errFoto?></label>
-          <input name="fotos" type="file" class="custom-file-input" id="fotoProducto" multiple>
+          <input name="fotos[]" type="file" class="custom-file-input" id="fotoProducto" multiple>
         </div>
         <br>
         <div class="form-check">
