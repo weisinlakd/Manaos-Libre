@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 USE App\Producto;
+use App\FotoProducto;
 
 class ProductosController extends Controller
 {
@@ -17,7 +18,10 @@ class ProductosController extends Controller
     public function detalle($id) {
         $producto = Producto::find($id);
         // dd($producto);
-        return view('detalleProducto', compact('producto'));
+        $fotos = FotoProducto::where('id_producto', '=', $id)->get();
+
+        // dd($foto);
+        return view('detalleProducto', compact('producto', 'fotos'));
     }
 
     public function baratos() {
@@ -29,6 +33,25 @@ class ProductosController extends Controller
     }
 
     public function crear(Request $req){
+
+        $rules = [
+
+            "name" => "string|min:5",
+            "precio" => "numeric|min:10",
+            "fotos" => "file"
+        ];
+
+        $messages = [
+            "string" => "El campo :attribute debe contener texto",
+            "min" => "El campo :attribute tiene un mínimo de :min",
+            "numeric" => "El campo :attribute debe ser un numero",
+            "size" => "El campo :attribute debe tener :size ",
+            "file" => "El campo :attribute debe ser un archivo"
+        ];
+
+        $this->validate($req, $rules, $messages);
+        
+        
 
         $prodNuevo = new Producto();
 
@@ -49,6 +72,18 @@ class ProductosController extends Controller
         $prodNuevo->precio = $req['precio'];
         $prodNuevo->save();
         
+        
+        $ruta = $req->file('fotos')->store('public');
+        $nombreArchivo = basename($ruta);
+
+        $foto = new FotoProducto();
+
+        $foto->nombre = $nombreArchivo;
+        $foto->path = $ruta;
+        $foto->id_producto = $prodNuevo->id;
+
+        $foto->save();
+
         return redirect('/productos');
     }
 

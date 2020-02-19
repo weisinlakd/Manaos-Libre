@@ -21,19 +21,7 @@
     
     $col = $errFoto == 'Hubo un problema al cargar las fotos!' ? 'style="color: red"' : 'style="color: black"'; 
     //datos formulario
-    $boolCook = isset($_COOKIE['datosIngresados']) ? true : false;
-    if ($boolCook){
-      $datos = unserialize($_COOKIE['datosIngresados']);
-    }
-
-    function valorDato($key){
-      global $boolCook, $datos;
-      if ($boolCook){
-          echo $datos[$key];
-      } else { 
-          echo '';
-      }
-    }
+    
     //
     $titulo = "Publicar Producto";
     $producto = false;
@@ -69,7 +57,14 @@
 
 @section('content')
     
-  
+  <ul style="color:red">
+    @foreach ($errors->all() as $error)
+
+        <li>{{$error}}</li>
+
+    @endforeach
+
+  </ul>
     {{-- <br> --}}
     {{-- <h1>Creá tu Publicación!</h1> --}}
     {{--<br> --}}
@@ -77,12 +72,12 @@
       {{ csrf_field() }}
       <div class="form-group">
         <label for="nombreProducto">Nombrá tu publicación:</label>
-        <input name="name" type="text" class="form-control" id="nombreProducto" placeholder="Iphone X 128GB" required autofocus value='<?=valorDato('name')?>'>
+        <input name="name" type="text" class="form-control" id="nombreProducto" placeholder="Iphone X 128GB" required autofocus value='{{old('name')}}'>
       </div>
       <div class="form-group">
         <label for="ciudad">Ciudad</label>
         <!-- <input name="ciudad_id" type="number" class="form-control" id="ciudad" placeholder="1" required > -->
-        <select name="ciudad" id="ciudad"  class="js-example-basic-single" placeholder="buscá tu ciudad" value='<?=valorDato('ciudad_id')?>' >
+        <select name="ciudad" id="ciudad"  class="js-example-basic-single" placeholder="buscá tu ciudad" value='{{old('ciudad_id')}}' >
           <?php foreach ($ciudades as $ciudad) : ?>
           <option value="<?=$ciudad->id?>" name="ciudad_id" > <?=$ciudad->nombre?> </option> 
           <?php endforeach ?>
@@ -91,14 +86,14 @@
       <div class="form-group">
         <label for="categoriaProducto">Selecciona la categoría que creas conveniente:</label>
         <!-- <select name="categoria" class="form-control" id="categoriaProducto" data-live-search="true" > -->
-          <select name="categoria" id="categoriaProducto"  class="js-example-basic-single" placeholder="buscá tu categoría" value='<?=valorDato('categoria')?>' >
+          <select name="categoria" id="categoriaProducto"  class="js-example-basic-single" placeholder="buscá tu categoría" value='{{old('categoria')}}' >
             <?php foreach ($categorias as $categoria) : ?>
           <option value="<?=$categoria->id?>" name="categoria_id" > <?=$categoria->name?> </option> 
           <?php endforeach ?>
         </div>
         <div class="form-group">
           <label for="descripcionProducto">Descripción</label>
-          <textarea name="descripcion" class="form-control" id="descripcionProducto" rows="3" value='<?=valorDato('descripcion')?>' placeholder="Ingresá una descripción apropiada de tu producto..."></textarea>
+          <textarea name="descripcion" class="form-control" id="descripcionProducto" rows="3" value='{{old('descripcion')}}' placeholder="Ingresá una descripción apropiada de tu producto..."></textarea>
       </div>
       <div class="form-row">
         <div class="col-md-4 mb-3">
@@ -111,10 +106,10 @@
         </div>
         <div class="col-md-4 mb-3" id="divAInsertar">
           <label for="cantidadMesesUso">Cantidad de Meses de uso</label>
-          <input name="meses_uso" type="number" class="form-control" id="cantidadMesesUso" placeholder="1" required  disabled>
+          <input name="meses_uso" type="number" class="form-control" id="cantidadMesesUso" placeholder="1" required  disabled value='{{old('meses_uso')}}'>
     
         <label for="estadoUsoProducto">Selecciona el estado más acorde a tu producto</label>
-        <select name="estado_uso" class="form-control custom-select " id="estadoUsoProducto" data-live-search="true" disabled>
+        <select name="estado_uso" class="form-control custom-select " id="estadoUsoProducto" data-live-search="true" disabled value='{{old('estado_uso')}}'>
           <option value="1">Semi-nuevo</option>
           <option value="2">Uso regular</option>
         <option value="3">Uso intenso</option>
@@ -136,11 +131,11 @@
         <div class="input-group-prepend">
           <div class="input-group-text">$</div>
         </div>
-        <input name="precio" type="number" class="form-control" id="inlineFormInputGroup" placeholder="Precio" value='<?=valorDato('precio')?>'>
+        <input name="precio" type="number" class="form-control" id="inlineFormInputGroup" placeholder="Precio" value='{{old('precio')}}'>
       </div>
       <div class="form-group custom-file">
         <label for="fotoProducto" class="custom-file-label" lang="es" <?=$col?> ><?=$errFoto?></label>
-          <input name="fotos[]" type="file" class="custom-file-input" id="fotoProducto" multiple>
+          <input name="fotos" type="file" class="custom-file-input" id="fotoProducto" multiple>
         </div>
         <br>
         <div class="form-check">
@@ -150,12 +145,12 @@
             Acepto los Términos y Condiciones de Manaos-Libre
           </label>
       </div>
-      <div class="form-check">
+      {{-- <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
         <label class="form-check-label" for="defaultCheck2">
           Disabled checkbox
         </label>
-      </div>
+      </div> --}}
       <br>
       <button type="submit" class="btn btn-primary btn-lg btn-block">Crear Publicación</button>
       <br>

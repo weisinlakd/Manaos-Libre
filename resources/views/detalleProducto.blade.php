@@ -52,6 +52,13 @@
         <li>nombre: {{$producto->name}}</li>
         <li>precio: ${{$producto->precio}}</li>
         <li>descripción: {{$producto->descripcion}}</li>
+        
+
+        @foreach ($fotos as $foto)
+            <img src="/storage/{{$foto->nombre}}" alt="{{$producto->name}}">
+            
+        @endforeach
+        
         <br>
         @else
         <li>No hay Producto con ese id!</li>
