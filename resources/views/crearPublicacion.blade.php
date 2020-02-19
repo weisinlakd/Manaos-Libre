@@ -27,8 +27,7 @@
     $producto = false;
     // require_once('head.php'); 
     
-    $ciudades = [];
-    $categorias = [];
+    
   ?>
 
   <body>
@@ -78,22 +77,27 @@
         <label for="ciudad">Ciudad</label>
         <!-- <input name="ciudad_id" type="number" class="form-control" id="ciudad" placeholder="1" required > -->
         <select name="ciudad" id="ciudad"  class="js-example-basic-single" placeholder="buscá tu ciudad" value='{{old('ciudad_id')}}' >
-          <?php foreach ($ciudades as $ciudad) : ?>
-          <option value="<?=$ciudad->id?>" name="ciudad_id" > <?=$ciudad->nombre?> </option> 
-          <?php endforeach ?>
+          
+          @foreach ($ciudades as $ciudad)
+            <option value="<?=$ciudad->id?>" name="ciudad_id" > <?=$ciudad->nombre?> </option> 
+          @endforeach
+              
+          
         </select>
       </div>
       <div class="form-group">
         <label for="categoriaProducto">Selecciona la categoría que creas conveniente:</label>
         <!-- <select name="categoria" class="form-control" id="categoriaProducto" data-live-search="true" > -->
           <select name="categoria" id="categoriaProducto"  class="js-example-basic-single" placeholder="buscá tu categoría" value='{{old('categoria')}}' >
-            <?php foreach ($categorias as $categoria) : ?>
-          <option value="<?=$categoria->id?>" name="categoria_id" > <?=$categoria->name?> </option> 
-          <?php endforeach ?>
+          @foreach ($categorias as $categoria)
+            <option value="<?=$categoria->id?>" name="categoria_id" > <?=$categoria->name?> </option> 
+          @endforeach ?>
         </div>
         <div class="form-group">
           <label for="descripcionProducto">Descripción</label>
-          <textarea name="descripcion" class="form-control" id="descripcionProducto" rows="3" value='{{old('descripcion')}}' placeholder="Ingresá una descripción apropiada de tu producto..."></textarea>
+          <textarea name="descripcion" class="form-control" id="descripcionProducto" rows="3"  placeholder="Ingresá una descripción apropiada de tu producto...">
+            {{old('descripcion')}}
+          </textarea>
       </div>
       <div class="form-row">
         <div class="col-md-4 mb-3">

@@ -22,6 +22,15 @@
             <li>{{$foto->nombre}}</li>
             @endforeach
         </ul>
+        @if ($producto->comentarios)
+            Comentarios:
+            <ul>
+                @foreach ($producto->comentarios as $comentario)
+                    <li>{{$comentario->comentario}}</li>
+                    <br>
+                @endforeach
+            </ul>
+        @endif
             <br>
         @empty($productos)
             <li>No hay Productos</li>

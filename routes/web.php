@@ -28,9 +28,7 @@ Route::get('producto/{id}', 'ProductosController@detalle');
 Route::get('productos/baratos', 'ProductosController@baratos');
 
 
-Route::get('crearPublicacion', function () {
-    return view('crearPublicacion');
-});
+Route::get('crearPublicacion', 'ProductosController@nuevoProducto');
 
 Route::post('crearPublicacion','ProductosController@crear'); 
 

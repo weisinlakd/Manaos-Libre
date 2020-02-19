@@ -52,6 +52,8 @@
         <li>nombre: {{$producto->name}}</li>
         <li>precio: ${{$producto->precio}}</li>
         <li>descripción: {{$producto->descripcion}}</li>
+        <li>ciudad: {{$producto->ciudad->nombre}}</li>
+        <li>categoria: {{$producto->categoria->name}}</li>
         
 
         @foreach ($producto->fotos as $foto)
@@ -66,6 +68,17 @@
 
     </ul>
 
+    <br><br>
+
+    @if ($producto->comentarios)
+        <ul>
+            @foreach ($producto->comentarios as $comentario)
+        <li>{{$comentario->comentario}}</li>
+            <br>
+            @endforeach
+        </ul>
+    @endif
+    
     <form action="/borrarPublicacion" method="POST">
         {{ csrf_field() }}
         <input type="hidden" name="id" value="{{$producto->id}}">

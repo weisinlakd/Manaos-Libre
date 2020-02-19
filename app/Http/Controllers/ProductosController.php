@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 USE App\Producto;
 use App\FotoProducto;
+use App\Ciudad;
+use App\Categoria;
 
 class ProductosController extends Controller
 {
     //
     public function listado() {
         $productos = Producto::where('estado' ,'=', 1)->paginate(8);
-
+        // dd($productos);
         return view('test', compact('productos'));
     }
 
@@ -61,8 +63,8 @@ class ProductosController extends Controller
 
         $prodNuevo->id_usuario = 1; //CAMBIAR LUEGO DE HACER USUARIOS
         $prodNuevo->name = $req["name"];
-        $prodNuevo->ciudad_id = 1; //CAMBIAR LUEGO DE CREAR CIUDAD
-        $prodNuevo->categoria_id = 1; //CAMBIAR LUEGO DE CREAR CATEGORIAS
+        $prodNuevo->ciudad_id = $req["ciudad_id"]; 
+        $prodNuevo->categoria_id = $req["categoria_id"]; 
         $prodNuevo->descripcion = $req["descripcion"];
 
         if (isset($req["is_usado"])) {
@@ -109,5 +111,15 @@ class ProductosController extends Controller
         $producto->save();
 
         return redirect('/productos');
+    }
+
+    public function nuevoProducto (){
+
+        $categorias = Categoria::where('estado', '=', 1)->orderBy('name')->get();
+
+        $ciudades = Ciudad::all()->sortBy('nombre');
+
+        return view('crearPublicacion', compact('categorias', 'ciudades'));
+
     }
 }
