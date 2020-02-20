@@ -31,14 +31,14 @@
             <br>
             <br>
             <br>
-            <figure><a href="home.php"><img src="../img/logoml.png" alt="sing up image"></a></figure>
+            <figure><a href="/home"><img src="../img/logoml.png" alt="Ir al home"></a></figure>
             <a href="sign-in.php" class="signup-image-link">Ya tengo una cuenta.</a>
           </div>
         </div>
         <div class="col-lg-7 col-md-12">
-          <!-- tests/crearUsuario.php -->
+          
           <form action="{{ route('register') }}" method="POST" class="form-signin" id="register-form" enctype="multipart/form-data"
-          oninput='re_pass.setCustomValidity(re_pass.value != pass.value ? "Las contraseñas no coinciden." : "")'>
+          oninput='password_confirmation.setCustomValidity(password_confirmation.value != password.value ? "Las contraseñas no coinciden." : "")'>
           
           @csrf
             
@@ -47,23 +47,44 @@
             <br>
             <div class="form-group row">
               <!-- <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> -->
-              <input type="text" name="name" id="name" placeholder="Usuario" class="form-control" required <?=$focoNombre?> value='<?=valorDato('name')?>'/>
+              <input type="text" name="name" id="name" placeholder="Usuario" class="form-control @error('name') is-invalid @enderror" required autofocus value="{{ old('name') }}"/>
+              @error('name')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
             </div>
             <div class="form-group row">
               <!-- <label for="email"><i class="zmdi zmdi-email"></i></label> -->
-              <input type="email" name="email" id="email" placeholder="Email" class="form-control" required <?=$focoMail?> <?=$mailFoto?>/>
+              <input type="email" name="email" id="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" required  value="{{ old('email') }}"/>
+              @error('email')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
             </div>
             <div class="form-group row">
-              <label for="exampleFormControlFile1" <?=$col?> ><?=$errFoto?> <i class="zmdi zmdi-camera"></i></label>
-              <input name="avatar" type="file" class="form-control-file" id="exampleFormControlFile1" >
+              <label for="avatar" > <i class="zmdi zmdi-camera"></i> Ingresá tu foto (Opcional)!</label>
+              <input name="avatar" type="file" class="form-control-file @error('avatar') is-invalid @enderror" id="avatar" >
+              @error('avatar')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
             </div>
             <div class="form-group row">
               <!-- <label for="pass"><i class="zmdi zmdi-lock"></i></label> -->
-              <input type="password" name="password" id="pass" placeholder="Contraseña" class="form-control" required value='<?=valorDato('password')?>' />
+              <input type="password" name="password" id="password" placeholder="Contraseña" class="form-control @error('password') is-invalid @enderror" required />
+              
+              @error('password')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
             </div>
             <div class="form-group row">
               <!-- <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label> -->
-              <input type="password" name="re_pass" id="re_pass" placeholder="Ingresá nuevamente la contraseña" class="form-control" value='<?=valorDato('re_pass')?>' required />
+              <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Ingresá nuevamente la contraseña" class="form-control" required />
             </div>
             <div class="checkbox mb-3">
               <label>

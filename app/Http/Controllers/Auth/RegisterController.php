@@ -51,9 +51,13 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'avatar' =>['file', 'image']
+        ], ['min' => 'El campo :attribute debe tener :min caracteres como mínimo.',
+            'image' => 'El campo :attribute debe ser una imagen',
+            'unique' => 'Ya existe un :attribute con ese valor!',
+            'confirmed' => 'La contraseña debe coincidir!']);
     }
 
     /**

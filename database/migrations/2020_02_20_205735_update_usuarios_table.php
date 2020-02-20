@@ -16,10 +16,12 @@ class UpdateUsuariosTable extends Migration
         //
         Schema::table('usuarios', function($table)
         {
-            $table->timestamp('email_verified_at');
-            $table->timestamps();
-            $table->string('remember_me', 100)->nullable()->change();
-            $table->renameColumn('remember_me' , 'remember_token');
+            // $table->dropColumn('email_verified_at');
+            // $table->dropColumn('remember_me');
+            $table->timestamp('email_verified_at')->nullable();
+            // $table->timestamps();
+            // $table->string('remember_me', 100)->nullable()->change();
+            // $table->renameColumn('remember_me' , 'remember_token');
         });
     }
 

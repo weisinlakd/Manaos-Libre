@@ -57,31 +57,31 @@
               <ul class="navbar-nav">
         <li role="separator" class="divider"></li>
         
-        <?php if (isset($usuarioLog) && $usuarioLog == true): ?>
+        @guest 
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Ingreso</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Registro</a>
+          </li>
+        @else 
           <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?php if ($usuario->foto() != 'error'):?>
-                      <img class="rounded-circle img-responsive" style="height: 2.5em; width: 2.5em" src="<?=$usuario->foto()?>" alt="foto perfil">
-                    <?php else :?>
+                    @if (Auth::user()->foto != 'error')
+                      <img class="rounded-circle img-responsive" style="height: 2.5em; width: 2.5em" src="<?=Auth::user()->foto?>" alt="foto perfil">
+                    @else 
                       <i class="fa fa-user d-none d-sm-none d-md-none d-lg-block d-xl-block"></i>
-                    <?php endif ?>
+                    @endif 
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="perfil.php">Logeado como <?=$usuario->name()?> </a>
+                    <a class="dropdown-item" href="perfil.php">Logeado como {{Auth::user()->name}} </a>
                     <a class="dropdown-item" href="perfil.php#settings">Editar perfil</a>
                     <a class="dropdown-item" href="crearPublicacion.php">Crear Publicación</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="cerrarSesion.php">Cerrar Sesión</a>
                   </div>
             </li>
-          <?php else :?>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/login">Ingreso</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/register">Registro</a>
-                  </li>
-          <?php endif?>
+          @endguest
                 </ul>
 
             </div> <!-- (Fin) Menu -->
