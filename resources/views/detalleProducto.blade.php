@@ -4,6 +4,9 @@
 
     @if ($producto != null)
         {{$titulo = $producto->name}}
+        {{$idProducto = $producto->id}}
+        {{$valoracion = $producto->valoracion}}
+        {{$valoracion = floor($valoracion/2)}}
     @else
         {{$titulo = '404 - No existe'}}
     @endif
@@ -65,7 +68,7 @@
                 
                 <p class="clasificacion">
                 
-                <?php //require_once('ratings-detalle.php') ?>
+                @include('inserts/ratings-detalle')
                 
                 </p>
                 <?php if (isset($disabled)) :?>
@@ -130,6 +133,7 @@
                 <h4>{{$producto->descripcion}}</h4>
                 <h4><i class="fas fa-map-marker-alt"></i>{{$producto->ciudad->nombre}}</h4>
             <h2>$ {{$producto->precio}}</h2>
+            <h2>valoración: {{$producto->valoracion ?? '-'}}/10</h2>
             @if ($producto->is_usado) 
                 <h4>Usado!</h4> 
                 @endif

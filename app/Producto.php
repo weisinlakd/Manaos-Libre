@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Hamcrest\Arrays\IsArray;
 use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
@@ -29,5 +30,19 @@ class Producto extends Model
 
     public function categoria () {
         return $this->belongsTo('App\Categoria', 'categoria_id');
+    }
+
+    public function valoracion() {
+
+        $valoraciones = $this->valoraciones();
+        if (is_array($valoraciones)){
+
+            for ($i=0; $i < count($valoraciones); $i++) { 
+                # code...
+                $valoracion += $valoraciones[$i];
+            }
+            
+            return $valoracion / $i;
+        } else return 0; 
     }
 }

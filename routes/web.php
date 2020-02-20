@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 //PRODUCTOS 
 
 Route::get('productos', 'ProductosController@listado');
@@ -36,3 +37,8 @@ Route::post('borrarPublicacion','ProductosController@borrar');
 
 
 Route::get('ciudades', 'CiudadesController@listado');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/test', function (){ return view('registerML');});

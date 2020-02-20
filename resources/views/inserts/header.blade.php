@@ -76,10 +76,10 @@
             </li>
           <?php else :?>
                   <li class="nav-item">
-                    <a class="nav-link" href="sign-in.php">Ingreso</a>
+                    <a class="nav-link" href="/login">Ingreso</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="register.php">Registro</a>
+                    <a class="nav-link" href="/register">Registro</a>
                   </li>
           <?php endif?>
                 </ul>

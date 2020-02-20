@@ -7,6 +7,7 @@ USE App\Producto;
 use App\FotoProducto;
 use App\Ciudad;
 use App\Categoria;
+use App\Valoracion;
 
 class ProductosController extends Controller
 {
@@ -21,8 +22,15 @@ class ProductosController extends Controller
         $producto = Producto::find($id);
         // dd($producto);
         // $fotos = FotoProducto::where('id_producto', '=', $id)->get();
+        if ($producto->valoraciones) {
 
-        // dd($foto);
+            $valoracion = Valoracion::where('id_producto' ,'=' ,$id)->get();
+            // dd($valoracion);
+            
+            $producto->valoracion = $valoracion->avg('valoracion');
+            $producto->save();
+        }
+            // dd($foto);
         return view('detalleProducto', compact('producto'));
     }
 
