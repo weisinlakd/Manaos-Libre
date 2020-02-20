@@ -5,7 +5,7 @@
     @if ($producto != null)
         {{$titulo = $producto->name}}
     @else
-        {{$titulo = 'No existe'}}
+        {{$titulo = '404 - No existe'}}
     @endif
 
     
@@ -58,6 +58,7 @@
                 <div class="page-breadcrumb">
                     <h2><?=$titulo?><span>.</span></h2>
                 </div>
+    @if ($producto)
             <form action="#" method="post">
                 
                 <!-- cambios a las estrellas -->
@@ -79,7 +80,6 @@
             </form>
   
         
-  
             <div class="container mx-auto">
   
   
@@ -122,30 +122,33 @@
             </div>
         </div>
     </div><!-- (Fin) Slider de Imagenes -->
+    {{-- </div> --}}
+    
+    <div class="col-lg-3 col-xs-12 mx-auto mx-0 fluid float-lg-left">
         
-                {{-- </div> --}}
-        
-                <div class="col-lg-3 col-xs-12 mx-auto mx-0 fluid float-lg-left">
-        
-            <h5>Descripcion del producto: <br> </h5>
-                <h4><?=$producto->descripcion?></h4>
-            <h2>$ <?=$producto->precio?></h2>
-            <p>Vendedor: <?= $producto->usuario_id;?> 
-            <br>(para más información comprar el producto)</p>
+        <h5>Descripcion del producto: <br> </h5>
+                <h4>{{$producto->descripcion}}</h4>
+                <h4><i class="fas fa-map-marker-alt"></i>{{$producto->ciudad->nombre}}</h4>
+            <h2>$ {{$producto->precio}}</h2>
+            @if ($producto->is_usado) 
+                <h4>Usado!</h4> 
+                @endif
+            <p>Vendedor: {{ $producto->id_usuario}} 
+                <br>(para más información comprar el producto)</p>
             <br>
             <a class="btn btn-primary" href="#" role="button">Agregar al Carrito</a>
-                {{-- </div> --}}
-                {{-- </div> --}}
-        
-        {{-- </div> --}}
-            
             {{-- </div> --}}
-            {{-- </div> --}}
-            </div>
+                {{-- </div> --}}
                 
-
+                {{-- </div> --}}
+            
+                {{-- </div> --}}
+                {{-- </div> --}}
+            </div>
+            
+            
     @if ($producto->comentarios)
-        
+    
     
     <div class="row col-12 container">
         <div class="col-12 xs-3">
@@ -154,7 +157,7 @@
                 <h1>Comentarios ({{count($producto->comentarios)}})</h1>
                 
                 <ul id="comments-list" class="comments-list">
-                
+                    
                     @foreach ($producto->comentarios as $comentario) 
                     <?php 
                         $foto =  '../img/user.png'; //FALTA VALIDAR LOGICA CUANDO HAYA USUARIOS
@@ -168,7 +171,7 @@
                                 <div class="comment-box">
                                     <div class="comment-head">
                                     <h6 class="comment-name by-author"><a href="#">Usuario {{$comentario->id_usuario}}</a></h6>
-                                        <span>hace 20 minutos</span>
+                                    <span>hace 20 minutos</span>
                                         <i class="fa fa-reply"></i>                            
                                     </div>
                                 <div class="comment-content  col-12 col-xs-12 ">
@@ -188,7 +191,7 @@
                 <h1>Comentarios (0)</h1>
                 
                 <ul id="comments-list" class="comments-list"> 
-            </div>
+                </div>
         </div>
     </div>     
     @endif
@@ -199,6 +202,8 @@
         
     </form>
     <br>
+    @endif    
+
 </div>
 </div>
 </div>
