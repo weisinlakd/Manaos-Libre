@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
-  @section('php')
+  @yield('php')
       
-  @endsection
+  
   
 
   @include('../inserts/head')
   
-  @section('style')
+  @yield('style')
       
-  @endsection
+  
 
     <body>
 
@@ -19,7 +19,7 @@
 
     <div class="container-fluid caja p-0 m-0"><!-- Contenedor -->
       @include('../inserts/header')
-
+      @yield('slider-home')
       @yield('ads')
           
       

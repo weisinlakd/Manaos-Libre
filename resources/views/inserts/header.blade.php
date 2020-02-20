@@ -1,7 +1,7 @@
 <header class="d-flex flex-row no-gutters color-1"> <!-- Barra superior de navegación -->
         <div class="col-12">
           <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="home.php"> <!-- Logo -->
+            <a class="navbar-brand" href="/home"> <!-- Logo -->
               <div class="d-none d-md-block d-xl-block">
                 <img class="img-fluid top-logo" src="../img/logonegro.png" alt="">
               </div>

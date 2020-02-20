@@ -41,4 +41,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', function (){ return view('loginML');});
+Route::get('/test', function (){ return view('homeML');});
