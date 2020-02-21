@@ -20,7 +20,7 @@ Route::get('/', 'ProductosController@home');
 
 //PRODUCTOS 
 
-Route::get('productos', 'ProductosController@listado');
+Route::get('productos/{busqueda?}', 'ProductosController@listado')->name('productos');
 
 Route::get('producto/{id}', 'ProductosController@detalle');
 
@@ -41,4 +41,4 @@ Auth::routes();
 
 Route::get('/home', 'ProductosController@home')->name('home');
 
-Route::get('/test', 'ProductosController@listado');
+Route::get('/test/{busqueda?}', 'ProductosController@listado');

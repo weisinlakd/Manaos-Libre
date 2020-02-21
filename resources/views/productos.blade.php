@@ -8,7 +8,7 @@
         $tituloPag = "Resultados de <span>'$busqueda'</span> : (".count($productos).")";
         $titulo = "$busqueda";
     } else {
-        $tituloPag  = "Resultados (". count($productos) . ')';
+        $tituloPag  = "Resultados (". count($productos) . "/$total)";
         $titulo = 'Productos';
     }
     ?>

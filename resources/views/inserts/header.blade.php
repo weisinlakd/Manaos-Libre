@@ -45,9 +45,10 @@
                 <li role="separator" class="divider"></li>
               </ul>
 
-              <form method="GET" action="resultados.php?" class="form-inline my-2 my-lg-0 no-gutters w-100">
+              <form method="GET" action="/productos?buscar=" class="form-inline my-2 my-lg-0 no-gutters w-100">
+                @csrf
                 <div class="col-10">
-                  <input class="form-control w-100" type="search" placeholder="Buscar" aria-label="Buscar" name="buscar" required>
+                  <input class="form-control w-100" type="search" placeholder="Buscar" aria-label="Buscar" name="buscar" required value="">
                 </div>
                 <div class="col-2 d-flex justify-content-center">
                   <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="icon ion-md-search"></i></button>

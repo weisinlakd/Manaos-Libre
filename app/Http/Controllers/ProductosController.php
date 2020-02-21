@@ -12,22 +12,35 @@ use App\Valoracion;
 class ProductosController extends Controller
 {
     //
-    public function listado($busqueda = null) {
-        $productos = Producto::where('estado' ,'=', 1)->paginate(8);
-        // dd($productos);
-        foreach ($productos as $producto) {
-            if ($producto->valoraciones) {
+    public function listado(string $busqueda = null) {
 
-                $valoracion = Valoracion::where('id_producto' ,'=' ,$producto->id)->get();
-                // dd($valoracion);
-                
-                $producto->valoracion = $valoracion->avg('valoracion');
+        if (!$busqueda){
 
-                // dd($producto);
-                $producto->save();
+            $productos = Producto::where('estado' ,'=', 1);
+            
+            $total = $productos->count();
+            $productos = $productos->paginate(8);
+            // dd($productos);
+            foreach ($productos as $producto) {
+                if ($producto->valoraciones) {
+                    
+                    $valoracion = Valoracion::where('id_producto' ,'=' ,$producto->id)->get();
+                    // dd($valoracion);
+                    
+                    $producto->valoracion = $valoracion->avg('valoracion');
+                    
+                    // dd($producto);
+                    $producto->save();
+                }
             }
+        } else {
+            $productos = Producto::where('name' ,'LIKE', "%$busqueda%");
+            
+            $total = $productos->count();
+            $productos = $productos->paginate(8);
         }
-        return view('productos', compact('productos'));
+
+        return view('productos', compact('productos', 'total', 'busqueda'));
     }
 
     public function detalle($id) {

@@ -83,7 +83,25 @@
      </div>
      </div>
       <div class="col-6 ">
-        <p> {{$producto->descripcion}} <br> <i class="icon ion-md-pin"></i> {{$producto->ciudad->nombre}}</p>
+        <ul>
+
+          <p> <div overflow="hidden"><i class="icon ion-md-list"></i> {{$producto->descripcion}} </div>
+            <br> <i class="icon ion-md-pin"></i> {{$producto->ciudad->nombre}} 
+            <br> <i class="fa fa-user"></i> {{$producto->usuario->name}}
+            @if ($producto->valoracion != false)
+              <br> <i class="fa fa-star"></i> {{$producto->valoracion}}
+            @else 
+              <br> <i class="fa fa-star"></i> No hay valoraciones
+            @endif
+            @if ($producto->is_usado)
+              <br> <i class="fa fa-tag"></i> Usado
+            @else 
+              <br> <i class="fa fa-tag"></i> Nuevo
+            @endif
+          </p>
+        </ul>
+          
+
 
       </div>
      </div>
