@@ -12,7 +12,7 @@ use App\Valoracion;
 class ProductosController extends Controller
 {
     //
-    public function listado() {
+    public function listado($busqueda = null) {
         $productos = Producto::where('estado' ,'=', 1)->paginate(8);
         // dd($productos);
         foreach ($productos as $producto) {
@@ -27,7 +27,7 @@ class ProductosController extends Controller
                 $producto->save();
             }
         }
-        return view('test', compact('productos'));
+        return view('productos', compact('productos'));
     }
 
     public function detalle($id) {

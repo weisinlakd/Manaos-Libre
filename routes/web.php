@@ -40,3 +40,5 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/home', 'ProductosController@home')->name('home');
+
+Route::get('/test', 'ProductosController@listado');

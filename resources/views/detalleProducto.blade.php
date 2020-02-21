@@ -131,7 +131,7 @@
         
         <h5>Descripcion del producto: <br> </h5>
                 <h4>{{$producto->descripcion}}</h4>
-                <h4><i class="fas fa-map-marker-alt"></i>{{$producto->ciudad->nombre}}</h4>
+                <h4><i class="icon ion-md-pin"></i> {{$producto->ciudad->nombre}}</h4>
             <h2>$ {{$producto->precio}}</h2>
             <h2>valoración: {{$producto->valoracion ?? '-'}}/10</h2>
             @if ($producto->is_usado) 

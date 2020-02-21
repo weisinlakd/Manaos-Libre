@@ -41,7 +41,7 @@
         
         
     </ul>
-
+    
     {{$productos->links()}}
 </body>
 </html>
