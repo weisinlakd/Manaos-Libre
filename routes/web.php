@@ -15,9 +15,7 @@
 // {asd?} = asd parametro optativo
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ProductosController@home');
 
 
 //PRODUCTOS 
@@ -39,6 +37,6 @@ Route::post('borrarPublicacion','ProductosController@borrar');
 Route::get('ciudades', 'CiudadesController@listado');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', function (){ return view('homeML');});
+Route::get('/home', 'ProductosController@home')->name('home');

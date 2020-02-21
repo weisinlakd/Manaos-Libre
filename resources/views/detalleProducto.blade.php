@@ -137,7 +137,7 @@
             @if ($producto->is_usado) 
                 <h4>Usado!</h4> 
                 @endif
-            <p>Vendedor: {{ $producto->id_usuario}} 
+            <p>Vendedor: {{ $producto->usuario->name}} 
                 <br>(para más información comprar el producto)</p>
             <br>
             <a class="btn btn-primary" href="#" role="button">Agregar al Carrito</a>
@@ -174,7 +174,7 @@
                                 <!-- Contenedor del Comentario -->
                                 <div class="comment-box">
                                     <div class="comment-head">
-                                    <h6 class="comment-name by-author"><a href="#">Usuario {{$comentario->id_usuario}}</a></h6>
+                                    <h6 class="comment-name by-author"><a href="#">{{$comentario->usuario->name}}</a></h6>
                                     <span>hace 20 minutos</span>
                                         <i class="fa fa-reply"></i>                            
                                     </div>

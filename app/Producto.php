@@ -32,6 +32,10 @@ class Producto extends Model
         return $this->belongsTo('App\Categoria', 'categoria_id');
     }
 
+    public function usuario () {
+        return $this->belongsTo('App\Usuario', 'id_usuario');
+    }
+
     public function valoracion() {
 
         $valoraciones = $this->valoraciones();

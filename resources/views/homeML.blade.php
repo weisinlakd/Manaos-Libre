@@ -4,8 +4,7 @@
 
     <?php $producto = false;
     $titulo = 'Home';
-    $masVotados = [];
-    $masBaratos = []; ?>
+    ?>
 @endsection
 
 @section('style')
@@ -52,7 +51,8 @@
      
       <?php
         $id = 1;
-        $titulo = "Más Votados";
+        $subtitulo = "Más Votados";
+        $productos = $masVotados;
       ?>
       @include('inserts.slider-4-productos')
     
@@ -62,10 +62,10 @@
     
       <?php
         $id = 2;
-        $titulo = "Más Baratos";
+        $subtitulo = "Más Baratos";
         $ofertas = true;
+        $productos = $masBaratos;
       ?>
-      {{-- {{$masVotados = $masBaratos}} --}}
       @include('inserts.slider-4-productos')
 
 

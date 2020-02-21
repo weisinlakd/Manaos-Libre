@@ -15,6 +15,18 @@ class ProductosController extends Controller
     public function listado() {
         $productos = Producto::where('estado' ,'=', 1)->paginate(8);
         // dd($productos);
+        foreach ($productos as $producto) {
+            if ($producto->valoraciones) {
+
+                $valoracion = Valoracion::where('id_producto' ,'=' ,$producto->id)->get();
+                // dd($valoracion);
+                
+                $producto->valoracion = $valoracion->avg('valoracion');
+
+                // dd($producto);
+                $producto->save();
+            }
+        }
         return view('test', compact('productos'));
     }
 
@@ -129,5 +141,20 @@ class ProductosController extends Controller
 
         return view('crearPublicacion', compact('categorias', 'ciudades'));
 
+    }
+
+    public function home() {
+
+        $masBaratos =  Producto::where('estado' ,'=', 1)
+        ->orderBy('precio')
+        ->paginate(12);
+
+        $masVotados = Producto::where('estado' ,'=', 1)
+        ->orderBy('valoracion', 'desc')
+        ->paginate(12);
+
+        // dd($masVotados);
+
+        return view('homeML', compact('masBaratos', 'masVotados'));
     }
 }

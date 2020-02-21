@@ -15,4 +15,7 @@ class Comentario extends Model
         return $this->belongsTo('App\Producto', 'id_producto');
     }
 
+    public function usuario () {
+        return $this->belongsTo('App\usuario', 'id_usuario');
+    }
 }
