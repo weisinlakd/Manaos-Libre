@@ -185,7 +185,7 @@ $ciudades = [];
                             @else 
                                 @foreach ($producto->comentarios as $comentario)
                                 
-                                    <li class="list-group-item text-right" > {{$comentario->comentario}}</li>
+                                    <li class="list-group-item text-right"><a href="/producto/<?=$comentario->id_producto?>" class="pull-left"><?=$comentario->comentario?></a> <a href="/perfil/{{$comentario->id_usuario}}"> {{$comentario->usuario->name}}</a></li>
                         
                                 @endforeach
                             @endif

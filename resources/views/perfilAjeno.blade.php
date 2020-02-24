@@ -54,9 +54,8 @@ $ciudades = [];
                     <li class="list-group-item text-right">
                         <span class="pull-left">
                             <strong>Nombre completo</strong></span> <?php if ($usuario->apellido){ echo $usuario->name.' '.$usuario->apellido; } else echo $usuario->name?></li>
-                    <li class="list-group-item text-right">
-                        <span class="pull-left">
-                            <strong><a style="color:black" href="cerrarSesion.php"> Cerrar Sesión</a></strong></span></li>
+                    
+                        
 
                 </ul>
 
@@ -107,8 +106,8 @@ $ciudades = [];
                         Menú
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" data-toggle="tab" href="#home">Mis Productos </a>
-                        <a class="dropdown-item" data-toggle="tab" href="#messages">Comentarios en Mis Publicaciones</a>
+                        <a class="dropdown-item" data-toggle="tab" href="#home">Publicaciones de {{$usuario->name}} </a>
+                        <a class="dropdown-item" data-toggle="tab" href="#messages">Comentarios en las publicaciones de {{$usuario->name}}</a>
                         
                         </div>
                     </li>
@@ -188,7 +187,7 @@ $ciudades = [];
                                 @else 
                                     @foreach ($producto->comentarios as $comentario)
                                     
-                                        <li class="list-group-item text-right" > {{$comentario->comentario}}</li>
+                                    <li class="list-group-item text-right"><a href="/producto/<?=$comentario->id_producto?>" class="pull-left"><?=$comentario->comentario?></a> <a href="/perfil/{{$comentario->id_usuario}}"> {{$comentario->usuario->name}}</a></li>
                             
                                     @endforeach
                                 @endif
