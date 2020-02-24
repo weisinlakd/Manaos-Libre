@@ -137,7 +137,7 @@
             @if ($producto->is_usado) 
                 <h4>Usado!</h4> 
                 @endif
-            <p>Vendedor: {{ $producto->usuario->name}} 
+                <p>Vendedor: <a href="/perfil/{{$producto->usuario->id}}">{{ $producto->usuario->name}} </a>
                 <br>(para más información comprar el producto)</p>
             <br>
             <a class="btn btn-primary" href="#" role="button">Agregar al Carrito</a>

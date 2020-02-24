@@ -132,7 +132,7 @@ $ciudades = [];
                                     <?php 
                                     if ($usuario->productos->isEmpty()){
                                         echo "<tr>
-                                        <td>No tenés productos publicados!</td>";
+                                        <td>$usuario->name no tiene productos publicados!</td>";
 
                                     } else {
                                         foreach ($usuario->productos as $producto) : ?>
@@ -173,10 +173,10 @@ $ciudades = [];
                         <h2></h2>
 
                         <ul class="list-group">
-                            <li class="list-group-item text-muted">Últimos comentarios en Mis Publicaciones</li>
+                            <li class="list-group-item text-muted">Últimos comentarios en Publicaciones de {{$usuario->name}}</li>
                             
                             @if ($usuario->productos->isEmpty()){
-                                <li class="list-group-item text-center">No tenés productos publicados!</li>
+                                <li class="list-group-item text-center">{{$usuario->name}} no tiene productos publicados!</li>
 
                             @else
                                 {{-- @foreach ($usuario->productos->comentarios as $comentario) --}}
