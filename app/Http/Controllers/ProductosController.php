@@ -12,8 +12,10 @@ use App\Valoracion;
 class ProductosController extends Controller
 {
     //
-    public function listado(string $busqueda = null) {
+    public function listado(Request $req) {
 
+        $busqueda = $req->input('buscar');
+        // dd($busqueda);
         if (!$busqueda){
 
             $productos = Producto::where('estado' ,'=', 1);

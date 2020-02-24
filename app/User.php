@@ -38,4 +38,17 @@ class User extends Authenticatable
     ];
 
     public $table = 'usuarios';
+
+    public function productos () {
+        return $this->hasMany('App\Producto', 'id_usuario');
+    }
+
+    public function valoraciones () {
+        return $this->hasMany('App\Valoracion', 'id_usuario');
+    }
+
+    public function comentarios () {
+        return $this->hasMany('App\Comentario', 'id_usuario');
+    }
+    
 }

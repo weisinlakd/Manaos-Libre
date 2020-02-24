@@ -15,6 +15,7 @@
 // {asd?} = asd parametro optativo
 
 
+
 Route::get('/', 'ProductosController@home');
 
 
@@ -26,6 +27,12 @@ Route::get('producto/{id}', 'ProductosController@detalle');
 
 Route::get('productos/baratos', 'ProductosController@baratos');
 
+Route::get('perfil', function () {
+    return view('perfil');});
+
+Route::get('perfil/{id}', 'UsuariosController@perfil');
+
+Route::get('actualizarPerfil', 'UsuariosController@actualizar');
 
 Route::get('crearPublicacion', 'ProductosController@nuevoProducto');
 
