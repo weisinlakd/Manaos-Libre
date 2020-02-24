@@ -172,4 +172,18 @@ class ProductosController extends Controller
 
         return view('homeML', compact('masBaratos', 'masVotados'));
     }
+
+    public function recientes() {
+        $productos = Producto::where('estado' ,'=', 1)->get();
+        // dd($productos->count());
+        $total = $productos->count();
+        
+        $productos = Producto::where('estado' ,'=', 1)->limit(32)
+            ->orderBy('id', 'desc')
+            ->paginate(12);
+            
+        // dd($producto);
+        return view('productos', compact('productos', 'total'));
+    }
+
 }

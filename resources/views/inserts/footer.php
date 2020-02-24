@@ -41,9 +41,9 @@
               </div>
               <div class="col-lg-3 col-sm-6">
                 <div class="single-footer-widget">
-                  <h4>Information</h4>
+                  <h4>Información</h4>
                   <ul>
-                    <li><a href="faq.php" style="text-decoration: none; color: #fff;">FAQ</a></li>
+                    <li><a href="/faq" style="text-decoration: none; color: #fff;">FAQ</a></li>
                     <li>Métodos de Envío</li>
                   </ul>
                 </div>

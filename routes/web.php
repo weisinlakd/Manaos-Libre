@@ -21,31 +21,45 @@ Route::get('/', 'ProductosController@home');
 
 //PRODUCTOS 
 
-Route::get('productos/{busqueda?}', 'ProductosController@listado')->name('productos');
+Route::get('/productos/{busqueda?}', 'ProductosController@listado')->name('productos');
 
-Route::get('producto/{id}', 'ProductosController@detalle');
+Route::get('/producto/{id}', 'ProductosController@detalle');
 
-Route::get('productos/baratos', 'ProductosController@baratos');
+Route::get('/productos/baratos', 'ProductosController@baratos');
 
-Route::get('perfil', function () {
-    return view('perfil');});
+Route::get('/crearPublicacion', 'ProductosController@nuevoProducto');
+
+Route::post('/crearPublicacion','ProductosController@crear'); 
+
+Route::post('/borrarPublicacion','ProductosController@borrar'); 
+
+Route::get('/recientes', 'ProductosController@recientes');
+
+Route::get('/mas-vendidos', 'ProductosController@hot');
+
+
+//USUARIOS
+Auth::routes();
+
+Route::get('perfil', 'CiudadesController@listado');
 
 Route::get('perfil/{id}', 'UsuariosController@perfil');
 
 Route::get('actualizarPerfil', 'UsuariosController@actualizar');
 
-Route::get('crearPublicacion', 'ProductosController@nuevoProducto');
-
-Route::post('crearPublicacion','ProductosController@crear'); 
-
-Route::post('borrarPublicacion','ProductosController@borrar'); 
+// Route::get('ciudades', 'CiudadesController@listado');
+// Route::get('/test/{busqueda?}', 'ProductosController@listado');
 
 
-Route::get('ciudades', 'CiudadesController@listado');
-Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
+// SITIO EN GENERAL;
 
 Route::get('/home', 'ProductosController@home')->name('home');
 
-Route::get('/test/{busqueda?}', 'ProductosController@listado');
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/faq', function () {
+    return view('faq');
+});

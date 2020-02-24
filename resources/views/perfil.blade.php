@@ -8,7 +8,7 @@ $titulo = 'Mi Perfil ';
 $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
 // dd($fecha);
 
-$ciudades = [];
+// $ciudades = [];
 ?>
 @endsection
 
@@ -309,3 +309,32 @@ $ciudades = [];
     <!--/col-9-->
 </div>
 @endsection
+
+@section('scripts')
+
+<script>
+    function myFunction() {
+    // Get the checkbox
+        var checkBox = document.getElementById("myCheck");
+        // Get the output text
+        var text = document.getElementById("cantidadMesesUso");
+        var estadoUso = document.getElementById("estadoUsoProducto");
+
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true){
+            text.disabled = false;
+            estadoUso.disabled = false;
+        } else {
+            text.disabled = true;
+            estadoUso.disabled = true;
+        }
+    }
+
+    $(document).ready(function () {
+        $('.js-example-basic-single').selectize({
+            sortField: 'text'
+        });
+    });
+</script>
+       
+  @endsection

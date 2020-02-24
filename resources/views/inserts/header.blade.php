@@ -29,10 +29,10 @@
                     Productos
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="product-list.php">Más vendidos</a>
-                    <a class="dropdown-item" href="product-list.php">Recientemente publicados</a>
+                    <a class="dropdown-item" href="/mas-vendidos">Más vendidos</a>
+                    <a class="dropdown-item" href="/recientes">Recientemente publicados</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="product-list.php">Todos</a>
+                    <a class="dropdown-item" href="/productos">Todos</a>
                   </div>
                 </li>
                 <li role="separator" class="divider"></li>
@@ -40,7 +40,7 @@
                   <a class="nav-link" href="#">Ayuda</a>
                 </li> -->
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.php">Contacto</a>
+                  <a class="nav-link" href="/contact">Contacto</a>
                 </li>
                 <li role="separator" class="divider"></li>
               </ul>
@@ -76,8 +76,8 @@
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/perfil">Logeado como {{Auth::user()->name}} </a>
-                    <a class="dropdown-item" href="perfil.php#settings">Editar perfil</a>
-                    <a class="dropdown-item" href="crearPublicacion.php">Crear Publicación</a>
+                    <a class="dropdown-item" href="/perfil#settings">Editar perfil</a>
+                    <a class="dropdown-item" href="/crearPublicacion">Crear Publicación</a>
                     <div class="dropdown-divider"></div>
                     
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

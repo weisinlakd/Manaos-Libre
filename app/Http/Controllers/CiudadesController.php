@@ -11,6 +11,6 @@ class CiudadesController extends Controller
     public function listado() {
         $ciudades = Ciudad::all();
 
-        return view('ciudades', compact('ciudades'));
+        return view('perfil', compact('ciudades'));
     }
 }
