@@ -22,7 +22,51 @@
                   <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
                 </li> -->
                 <li class="nav-item">
-                  <a class="nav-link" href="/cart"><span class="d-block d-md-none">Carrito</span><i class="icon ion-md-cart d-none d-md-block d-xl-block"></i></a>
+                  {{-- <a class="nav-link" href="/cart"><span class="d-block d-md-none">Carrito</span><i class="icon ion-md-cart d-none d-md-block d-xl-block"></i></a> --}}
+                  <div class="dropdown">
+                    <button type="button" class="nav-link header-color" data-toggle="dropdown">
+                      <span class="d-block d-md-none">Carrito</span>
+                      <i class="icon ion-md-cart" aria-hidden="true"></i>
+                        {{-- <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span> --}}
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="row total-header-section">
+                            <div class="col-lg-7 col-sm-7 col-7">
+                                {{-- <i class="fa fa-shopping-cart" aria-hidden="true"></i>  --}}
+                                Items
+                                <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                            </div>
+     
+                            <?php $total = 0 ?>
+                            @foreach((array) session('cart') as $id => $details)
+                                <?php $total += $details['precio'] * $details['quantity'] ?>
+                            @endforeach
+     
+                            <div class="col-lg-5 col-sm-5 col-5 total-section text-right">
+                                <p><span class="text-info">$ {{ $total }}</span></p>
+                            </div>
+                        </div>
+     
+                        @if(session('cart'))
+                            @foreach(session('cart') as $id => $details)
+                                <div class="row cart-detail">
+                                    <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+                                        <img src="{{ $details['foto'] ?? '/img/placeholder-home.jpg'}}" />
+                                    </div>
+                                    <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
+                                        <p>{{ $details['name'] }}</p>
+                                        <span class="price text-info"> ${{ $details['precio'] }}</span> <span class="count"> Cant:{{ $details['quantity'] }}</span>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                            @endforeach
+                        @endif
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
+                                <a href="{{ url('cart') }}" class="btn btn-primary btn-block">Ver Todos</a>
+                            </div>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,12 +83,13 @@
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="#">Ayuda</a>
                 </li> -->
+                
                 <li class="nav-item">
                   <a class="nav-link" href="/contact">Contacto</a>
                 </li>
                 <li role="separator" class="divider"></li>
               </ul>
-
+              
               <form method="GET" action="/productos?buscar=" class="form-inline my-2 my-lg-0 no-gutters w-100">
                 @csrf
                 <div class="col-10">

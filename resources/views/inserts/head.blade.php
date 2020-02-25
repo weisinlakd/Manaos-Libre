@@ -42,4 +42,14 @@
     /* left: 10px; */
 
 }
+
+.header-color {
+    background-color: #fff159;
+    border: none;
+}
+
+.dropdown-menu {
+    background-color: #fff159;
+
+}
 </style>
