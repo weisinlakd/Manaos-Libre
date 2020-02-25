@@ -13,16 +13,17 @@ class UpdateUsuariosTable extends Migration
      */
     public function up()
     {
-        //
+        //SI ES PRIMERA VEZ SACAR COMENTARIOS
         Schema::table('usuarios', function($table)
         {
-            // $table->dropColumn('email_verified_at');
-            // $table->dropColumn('remember_me');
+            
             $table->timestamp('email_verified_at')->nullable();
-            // $table->timestamps();
-            // $table->string('remember_me', 100)->nullable()->change();
-            // $table->renameColumn('remember_me' , 'remember_token');
+            $table->timestamps();
+            $table->string('remember_me', 100)->nullable()->change();
+            $table->renameColumn('remember_me' , 'remember_token');
         });
+
+        
     }
 
     /**

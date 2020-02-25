@@ -77,7 +77,7 @@
        <h1><a style="color: black; text-decoration: none;" href="/producto/{{$producto->id}}">{{$producto->name}}</a></h1><h2>${{$producto->precio}}</h2>
        </div>
      <div class="col-1">
-       <a class="nav-link carrito" href="shopping-cart.php"><span class="d-block d-md-none"></span><i class="icon ion-md-cart"></i></a>
+       <a class="nav-link carrito" href="/add-to-cart/{{$producto->id}}"><span class="d-block d-md-none"></span><i class="icon ion-md-cart"></i></a>
          <div id="homeCarousel-{{$producto->id}}" class="carousel slide" data-ride="carousel">
          </div>
      </div>

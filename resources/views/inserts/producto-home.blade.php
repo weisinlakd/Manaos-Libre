@@ -42,7 +42,7 @@
             </div>
             <br>
         <a href="/producto/{{$producto->id}}" class="btn btn-primary">Ver</a>  
-            <a href="shopping-cart.html" class="btn btn-primary">Comprar</a>
+            <a href="/add-to-cart/{{$producto->id}}" class="btn btn-primary">Comprar</a>
         </div>						
     </div>
     <br>

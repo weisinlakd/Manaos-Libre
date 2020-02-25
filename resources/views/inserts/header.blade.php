@@ -22,7 +22,7 @@
                   <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
                 </li> -->
                 <li class="nav-item">
-                  <a class="nav-link" href="shopping-cart.php"><span class="d-block d-md-none">Carrito</span><i class="icon ion-md-cart d-none d-md-block d-xl-block"></i></a>
+                  <a class="nav-link" href="/cart"><span class="d-block d-md-none">Carrito</span><i class="icon ion-md-cart d-none d-md-block d-xl-block"></i></a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

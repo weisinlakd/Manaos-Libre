@@ -63,3 +63,15 @@ Route::get('/contact', function () {
 Route::get('/faq', function () {
     return view('faq');
 });
+
+Route::get('/cart', function () {
+    return view('cart');
+});
+
+//TEST 
+
+Route::get('add-to-cart/{id}', 'ProductosController@addToCart');
+
+Route::patch('update-cart', 'ProductsController@update');
+ 
+Route::delete('remove-from-cart', 'ProductsController@remove');

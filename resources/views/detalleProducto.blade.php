@@ -140,7 +140,7 @@
                 <p>Vendedor: <a href="/perfil/{{$producto->usuario->id}}">{{ $producto->usuario->name}} </a>
                 <br>(para más información comprar el producto)</p>
             <br>
-            <a class="btn btn-primary" href="#" role="button">Agregar al Carrito</a>
+            <a class="btn btn-primary" href="/add-to-cart/{{$producto->id}}" role="button">Agregar al Carrito</a>
             {{-- </div> --}}
                 {{-- </div> --}}
                 
