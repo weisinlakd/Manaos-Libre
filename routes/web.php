@@ -72,6 +72,6 @@ Route::get('/cart', function () {
 
 Route::get('add-to-cart/{id}', 'ProductosController@addToCart');
 
-Route::patch('update-cart', 'ProductsController@update');
+Route::patch('update-cart', 'ProductosController@update');
  
-Route::delete('remove-from-cart', 'ProductsController@remove');
+Route::delete('remove-from-cart', 'ProductosController@remove');

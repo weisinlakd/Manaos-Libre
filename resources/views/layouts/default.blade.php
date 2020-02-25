@@ -42,7 +42,9 @@
         <script src="../js/jquery.nice-select.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
         <script src="../js/mixitup.min.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
         <script src="../js/main.js" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
-        @yield('scripts')
+
+
+
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="bba5e7fdb0ecd42f6a179fdb-text/javascript"></script>
         <script type="bba5e7fdb0ecd42f6a179fdb-text/javascript">
         window.dataLayer = window.dataLayer || [];
@@ -53,4 +55,5 @@
         </script>
         
         <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="bba5e7fdb0ecd42f6a179fdb-|49" defer=""></script></body>
-  </html>
+        @yield('scripts')
+        </html>

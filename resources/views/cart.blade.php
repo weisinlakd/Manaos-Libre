@@ -202,7 +202,7 @@
            var ele = $(this);
  
             $.ajax({
-               url: '/update-cart',
+               url: '{{ url('update-cart') }}',
                method: "patch",
                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".quantity").val()},
                success: function (response) {
@@ -218,9 +218,9 @@
  
             if(confirm("Are you sure")) {
                 $.ajax({
-                    url: '/remove-from-cart',
+                    url: '{{ url('remove-from-cart') }}',
                     method: "DELETE",
-                    data: {_token: {{ csrf_token() }}, id: ele.attr("data-id")},
+                    data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
                     success: function (response) {
                         window.location.reload();
                     }
