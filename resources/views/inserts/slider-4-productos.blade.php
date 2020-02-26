@@ -12,27 +12,44 @@
                 </ol>   
                 <!-- Wrapper for carousel items -->
                 <div class="carousel-inner">
-                  @for ($i = 0; $i < 3; $i++)
-                      
-                  @if ($i === 0)
-                      <div class="carousel-item active">
-                      
-                  @else
-                      <div class="carousel-item">
-                  @endif
                   
-                  <div class="row">
-                    @foreach ($productos as $producto)
+                  <?php 
+                    $isActive = true;
+                    $contadorProductos = 0;
+                    ?>
+                          @foreach ($productos as $producto)
+                          @if ($loop->first)
+                            <div class="carousel-item active">
+                              <div class="row">
+                                
+                          @endif
+                          @include('inserts.producto-home') 
+                          <?php 
+                          
+                              $contadorProductos++;
+                              if ($loop->last) {
+                                continue;
+                              }
+                              if($contadorProductos === 4) {
+                                echo '</div> </div>
+                                <div class="carousel-item">
+                                  <div class="row">';
+                                $contadorProductos = 0;
+                              }
+                          ?>
+                          {{-- $producto = $productos[$i];?> --}}
+                           
+                          
+                          @endforeach
+                        </div>
                       
-                    
-                    {{-- $producto = $productos[$i];?> --}}
-                    @include('inserts.producto-home')
-                    
-                    @endforeach
+                 
+                      {{-- <div class="carousel-item"> --}}
+                  
+                  
                       
-                    </div>
                     <br></div>
-                    @endfor
+                    
                   
                   
                 </div>
