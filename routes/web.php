@@ -37,7 +37,7 @@ Route::get('/recientes', 'ProductosController@recientes');
 
 Route::get('/mas-vendidos', 'ProductosController@hot');
 
-
+Route::post('/comentar', 'ComentariosController@crear');
 //USUARIOS
 Auth::routes();
 

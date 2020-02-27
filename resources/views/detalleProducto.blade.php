@@ -136,7 +136,7 @@
             <h2>valoración: {{$producto->valoracion ?? '-'}}/10</h2>
             @if ($producto->is_usado) 
                 <h4>Usado!</h4> 
-                @endif
+            @endif
                 <p>Vendedor: <a href="/perfil/{{$producto->usuario->id}}">{{ $producto->usuario->name}} </a>
                 <br>(para más información comprar el producto)</p>
             <br>
@@ -174,7 +174,7 @@
                                 <!-- Contenedor del Comentario -->
                                 <div class="comment-box">
                                     <div class="comment-head">
-                                    <h6 class="comment-name by-author"><a href="#">{{$comentario->usuario->name}}</a></h6>
+                                    <h6 class="comment-name by-author"><a href="/perfil/{{$comentario->usuario->id}}">{{$comentario->usuario->name}}</a></h6>
                                     <span>hace 20 minutos</span>
                                         <i class="fa fa-reply"></i>                            
                                     </div>
@@ -184,6 +184,21 @@
                             </div>
                     @endforeach
                 </div>
+                <?php if (Auth::check()) :?>
+                    <form method="post" action="/comentar">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <input type="hidden" name="id" value="{{$producto->id}}">
+                            
+                            <label for="comentario" class="fa-pull-right"> </label>
+                            <textarea name="comentario" class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary pull-right">Enviar</button>
+                    </form>
+                <?php else : ?> 
+                <textarea name="comenntario" class="form-control" rows="3" disabled></textarea>
+                    <a href="/login" class="pull-right"> Inicia sesión para comentar </a> 
+                <?php endif ?>
             </div>
         </div>
     </div>
@@ -199,15 +214,16 @@
         </div>
     </div>     
     @endif
-    <form action="/borrarPublicacion" method="POST">
-        {{ csrf_field() }}
-        <input type="hidden" name="id" value="{{$producto->id}}">
-        <input type="submit" value="Borrar Publicación">
-        
-    </form>
+    
+        <form action="/borrarPublicacion" method="POST">
+            {{ csrf_field() }}
+            <input type="hidden" name="id" value="{{$producto->id}}">
+            <input type="submit" value="Borrar Publicación">
+            
+        </form>
     <br>
-    @endif    
-
+    
+        @endif
 </div>
 </div>
 </div>
