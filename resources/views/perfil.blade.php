@@ -123,7 +123,7 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                                     <th>Categoría</th>
                                     <th>Ciudad</th>
                                     <th>Valoración</th>
-                                    <th>Ver</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody id="items">
@@ -135,7 +135,7 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                                 } else {
                                     foreach (Auth::user()->productos as $producto) : ?>
                                     <tr>
-                                        <td><?=$producto->fecha?></td>
+                                        <td>{{date('d/m/Y', strtotime($producto->fecha))}}</td>
                                         <td><?=$producto->name?></td>
                                         <td>$<?=$producto->precio?></td>
                                         <td>{{$producto->categoria->name}}
@@ -144,6 +144,13 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                                         </td>
                                         <td><?=round($producto->valoracion,1, PHP_ROUND_HALF_DOWN)?> / 10</td>
                                     <td><a href="/producto/{{$producto->id}}" class="btn btn-primary">Ver</a></td>
+                                    <td>
+                                        <form action="/borrarPublicacion" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="id" value="{{$producto->id}}">
+                                            <input type="submit" class="btn btn-primary" value="Borrar">                                         
+                                        </form>
+                                    </td>
                                     </tr>
                                     <?php endforeach; }?>
                                 

@@ -96,7 +96,7 @@
  
             var ele = $(this);
  
-            if(confirm("Are you sure")) {
+            if(confirm("Estás seguro?")) {
                 $.ajax({
                     url: '{{ url('remove-from-cart') }}',
                     method: "DELETE",

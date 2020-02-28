@@ -1,12 +1,21 @@
 @extends('layouts/detalle')
 
 @section('php')
-
-    @if ($producto != null)
+    
+    @if ($producto != false)
         {{$titulo = $producto->name}}
         {{$idProducto = $producto->id}}
         {{$valoracion = $producto->valoracion}}
         {{$valoracion = floor($valoracion/2)}}
+    <?php 
+        $fechaActual = date_create(null);
+        
+        $fechaPubli = date_create($producto->fecha);
+        
+        $dateDiff = date_diff($fechaActual, $fechaPubli);
+
+        // dd($dateDiff);
+    ?>
     @else
         {{$titulo = '404 - No existe'}}
     @endif
@@ -60,6 +69,30 @@
             <div class="col-12">
                 <div class="page-breadcrumb">
                     <h2><?=$titulo?><span>.</span></h2>
+                    @if ($producto)
+                        <i class="fa fa-clock-o"></i>
+                        {{-- <span class="text-muted">Publicado el {{date('d/m/Y', strtotime($producto->fecha))}}</span> --}}
+                        @switch(true)
+                            @case($dateDiff->y != 0)
+                                    <span class="text-muted">Publicado hace {{$dateDiff->y}} años.</span>
+                                @break
+                            @case($dateDiff->m != 0)
+                                    <span class="text-muted">Publicado hace {{$dateDiff->m}} meses.</span>
+                                @break
+                            @case($dateDiff->d != 0)
+                                    <span class="text-muted">Publicado hace {{$dateDiff->d}} días.</span>
+                                @break
+                            @case($dateDiff->h != 0)
+                                    <span class="text-muted">Publicado hace {{$dateDiff->h}} horas.</span>
+                                @break
+                            @case($dateDiff->i != 0)
+                                    <span class="text-muted">Publicado hace {{$dateDiff->i}} minutos.</span>
+                                @break
+                            @default
+                                <span class="text-muted">Publicado hace pocos segundos.</span>
+                        @endswitch
+                        {{-- <span class="text-muted">Publicado hace {{$dateDiff->d}} días.</span> --}}
+                    @endif
                 </div>
     @if ($producto)
             <form action="#" method="post">
@@ -139,32 +172,38 @@
     
     <div class="col-lg-3 col-xs-12 mx-auto mx-0 fluid float-lg-left">
         
-        <h5>Descripcion del producto: <br> </h5>
-                <h4>{{$producto->descripcion}}</h4>
-                <h4><i class="icon ion-md-pin"></i> {{$producto->ciudad->nombre}}</h4>
-            <h2>$ {{$producto->precio}}</h2>
-            <h2>valoración: {{$producto->valoracion ?? '-'}}/10</h2>
-            @if ($producto->is_usado) 
-                <h4>Usado!</h4> 
-            @endif
-                <p>Vendedor: <a href="/perfil/{{$producto->usuario->id}}">{{ $producto->usuario->name}} </a>
-                <br>(para más información comprar el producto)</p>
-            <br>
-            <a class="btn btn-primary" href="/add-to-cart/{{$producto->id}}" role="button">Agregar al Carrito</a>
+        
+        <h4><i class="icon ion-md-pin"></i> {{$producto->ciudad->nombre}}</h4>
+        <h2>$ {{$producto->precio}}</h2>
+        <h2>valoración: {{$producto->valoracion ?? '-'}}/10</h2>
+        @if ($producto->is_usado) 
+            <h4>Usado!</h4> 
+        @endif
+            <p>Vendedor: <a href="/perfil/{{$producto->usuario->id}}">{{ $producto->usuario->name}} </a>
+            <br>(para más información comprar el producto)</p>
+        <br>
+        <a class="btn btn-primary" href="/add-to-cart/{{$producto->id}}" role="button">Agregar al Carrito</a>
+        {{-- </div> --}}
             {{-- </div> --}}
-                {{-- </div> --}}
-                
-                {{-- </div> --}}
             
-                {{-- </div> --}}
-                {{-- </div> --}}
-            </div>
+            {{-- </div> --}}
+        
+            {{-- </div> --}}
+            {{-- </div> --}}
+    </div>
             
-            
-    @if ($producto->comentarios)
+    
     
     
     <div class="row col-12 container">
+        <div class="col-12 xs-3 card-body">
+            <p>
+                <h2>Descripcion del producto: </h2>
+                {{$producto->descripcion}}
+            </p>
+
+        </div>
+    @if ($producto->comentarios)
         <div class="col-12 xs-3">
             <div class="comments-container">
                 <br>
@@ -225,12 +264,7 @@
     </div>     
     @endif
     
-        <form action="/borrarPublicacion" method="POST">
-            {{ csrf_field() }}
-            <input type="hidden" name="id" value="{{$producto->id}}">
-            <input type="submit" value="Borrar Publicación">
-            
-        </form>
+        
     <br>
     
         @endif

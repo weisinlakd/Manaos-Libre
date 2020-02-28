@@ -49,6 +49,11 @@ class ProductosController extends Controller
         $producto = Producto::find($id);
         // dd($producto);
         // $fotos = FotoProducto::where('id_producto', '=', $id)->get();
+
+        if ($producto == null) {
+            $producto == false;
+            return view('detalleProducto', compact('producto'));
+        }
         if ($producto->valoraciones) {
 
             $valoracion = Valoracion::where('id_producto' ,'=' ,$id)->get();

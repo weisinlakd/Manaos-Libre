@@ -137,7 +137,7 @@ $ciudades = [];
                                     } else {
                                         foreach ($usuario->productos as $producto) : ?>
                                         <tr>
-                                            <td><?=$producto->fecha?></td>
+                                            <td>{{date('d/m/Y', strtotime($producto->fecha))}}</td>
                                             <td><?=$producto->name?></td>
                                             <td>$<?=$producto->precio?></td>
                                             <td>{{$producto->categoria->name}}
