@@ -21,27 +21,6 @@
     <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" 
           href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
-    <style> 
-        .input-icons i { 
-            position: absolute; 
-        } 
-          
-        .input-icons { 
-            width: 100%; 
-            margin-bottom: 10px; 
-        } 
-          
-        .icon { 
-            padding: 10px; 
-            min-width: 40px; 
-        } 
-          
-        .input-field { 
-            width: 100%; 
-            padding: 10px; 
-            text-align: center; 
-        } 
-    </style> 
   </head>
   <style>
     .verPass {
@@ -64,7 +43,7 @@
     }
     }
 
-    @media screen and (max-width: 966px) {
+    @media screen and (min-width:761px) and (max-width: 966px) {
       .verPass i {
       position: absolute;
       top: 19em;
@@ -83,7 +62,7 @@
             <br>
             <br>
             <figure><a href="/home"><img src="../img/logoml.png" alt="Ir al home"></a></figure>
-            <a href="sign-in.php" class="signup-image-link">Ya tengo una cuenta.</a>
+            <a href="/login" class="signup-image-link">Ya tengo una cuenta.</a>
           </div>
         </div>
         <div class="col-lg-7 col-md-12">
