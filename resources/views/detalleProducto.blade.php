@@ -96,7 +96,15 @@
                             <li data-target="#homeCarousel" data-slide-to="2"></li>
                         </ol>
                     <div class="carousel-inner">
-
+                        @if($producto->fotos->isEmpty())
+                            <div class="d-block d-md-none">
+                                <img src="../img/placeholder-home.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="d-none d-md-block d-xl-block">
+                                <img src="../img/placeholder-home.jpg" class="d-block w-100 " alt="...">
+                            </div>
+                        @endif
+                        
                         @foreach ($producto->fotos as $foto)
                         @if ($loop->first)
                             <div class="carousel-item active">
@@ -111,6 +119,8 @@
                                     <img src="/storage/<?=$foto->nombre?>" class="d-block w-100 " alt="...">
                                 </div>
                             </div>
+                        
+                        
                         @endforeach
                     
                     </div>

@@ -23,10 +23,10 @@
                     <div class="carousel-item">
                 @endif
                     <div class="d-block d-md-none img-fluid">
-                        <img src="/storage/{{$foto->nombre}}" class="d-block w-100 img-lista" alt="...">
+                        <a href="producto/{{$producto->id}}"><img src="/storage/{{$foto->nombre}}" class="d-block w-100 img-lista" alt="..."></a>
                     </div>
                     <div class="d-none d-md-block d-xl-block">
-                        <img src="/storage/{{$foto->nombre}}" class="d-block w-100 img-lista " alt="...">
+                        <a href="producto/{{$producto->id}}"><img src="/storage/{{$foto->nombre}}" class="d-block w-100 img-lista " alt="..."></a>
                     </div>
                   </div>
               @endforeach

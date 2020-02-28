@@ -2,11 +2,13 @@
     <div class="thumb-wrapper">
         <div class="img-box">
             {{-- {{dd($producto->fotos[0]->nombre)}} --}}
-            @if (is_array($producto->foto))
-                <img src="storage/{{$producto->fotos[0]->nombre}}" class="img-responsive img-fluid img-home" alt="{{$producto->descripcion}}">
-            @else 
-                <img src="img/placeholder-home.jpg" class="img-responsive img-fluid img-home" alt="{{$producto->descripcion}}">
-            @endif
+            <a href="/producto/{{$producto->id}}">
+                @if (!$producto->fotos->isEmpty())
+                    <img src="storage/{{$producto->fotos[0]->nombre}}" class="img-responsive img-fluid img-home" alt="{{$producto->descripcion}}">
+                @else 
+                    <img src="img/placeholder-home.jpg" class="img-responsive img-fluid img-home" alt="{{$producto->descripcion}}">
+                @endif
+            </a>
         </div>
         <div class="thumb-content">
             <br>
