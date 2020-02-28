@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateMetodosDePagoV2 extends Migration
+class AlterComentariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,11 @@ class UpdateMetodosDePagoV2 extends Migration
     public function up()
     {
         //
-        // Schema::table('metodos_de_pago', function($table) {
-        //     $table->dropPrimary();
-        //     $table->dropColumn('id');
-        //     $table->integer('id')->autoIncrement();
-        // });
+        Schema::table('comentarios', function($table) {
+            
+            $table->timestamps();
+            
+        });
     }
 
     /**

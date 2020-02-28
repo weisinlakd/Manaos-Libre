@@ -8,6 +8,7 @@
         {{$valoracion = $producto->valoracion}}
         {{$valoracion = floor($valoracion/2)}}
     <?php 
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
         $fechaActual = date_create(null);
         
         $fechaPubli = date_create($producto->fecha);
@@ -214,7 +215,17 @@
                     @foreach ($producto->comentarios as $comentario) 
                     <?php 
                         $foto =  '../img/user.png'; //FALTA VALIDAR LOGICA CUANDO HAYA USUARIOS
-                        $nombre = isset($comentario->apellido) ? $comentario->name." ".$comentario->apellido : $comentario->name
+                        $nombre = isset($comentario->apellido) ? $comentario->name." ".$comentario->apellido : $comentario->name;
+                        
+                        // $fechaActual = localtime(time());
+                        $fechaActual = date_create(null);
+                        // dd($fechaActual);
+                        $fechaComentario = date_create($comentario->created_at);
+                        
+                        $dateDiff = date_diff($fechaActual, $fechaComentario);
+
+        // dd($dateDiff);
+    
                         ?>
                         <li>
                             <div class="comment-main-level col-xs-4">
@@ -223,8 +234,34 @@
                                 <!-- Contenedor del Comentario -->
                                 <div class="comment-box">
                                     <div class="comment-head">
-                                    <h6 class="comment-name by-author"><a href="/perfil/{{$comentario->usuario->id}}">{{$comentario->usuario->name}}</a></h6>
-                                    <span>hace 20 minutos</span>
+                                    @if ($producto->usuario->id == $comentario->usuario->id)
+                                        <h6 class="comment-name by-author">
+                                    @else
+                                        <h6 class="comment-name">
+                                    @endif
+                                            <a href="/perfil/{{$comentario->usuario->id}}">{{$comentario->usuario->name}}</a>
+                                        </h6>
+                                    <i class="fa fa-clock-o"></i>
+                                    @switch(true)
+                                        @case($dateDiff->y != 0)
+                                                <span class="text-muted">Publicado hace {{$dateDiff->y}} años.</span>
+                                            @break
+                                        @case($dateDiff->m != 0)
+                                                <span class="text-muted">Publicado hace {{$dateDiff->m}} meses.</span>
+                                            @break
+                                        @case($dateDiff->d != 0)
+                                                <span class="text-muted">Publicado hace {{$dateDiff->d}} días.</span>
+                                            @break
+                                        @case($dateDiff->h != 0)
+                                                <span class="text-muted">Publicado hace {{$dateDiff->h}} horas.</span>
+                                            @break
+                                        @case($dateDiff->i != 0)
+                                                <span class="text-muted">Publicado hace {{$dateDiff->i}} minutos.</span>
+                                            @break
+                                        @default
+                                            <span class="text-muted">Publicado hace pocos segundos.</span>
+                                    @endswitch
+                                    
                                         <i class="fa fa-reply"></i>                            
                                     </div>
                                 <div class="comment-content  col-12 col-xs-12 ">
@@ -242,7 +279,7 @@
                             <label for="comentario" class="fa-pull-right"> </label>
                             <textarea name="comentario" class="form-control" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary pull-right">Enviar</button>
+                        <button type="submit" class="btn btn-primary pull-right">Comentar</button>
                     </form>
                 <?php else : ?> 
                 <textarea name="comenntario" class="form-control" rows="3" disabled></textarea>
