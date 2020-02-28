@@ -18,9 +18,60 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
     <link rel="stylesheet" href="../css/signin.css">
-    
-    
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" 
+          href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <style> 
+        .input-icons i { 
+            position: absolute; 
+        } 
+          
+        .input-icons { 
+            width: 100%; 
+            margin-bottom: 10px; 
+        } 
+          
+        .icon { 
+            padding: 10px; 
+            min-width: 40px; 
+        } 
+          
+        .input-field { 
+            width: 100%; 
+            padding: 10px; 
+            text-align: center; 
+        } 
+    </style> 
   </head>
+  <style>
+    .verPass {
+      
+      color:black;
+      text-decoration-line: none;
+    }
+
+    .verPass i {
+      position: absolute;
+      top: 19em;
+      left: 29em;
+    }
+
+    @media screen and (max-width: 760px) {
+      .verPass i {
+      position: absolute;
+      top: 19em;
+      left: 17em;
+    }
+    }
+
+    @media screen and (max-width: 966px) {
+      .verPass i {
+      position: absolute;
+      top: 19em;
+      left: 30em;
+    }
+    }
+  </style>
   <body class="text-center color-4">
 
     <div class="container">
@@ -76,6 +127,9 @@
               <!-- <label for="pass"><i class="zmdi zmdi-lock"></i></label> -->
               <input type="password" name="password" id="password" placeholder="Contraseña" class="form-control @error('password') is-invalid @enderror" required />
               
+              <a href="#" class="verPass"> 
+                <i class="zmdi zmdi-eye" onclick="togglePass()"></i>
+              </a>
               @error('password')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -85,6 +139,9 @@
             <div class="form-group row">
               <!-- <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label> -->
               <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Ingresá nuevamente la contraseña" class="form-control" required />
+              <a href="#" class="verPass"> 
+                <i class="zmdi zmdi-eye" onclick="togglePass()"></i>
+              </a>
             </div>
             <div class="checkbox mb-3">
               <label>
@@ -117,5 +174,20 @@
       gtag('config', 'UA-23581568-13');
     </script>
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="cc855bfe3f7079dfbd7b3fea-|49" defer=""></script>
+    <script>
+      function togglePass() {
+        var x = document.getElementById("password");
+        var y = document.getElementById("password_confirmation");
+        if (x.type === "password") {
+          x.type = "text";
+          y.type = 'text';
+        } else {
+          x.type = "password";
+          y.type = "password";
+        }
+      }
+
+    </script>
+  
   </body>
 </html>

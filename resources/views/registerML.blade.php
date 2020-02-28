@@ -75,7 +75,7 @@
             <div class="form-group row">
               <!-- <label for="pass"><i class="zmdi zmdi-lock"></i></label> -->
               <input type="password" name="password" id="password" placeholder="Contraseña" class="form-control @error('password') is-invalid @enderror" required />
-              
+              <input type="checkbox" onclick="myFunction()">Ver contraseña
               @error('password')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -117,5 +117,17 @@
       gtag('config', 'UA-23581568-13');
     </script>
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="cc855bfe3f7079dfbd7b3fea-|49" defer=""></script>
+    <script>
+      function togglePass() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+
+    </script>
+  
   </body>
 </html>
