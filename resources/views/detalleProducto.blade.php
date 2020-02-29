@@ -108,6 +108,7 @@
                 <!-- cambios a las estrellas -->
                 
                 <p class="clasificacion">
+                    <?php $num = 10000?>
                 
                 @include('inserts/ratings-detalle')
                 
@@ -120,7 +121,7 @@
                     <br><br><input type="submit" value="ingresá para votar!" class="btn btn-outline-secondary" disabled>
                     @else
                     <input type="hidden" name="id_producto" value="{{$producto->id}}">
-                    <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
+                    <input type="hidden" name="id_voto" value="{{$producto->id}}-{{$num}}">
                     <br><br><input type="submit" value="guardar" class="btn btn-outline-secondary">
                     @endguest
                 @endisset
@@ -257,6 +258,7 @@
         $subtitulo = "Más de ".$producto->usuario->name." <i class='fa fa-angle-right'></i> ";
         // $productos = [$producto, $producto , $producto,$producto,$producto];
         $notHome = true;
+        $num = null;
         ?>
         <div class="row col-12 p-3 text-center m-0">
             @include('inserts.slider-4-productos')

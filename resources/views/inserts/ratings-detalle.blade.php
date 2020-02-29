@@ -41,7 +41,10 @@ fieldset, label { margin: 0; padding: 0; }
 </style>
 
 <?php 
-$num = rand(1,100);
+if (!isset($num)) {
+
+    $num = rand(1,100);
+}
 ?>
 
 
