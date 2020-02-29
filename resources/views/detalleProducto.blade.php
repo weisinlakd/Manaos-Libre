@@ -16,6 +16,7 @@
         $dateDiff = date_diff($fechaActual, $fechaPubli);
 
         // dd($dateDiff);
+        // Session::flash('id_producto', $producto->id);
         
     ?>
     @else
@@ -101,8 +102,9 @@
                     @endif
                 </div>
     @if ($producto)
-            <form action="#" method="post">
-                
+        <?php $valoracion = floor($producto->valoracion/2); ?>
+            <form action="/votar" method="post">
+                {{ csrf_field() }}
                 <!-- cambios a las estrellas -->
                 
                 <p class="clasificacion">
@@ -110,15 +112,18 @@
                 @include('inserts/ratings-detalle')
                 
                 </p>
-                <?php if (isset($disabled)) :?>
-                <?php $_POST = array();
-                // die; ?>
+               
+                @isset($disabled)
                 <br><br><input type="submit" value="ya votaste!" class="btn btn-outline-secondary" disabled>
-                <?php elseif ($usuarioLog == false): ?>
-                <br><br><input type="submit" value="ingresá para votar!" class="btn btn-outline-secondary" disabled>
-                <?php else : ?> 
-                <br><br><input type="submit" value="guardar" class="btn btn-outline-secondary">
-                <?php  endif ?>
+                @else
+                    @guest
+                    <br><br><input type="submit" value="ingresá para votar!" class="btn btn-outline-secondary" disabled>
+                    @else
+                    <input type="hidden" name="id_producto" value="{{$producto->id}}">
+                    <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
+                    <br><br><input type="submit" value="guardar" class="btn btn-outline-secondary">
+                    @endguest
+                @endisset
             </form>
   
         
@@ -137,10 +142,10 @@
                     <div class="carousel-inner">
                         @if($producto->fotos->isEmpty())
                             <div class="d-block d-md-none">
-                                <img src="../img/placeholder-home.jpg" class="d-block w-100" alt="...">
+                                <img src="../img/placeholder-home.jpg" class="d-block w-100" alt="{{$producto->name}}">
                             </div>
                             <div class="d-none d-md-block d-xl-block">
-                                <img src="../img/placeholder-home.jpg" class="d-block w-100 " alt="...">
+                                <img src="../img/placeholder-home.jpg" class="d-block w-100 " alt="{{$producto->name}}">
                             </div>
                         @endif
                         
@@ -152,10 +157,10 @@
                             <div class="carousel-item">
                         @endif
                                 <div class="d-block d-md-none">
-                                    <img src="/storage/<?=$foto->nombre?>" class="d-block w-100" alt="...">
+                                    <img src="/storage/<?=$foto->nombre?>" class="d-block w-100" alt="{{$producto->name}}">
                                 </div>
                                 <div class="d-none d-md-block d-xl-block">
-                                    <img src="/storage/<?=$foto->nombre?>" class="d-block w-100 " alt="...">
+                                    <img src="/storage/<?=$foto->nombre?>" class="d-block w-100 " alt="{{$producto->name}}">
                                 </div>
                             </div>
                         
@@ -183,7 +188,7 @@
         <h2>$ {{$producto->precio}}</h2>
         @if ($producto->valoracion)
             
-        <h2>valoración: {{$producto->valoracion}}/10</h2>
+        <h2>valoración: {{round($producto->valoracion, 2)}}/10</h2>
         @endif
 
         @if ($producto->is_usado) 

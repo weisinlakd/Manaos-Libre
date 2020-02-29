@@ -21,15 +21,7 @@
                     <span class="importante">${{$producto->precio}}</span>
                 <?php endif ?>
             </p>
-            <!-- <div class="star-rating">
-                <ul class="list-inline">
-                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                </ul>
-            </div> -->
+            
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-10">

@@ -8,6 +8,7 @@ use App\FotoProducto;
 use App\Ciudad;
 use App\Categoria;
 use App\Valoracion;
+use Illuminate\Support\Facades\Auth;
 
 class ProductosController extends Controller
 {
@@ -64,12 +65,19 @@ class ProductosController extends Controller
         }
 
         $productos = Producto::where('id_usuario', '=', $producto->id_usuario)->get();
-
+        $valorAlProd = Valoracion::where('id_usuario', '=', Auth::user()->id)->where('id_producto', '=', $id)->get();
+        $disabled = null;
+        
+        
+        if (!$valorAlProd->isEmpty()) {
+            $disabled  = true;
+            // dd($valorAlProd);
+        }
         if ($productos->isEmpty()) {
-            return view('detalleProducto', compact('producto'));
+            return view('detalleProducto', compact('producto', 'disabled'));
         }
             // dd($foto);
-        return view('detalleProducto', compact('producto', 'productos'));
+        return view('detalleProducto', compact('producto', 'productos', 'disabled'));
     }
 
     public function baratos() {

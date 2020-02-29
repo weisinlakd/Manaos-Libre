@@ -23,10 +23,10 @@
                     <div class="carousel-item">
                 @endif
                     <div class="d-block d-md-none img-fluid">
-                        <a href="producto/{{$producto->id}}"><img src="/storage/{{$foto->nombre}}" class="d-block w-100 img-lista" alt="..."></a>
+                        <a href="producto/{{$producto->id}}"><img src="/storage/{{$foto->nombre}}" class="d-block w-100 img-lista" alt="{{$producto->name}}"></a>
                     </div>
                     <div class="d-none d-md-block d-xl-block">
-                        <a href="producto/{{$producto->id}}"><img src="/storage/{{$foto->nombre}}" class="d-block w-100 img-lista " alt="..."></a>
+                        <a href="producto/{{$producto->id}}"><img src="/storage/{{$foto->nombre}}" class="d-block w-100 img-lista " alt="{{$producto->name}}"></a>
                     </div>
                   </div>
               @endforeach
@@ -34,29 +34,29 @@
               {{-- <div class="carousel-item active">
                 <div class="d-block d-md-none img-fluid">
                   <!--  -->
-                  <img src="" class="d-block w-100 img-lista" alt="...">
+                  <img src="" class="d-block w-100 img-lista" alt="{{$producto->name}}">
                 </div>
                 <div class="d-none d-md-block d-xl-block">
                   <!--  -->
-                  <img src="" class="d-block w-100 img-lista" alt="...">
+                  <img src="" class="d-block w-100 img-lista" alt="{{$producto->name}}">
                 </div>
               </div>
               <div class="carousel-item">
                 <div class="d-block d-md-none">
-                  <img src="" class="d-block w-100 img-lista" alt="...">
+                  <img src="" class="d-block w-100 img-lista" alt="{{$producto->name}}">
                 </div>
                 <div class="d-none d-md-block d-xl-block">
                   <!--  -->
-                  <img src="" class="d-block w-100 img-lista" alt="...">
+                  <img src="" class="d-block w-100 img-lista" alt="{{$producto->name}}">
                 </div>
               </div>
               <div class="carousel-item">
                 <div class="d-block d-md-none">
-                  <img src="" class="d-block w-100 img-lista" alt="...">
+                  <img src="" class="d-block w-100 img-lista" alt="{{$producto->name}}">
                 </div>
                 <div class="d-none d-md-block d-xl-block">
                   <!--  -->
-                  <img src="" class="d-block w-100 img-lista" alt="...">
+                  <img src="" class="d-block w-100 img-lista" alt="{{$producto->name}}">
                 </div>
               </div> --}}
             </div>
