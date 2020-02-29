@@ -120,7 +120,7 @@
           <option value="2">Uso regular</option>
         <option value="3">Uso intenso</option>
         <option value="4">Daños anormales por uso</option>
-        <option value="5">Daños intensos</option>
+        <option value="5">Apenas funcional</option>
         <option value="6">Venta como partes para repuesto</option>
         </select>
       </div>

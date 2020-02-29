@@ -4,6 +4,7 @@
 
     <?php $producto = false;
     $titulo = 'Home';
+    $notHome = false;
     ?>
 @endsection
 

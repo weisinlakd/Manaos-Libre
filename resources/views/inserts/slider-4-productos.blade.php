@@ -1,8 +1,12 @@
 <div class="container">
             <div class="row">
               <div class="col-md-12">
-                <h2><b><?=$subtitulo?></b></h2>
-                <br>
+                @if($notHome)
+                  <h4><?=$subtitulo?></h4>
+                @else
+                  <h2><b><?=$subtitulo?></b></h2>
+                  <br>
+                @endif
                 <div id="myCarousel<?=$id?>" class="carousel slide" data-ride="carousel" data-interval="0">
                 <!-- Carousel indicators -->
                 <ol class="carousel-indicators">

@@ -4,7 +4,7 @@
             {{-- {{dd($producto->fotos[0]->nombre)}} --}}
             <a href="/producto/{{$producto->id}}">
                 @if (!$producto->fotos->isEmpty())
-                    <img src="storage/{{$producto->fotos[0]->nombre}}" class="img-responsive img-fluid img-home" alt="{{$producto->descripcion}}">
+                    <img src="/storage/{{$producto->fotos[0]->nombre}}" class="img-responsive img-fluid img-home" alt="{{$producto->descripcion}}">
                 @else 
                     <img src="img/placeholder-home.jpg" class="img-responsive img-fluid img-home" alt="{{$producto->descripcion}}">
                 @endif
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <br>
-        <a href="/producto/{{$producto->id}}" class="btn btn-primary">Ver</a>  
+            <a href="/producto/{{$producto->id}}" class="btn btn-primary">Ver</a>  
             <a href="/add-to-cart/{{$producto->id}}" class="btn btn-primary">Comprar</a>
         </div>						
     </div>

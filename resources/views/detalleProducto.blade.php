@@ -55,6 +55,10 @@
         max-height: 12em;
     }
     
+    hr.solid {
+        border-top: 2px solid #999;
+        display: block;
+    }
 </style>
     
 @endsection
@@ -176,9 +180,40 @@
         
         <h4><i class="icon ion-md-pin"></i> {{$producto->ciudad->nombre}}</h4>
         <h2>$ {{$producto->precio}}</h2>
-        <h2>valoración: {{$producto->valoracion ?? '-'}}/10</h2>
+        @if ($producto->valoracion)
+            
+        <h2>valoración: {{$producto->valoracion}}/10</h2>
+        @endif
+
         @if ($producto->is_usado) 
-            <h4>Usado!</h4> 
+            <h4 style="color: red">Usado!</h4> 
+                @if ($producto->meses_uso % 2 === 0 && ($producto->meses_uso / 2 > 1))
+                <p><i class="fa fa-clock-o"></i> Tiempo de uso : <span style="color: red">{{$producto->meses_uso/12}} Año(s)</span></p>
+                @else
+                    <p>Tiempo de uso : <span style="color: green">{{$producto->meses_uso}} Meses</span></p>
+                @endif
+            @switch($producto->estado_uso)
+                @case(1)
+                    <p>Estado: <span style="color: forestgreen"> Semi nuevo. </span></p> 
+                    @break
+                @case(2)
+                    <p>Estado: <span style="color: green"> Uso Regular. </span></p>
+                    @break
+                @case(3)
+                    <p>Estado: <span style="color: yellow"> Uso Intenso. </span></p>
+                    @break
+                @case(4)
+                   <p>Estado: <span style="color: orange"> Daños Anormales por uso. </span></p>
+                    @break
+                @case(5)
+                    <p>Estado: <span style="color: red"> Apenas Funcional. </span></p>
+                    @break
+                @case(6)
+                    <p>Estado: <span style="color: darkred"> Venta como partes de repuesto. </span></p>
+                    @break
+                @default
+                    
+            @endswitch
         @endif
             <p>Vendedor: <a href="/perfil/{{$producto->usuario->id}}">{{ $producto->usuario->name}} </a>
             <br>(para más información comprar el producto)</p>
@@ -200,12 +235,28 @@
         <div class="col-12 xs-3 card-body">
             <p>
                 <h2>Descripcion del producto: </h2>
+                <hr class="solid">
                 {{$producto->descripcion}}
             </p>
-
+            <hr class="solid">
         </div>
+
+        <hr class="solid">
+        {{-- MÁS PRODUCTOS --}}
+        <?php
+        $id = 1;
+        $subtitulo = "Más de ".$producto->usuario->name." <i class='fa fa-angle-right'></i> ";
+        $productos = [$producto, $producto , $producto,$producto,$producto];
+        $notHome = true;
+        ?>
+        <div class="row col-12 p-3 text-center m-0">
+        @include('inserts.slider-4-productos')
+        
+        </div>
+        
     @if ($producto->comentarios)
         <div class="col-12 xs-3">
+            <hr class="solid">
             <div class="comments-container">
                 <br>
                 <h1>Comentarios ({{count($producto->comentarios)}})</h1>
@@ -291,6 +342,7 @@
     @else 
     <div class="row col-12 container">
         <div class="col-12 xs-3">
+            <hr class="solid">
             <div class="comments-container">
                 <br>
                 <h1>Comentarios (0)</h1>
@@ -305,6 +357,10 @@
     <br>
     
         @endif
+
+        
+
+        
 </div>
 </div>
 </div>
