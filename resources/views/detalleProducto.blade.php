@@ -277,7 +277,12 @@
                     
                     @foreach ($producto->comentarios as $comentario) 
                     <?php 
-                        $foto =  '../img/user.png'; //FALTA VALIDAR LOGICA CUANDO HAYA USUARIOS
+                        if ($comentario->usuario->foto != 'error'){
+                            $foto = $comentario->usuario->foto;
+                        } else {
+                            
+                            $foto =  '../img/user.png'; //FALTA VALIDAR LOGICA CUANDO HAYA USUARIOS
+                        }
                         $nombre = isset($comentario->apellido) ? $comentario->name." ".$comentario->apellido : $comentario->name;
                         
                         // $fechaActual = localtime(time());
@@ -293,7 +298,7 @@
                         <li>
                             <div class="comment-main-level col-xs-4">
                                 <!-- Avatar -->
-                                <div class="comment-avatar"><img src="<?=$foto?>" alt=""></div>
+                            <div class="comment-avatar"><img src="/storage/profile/<?=$foto?>" alt="{{$foto}}"></div>
                                 <!-- Contenedor del Comentario -->
                                 <div class="comment-box">
                                     <div class="comment-head">
