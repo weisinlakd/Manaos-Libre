@@ -6,7 +6,7 @@
                 @if (!$producto->fotos->isEmpty())
                     <img src="/storage/{{$producto->fotos[0]->nombre}}" class="img-responsive img-fluid img-home" alt="{{$producto->descripcion}}">
                 @else 
-                    <img src="img/placeholder-home.jpg" class="img-responsive img-fluid img-home" alt="{{$producto->descripcion}}">
+                    <img src="/img/placeholder-home.jpg" class="img-responsive img-fluid img-home" alt="{{$producto->descripcion}}">
                 @endif
             </a>
         </div>

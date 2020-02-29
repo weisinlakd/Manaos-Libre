@@ -16,6 +16,7 @@
         $dateDiff = date_diff($fechaActual, $fechaPubli);
 
         // dd($dateDiff);
+        
     ?>
     @else
         {{$titulo = '404 - No existe'}}
@@ -242,17 +243,21 @@
         </div>
 
         <hr class="solid">
+
         {{-- MÁS PRODUCTOS --}}
+        @isset($productos)
+            
         <?php
         $id = 1;
         $subtitulo = "Más de ".$producto->usuario->name." <i class='fa fa-angle-right'></i> ";
-        $productos = [$producto, $producto , $producto,$producto,$producto];
+        // $productos = [$producto, $producto , $producto,$producto,$producto];
         $notHome = true;
         ?>
         <div class="row col-12 p-3 text-center m-0">
-        @include('inserts.slider-4-productos')
-        
+            @include('inserts.slider-4-productos')
+            
         </div>
+        @endisset
         
     @if ($producto->comentarios)
         <div class="col-12 xs-3">

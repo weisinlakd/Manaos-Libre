@@ -62,8 +62,14 @@ class ProductosController extends Controller
             $producto->valoracion = $valoracion->avg('valoracion');
             $producto->save();
         }
+
+        $productos = Producto::where('id_usuario', '=', $producto->id_usuario)->get();
+
+        if ($productos->isEmpty()) {
+            return view('detalleProducto', compact('producto'));
+        }
             // dd($foto);
-        return view('detalleProducto', compact('producto'));
+        return view('detalleProducto', compact('producto', 'productos'));
     }
 
     public function baratos() {
