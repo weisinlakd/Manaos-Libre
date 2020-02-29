@@ -13,6 +13,12 @@ $ciudades = [];
 ?>
 @endsection
 
+<style>
+    .redondo {
+        border-radius: 50%;
+    }
+</style>
+
 @section('content')
 <br>
 @if ($usuario->estado == 0)
@@ -29,7 +35,7 @@ $ciudades = [];
                 <div class="row">
                     <div class="col-2"></div>
                     @if ($usuario->foto != 'error')
-                        <img title="profile image" class="img-circle img-responsive col-12" src="/storage/profile/{{$usuario->foto}}">
+                        <img title="profile image" class="img-circle img-responsive col-12 redondo" src="/storage/profile/{{$usuario->foto}}">
                     @else
                         <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
                     @endif 

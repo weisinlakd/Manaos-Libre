@@ -52,4 +52,9 @@
     background-color: #fff159;
 
 }
+
+.redondo {
+    border-radius: 50%;
+}
+
 </style>

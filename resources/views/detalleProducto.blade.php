@@ -298,7 +298,7 @@
                         <li>
                             <div class="comment-main-level col-xs-4">
                                 <!-- Avatar -->
-                            <div class="comment-avatar"><img src="/storage/profile/<?=$foto?>" alt="{{$foto}}"></div>
+                            <div class="comment-avatar"><img class="redondo" src="/storage/profile/<?=$foto?>" alt="{{$foto}}"></div>
                                 <!-- Contenedor del Comentario -->
                                 <div class="comment-box">
                                     <div class="comment-head">

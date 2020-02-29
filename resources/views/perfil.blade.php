@@ -11,7 +11,11 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
 // $ciudades = [];
 ?>
 @endsection
-
+<style>
+    .redondo {
+        border-radius: 50%;
+    }
+</style>
 @section('content')
 <br>
 <div class="container bootstrap snippet">
@@ -24,8 +28,8 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
             <!-- <a href="/users" class="pull-right"> -->
               <div class="row">
                 <div class="col-2"></div>
-                @if (Auth::user()->foto != 'error')
-                    <img title="profile image" class="img-circle img-responsive col-12" src="/storage/profile/{{Auth::user()->foto}}">
+                @if ((Auth::user()->foto != 'error')|| (Auth::user()->foto == ''))
+                    <img title="profile image" class="img-circle img-responsive col-12 redondo" src="/storage/profile/{{Auth::user()->foto}}">
                 @else
                     <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
                 @endif 
