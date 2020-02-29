@@ -62,7 +62,7 @@
 <body class="text-center color-4">
   <form  action="{{ route('login') }}" class="form-signin" method="post">
     @csrf
-    <a href="home.php"><img class="mb-4" src="../img/logosolo.png" alt="" width="72" height="72"></a>
+    <a href="/"><img class="mb-4" src="../img/logosolo.png" alt="" width="72" height="72"></a>
     <h1 class="h3 mb-3 font-weight-normal">Manaos Libre</h1>
     <label for="email" class="sr-only">Email</label>
       <input name="email" type="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" required autofocus value="{{ old('email') }}" >
@@ -82,6 +82,10 @@
           </span>
           <a href="{{ route('password.request') }}">Olvidé mi contraseña </a>
       @enderror
+
+      @if (Route::has('password.request'))
+        <a href="{{ route('password.request') }}">Olvidé mi contraseña </a>
+      @endif
       
       <div class="checkbox mb-3">
       <label for="remember">
