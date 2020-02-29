@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Request;
 
 class RegisterController extends Controller
 {
@@ -68,10 +69,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd($data);
+        if (isset($data['avatar'])){
+            
+            
+            try {
+                $fotoASubir = $data['avatar'];
+                # code...
+                $ruta = $fotoASubir->store('public/profile');
+                $nombreArchivo = basename($ruta);
+                $foto = $nombreArchivo;
+                // dd($foto);
+
+            
+            } catch (\Throwable $err) {
+                //throw $th;
+                throw $err;
+                // abort(500);
+                // return redirect()->back();
+            }
+        } else $foto = 'error';
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'foto' => $foto,
         ]);
     }
 }

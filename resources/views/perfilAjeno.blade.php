@@ -14,7 +14,7 @@ $ciudades = [];
 @endsection
 
 @section('content')
-
+<br>
 @if ($usuario->estado == 0)
     <h1>No existe usuario con ese perfil!</h1>
 @else
@@ -29,7 +29,7 @@ $ciudades = [];
                 <div class="row">
                     <div class="col-2"></div>
                     @if ($usuario->foto != 'error')
-                        <img title="profile image" class="img-circle img-responsive col-12" src="{{$usuario->foto}}">
+                        <img title="profile image" class="img-circle img-responsive col-12" src="/storage/profile/{{$usuario->foto}}">
                     @else
                         <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
                     @endif 
@@ -211,4 +211,5 @@ $ciudades = [];
         <!--/col-9-->
     </div>
 @endif
+<br>
 @endsection

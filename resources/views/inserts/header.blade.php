@@ -114,7 +114,7 @@
           <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @if (Auth::user()->foto != 'error')
-                      <img class="rounded-circle img-responsive" style="height: 2.5em; width: 2.5em" src="<?=Auth::user()->foto?>" alt="foto perfil">
+                      <img class="rounded-circle img-responsive" style="height: 2.5em; width: 2.5em" src="/storage/profile/<?=Auth::user()->foto?>" alt="foto perfil">
                     @else 
                       <i class="fa fa-user d-none d-sm-none d-md-none d-lg-block d-xl-block"></i>
                     @endif 

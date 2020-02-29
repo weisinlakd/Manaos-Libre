@@ -13,7 +13,7 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
 @endsection
 
 @section('content')
-
+<br>
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10 page-breadcrumb">
@@ -25,7 +25,7 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
               <div class="row">
                 <div class="col-2"></div>
                 @if (Auth::user()->foto != 'error')
-                    <img title="profile image" class="img-circle img-responsive col-12" src="{{Auth::user()->foto}}">
+                    <img title="profile image" class="img-circle img-responsive col-12" src="/storage/profile/{{Auth::user()->foto}}">
                 @else
                     <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
                 @endif 
@@ -315,6 +315,7 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
     </div>
     <!--/col-9-->
 </div>
+<br>
 @endsection
 
 @section('scripts')
