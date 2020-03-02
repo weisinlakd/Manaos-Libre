@@ -53,7 +53,7 @@
   @media screen and (min-width:1062px) {
     .verPass i {
     position: absolute;
-    top: 21.2em;
+    top: 20.6em;
     left: 48em;
   }
   }

@@ -40,6 +40,7 @@ Route::get('/mas-vendidos', 'ProductosController@hot');
 Route::post('/comentar', 'ComentariosController@crear');
 
 Route::post('/votar', 'ValoracionesController@votar');
+
 //USUARIOS
 Auth::routes();
 
@@ -47,7 +48,7 @@ Route::get('perfil', 'CiudadesController@listado');
 
 Route::get('perfil/{id}', 'UsuariosController@perfil');
 
-Route::get('actualizarPerfil', 'UsuariosController@actualizar');
+Route::post('actualizarPerfil', 'UsuariosController@actualizar');
 
 // Route::get('ciudades', 'CiudadesController@listado');
 // Route::get('/test/{busqueda?}', 'ProductosController@listado');

@@ -4,12 +4,17 @@
 <?php 
 $producto = false;
 
-$titulo = "Perfil de ".$usuario->name;
-// $fecha = $usuario->fecha_creacion->format('d/m/Y');
-$fecha = date('d/m/Y', strtotime($usuario->fecha_creacion));
+if ($usuario != null) {
+
+    $titulo = "Perfil de ".$usuario->name;
+    // $fecha = $usuario->fecha_creacion->format('d/m/Y');
+    $fecha = date('d/m/Y', strtotime($usuario->fecha_creacion));
+} else {
+    $titulo = '404 - no existe ese usuario';
+} 
 // dd($fecha);
  
-$ciudades = [];
+
 ?>
 @endsection
 
@@ -21,7 +26,7 @@ $ciudades = [];
 
 @section('content')
 <br>
-@if ($usuario->estado == 0)
+@if ($usuario == null)
     <h1>No existe usuario con ese perfil!</h1>
 @else
     <div class="container bootstrap snippet">
@@ -35,9 +40,9 @@ $ciudades = [];
                 <div class="row">
                     <div class="col-2"></div>
                     @if ($usuario->foto != 'error')
-                        <img title="profile image" class="img-circle img-responsive col-12 redondo" src="/storage/profile/{{$usuario->foto}}">
+                        <img title="foto de perfil de {{$usuario->name}}" class="img-circle img-responsive col-12 redondo" src="/storage/profile/{{$usuario->foto}}">
                     @else
-                        <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
+                        <img title="foto de perfil de {{$usuario->name}}" class="img-circle img-responsive col-12" src="../img/user.png">
                     @endif 
                     <div class="col-2"></div>
                 </div>
@@ -60,8 +65,11 @@ $ciudades = [];
                     <li class="list-group-item text-right">
                         <span class="pull-left">
                             <strong>Nombre completo</strong></span> <?php if ($usuario->apellido){ echo $usuario->name.' '.$usuario->apellido; } else echo $usuario->name?></li>
-                    
-                        
+                    @if ($usuario->direccion_id)
+                        <li class="list-group-item text-right">
+                            <span class="pull-left">
+                                <strong>Ciudad</strong></span> {{$usuario->direccion->ciudad}}</li>
+                    @endif
 
                 </ul>
 

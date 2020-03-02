@@ -29,9 +29,9 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
               <div class="row">
                 <div class="col-2"></div>
                 @if ((Auth::user()->foto != 'error')|| (Auth::user()->foto == ''))
-                    <img title="profile image" class="img-circle img-responsive col-12 redondo" src="/storage/profile/{{Auth::user()->foto}}">
+                    <img title="foto de perfil de {{Auth::user()->name}}" class="img-circle img-responsive col-12 redondo" src="/storage/profile/{{Auth::user()->foto}}">
                 @else
-                    <img title="profile image" class="img-circle img-responsive col-12" src="../img/user.png">
+                    <img title="foto de perfil de {{Auth::user()->name}}" class="img-circle img-responsive col-12" src="../img/user.png">
                 @endif 
                 <div class="col-2"></div>
               </div>
@@ -44,7 +44,7 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
             <!--left col-->
 
             <ul class="list-group">
-                <li class="list-group-item text-muted">Perfil</li>
+                <li class="list-group-item text-muted">Perfil <i class="fa fa-user fa-1x"></i></li>
                 <li class="list-group-item text-right">
                     <span class="pull-left">
                         <strong>Perfil creado</strong></span> <?=$fecha?></li>
@@ -57,7 +57,11 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                 <li class="list-group-item text-right">
                     <span class="pull-left">
                         <strong><a style="color:black" href="cerrarSesion.php"> Cerrar Sesión</a></strong></span></li>
-
+            @if (Auth::user()->direccion_id)
+                <li class="list-group-item text-right">
+                    <span class="pull-left">
+                        <strong>Ciudad</strong></span> {{Auth::user()->direccion->ciudad}}</li>
+            @endif
             </ul>
 
             <!-- <div class="panel panel-default">
@@ -214,13 +218,19 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                 <h2>Editar Perfil</h2>
                     <hr>
                     <form class="form" action="/actualizarPerfil" method="post" id="registrationForm"
-                        enctype="multipart/form-data" oninput='pasword_confirmation.setCustomValidity(pasword_confirmation.value != pass.value ? "Las contraseñas no coinciden." : "")'>
+                        enctype="multipart/form-data" oninput='pasword_confirmation.setCustomValidity(pasword_confirmation.value != password.value ? "Las contraseñas no coinciden." : "")'>
+                        {{ csrf_field() }}
                         <div class="form-group">
                                 
                             <div class="col-xs-6">
                                 <label for="name">
                                     <h4>Nombre(s)</h4></label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre(s)" title="enter your first name if any." value='{{old('name')}}'>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Nombre(s)" title="enter your first name if any." value='{{old('name') ?? Auth::user()->name}}'>
+                                @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
@@ -228,7 +238,12 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                             <div class="col-xs-6">
                                 <label for="apellido">
                                     <h4>Apellido(s)</h4></label>
-                                <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido(s)" title="enter your last name if any." value='{{old('apellido')}}'>
+                                <input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" id="apellido" placeholder="Apellido(s)" title="enter your last name if any." value='{{old('apellido') ?? Auth::user()->apellido}}'>
+                                @error('apellido')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                             </div>
                         </div>
 
@@ -237,7 +252,12 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                             <div class="col-xs-6">
                                 <label for="telefono">
                                     <h4>Teléfono</h4></label>
-                                <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono" title="enter your telefono number if any." value='{{old('telefono')}}''>
+                                <input type="number" class="form-control @error('telefono') is-invalid @enderror" name="telefono" id="telefono" placeholder="Teléfono" title="enter your telefono number if any." value='{{old('telefono') ?? Auth::user()->telefono}}''>
+                                @error('telefono')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                             </div>
                         </div>
 
@@ -245,7 +265,7 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                             <div class="col-xs-6">
                                 <label for="mobile">
                                     <h4>Mobile</h4></label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
                             </div>
                         </div> -->
                         <div class="form-group">
@@ -253,7 +273,12 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                             <div class="col-xs-6">
                                 <label for="email">
                                     <h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value='{{old('email')}}' disabled>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="you@email.com" title="enter your email." value='{{Auth::user()->email}}' disabled>
+                                @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                             </div>
                         </div>
                         
@@ -265,6 +290,11 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                             <?php foreach ($ciudades as $ciudad) : ?>
                             <option value="<?=$ciudad->id?>" name="ciudad_id" > <?=$ciudad->nombre?> </option> 
                             <?php endforeach ?>
+                            @error('ciudad')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         
@@ -273,7 +303,12 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                             <div class="col-xs-6">
                                 <label for="direccion">
                                     <h4>Dirección</h4></label>
-                                <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Avenida San Martín 150" title="enter a location" value='{{old('direccion')}}'>
+                                <input type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" id="direccion" placeholder="Avenida San Martín 150" title="enter a location" value='{{old('direccion') ?? Auth::user()->direccion}}'>
+                                @error('direccion')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                             </div>
                         </div>
 
@@ -283,6 +318,11 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                                 <label for="exampleFormControlFile1"  > <h4> Actualizá tu foto! <i class="zmdi zmdi-camera"></i> </h4>
                                 </label>
                                     <input name="avatar" type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    @error('avatar')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                             </div>
                         </div>
                         <div class="form-group">
@@ -290,15 +330,20 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                             <div class="col-xs-6">
                             <label for="password"><h4>Contraseña</h4></label>
               
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" title="enter your password." >
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Contraseña" title="enter your password." >
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="pasword_confirmation">
+                                <label for="password_confirmation">
                                     <h4>Repita la contraseña</h4></label>
-                                <input type="password" class="form-control" name="pasword_confirmation" id="pasword_confirmation" placeholder="Repetir Contraseña" title="enter your password again." >
+                                <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Repetir Contraseña" title="enter your password again." >
                             </div>
                         </div>
                         <div class="form-group">
