@@ -67,11 +67,16 @@ Route::get('/faq', function () {
     return view('faq');
 });
 
+
+Route::get('/checkout', function () {
+    return view('checkout');
+});
+
+//cart
+
 Route::get('/cart', function () {
     return view('cart');
 });
-
-//TEST 
 
 Route::get('add-to-cart/{id}', 'ProductosController@addToCart');
 

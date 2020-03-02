@@ -3,7 +3,7 @@
 @section('php')
 <?php 
 $producto = false;
-
+// dd($usuario);
 if ($usuario != null) {
 
     $titulo = "Perfil de ".$usuario->name;
@@ -65,11 +65,12 @@ if ($usuario != null) {
                     <li class="list-group-item text-right">
                         <span class="pull-left">
                             <strong>Nombre completo</strong></span> <?php if ($usuario->apellido){ echo $usuario->name.' '.$usuario->apellido; } else echo $usuario->name?></li>
-                    @if ($usuario->direccion_id)
+                    {{-- @if ($usuario->id_direccion)
                         <li class="list-group-item text-right">
                             <span class="pull-left">
-                                <strong>Ciudad</strong></span> {{$usuario->direccion->ciudad}}</li>
-                    @endif
+                                
+                                <strong>Ciudad</strong></span> {{$usuario->direccion->direccion}}</li>
+                    @endif --}}
 
                 </ul>
 

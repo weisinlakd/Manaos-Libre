@@ -57,11 +57,11 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                 <li class="list-group-item text-right">
                     <span class="pull-left">
                         <strong><a style="color:black" href="cerrarSesion.php"> Cerrar Sesión</a></strong></span></li>
-            @if (Auth::user()->direccion_id)
+            {{-- @if (Auth::user()->direccion_id)
                 <li class="list-group-item text-right">
                     <span class="pull-left">
                         <strong>Ciudad</strong></span> {{Auth::user()->direccion->ciudad}}</li>
-            @endif
+            @endif --}}
             </ul>
 
             <!-- <div class="panel panel-default">

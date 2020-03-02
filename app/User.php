@@ -50,5 +50,9 @@ class User extends Authenticatable
     public function comentarios () {
         return $this->hasMany('App\Comentario', 'id_usuario');
     }
+
+    public function direccion () {
+        return $this->belongsTo('App\Direccion', 'id_direccion');
+    }
     
 }
