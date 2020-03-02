@@ -290,6 +290,7 @@ $fecha = date('d/m/Y', strtotime(Auth::user()->fecha_creacion));
                             <?php foreach ($ciudades as $ciudad) : ?>
                             <option value="<?=$ciudad->id?>" name="ciudad_id" > <?=$ciudad->nombre?> </option> 
                             <?php endforeach ?>
+                            </select>
                             @error('ciudad')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

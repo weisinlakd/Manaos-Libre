@@ -70,6 +70,8 @@ Route::get('/faq', function () {
 
 Route::get('/checkout', 'VentasController@data');
 
+Route::post('/procesarPago', 'VentasController@pagar');
+
 //cart
 
 Route::get('/cart', function () {
