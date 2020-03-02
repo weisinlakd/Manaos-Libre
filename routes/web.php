@@ -68,9 +68,7 @@ Route::get('/faq', function () {
 });
 
 
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+Route::get('/checkout', 'VentasController@data');
 
 //cart
 

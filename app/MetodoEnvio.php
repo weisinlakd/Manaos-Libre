@@ -12,4 +12,7 @@ class MetodoEnvio extends Model
     public $timestamps  = false;
     public $guarded = [];
 
+    public function empresa () {
+        return $this->belongsTo('App\EmpresaEnvio', 'id_empresa');
+    }
 }

@@ -90,6 +90,12 @@ $tituloPag = "Completá tus datos";
                             <div class="payment-method">
                                 <h3>Método de Envío</h3>
                                 <ul>
+                                    <label for="metodo_envio"><h4>Elegí tu forma de envío</h4></label><br>
+                                    <span class="text-muted">Demora / Método / Empresa / Sucursal / Precio</span>
+                                    <select name="metodo_envio" id="metodo_envio"  class="js-example-basic-single" placeholder="buscá tu método" value='{{old('metodo_envio')}}'>
+                                    @foreach ($metodosEnvio as $metodoEnvio)
+                                    <option value="<?=$metodoEnvio->id?>" name="metodoEnvio_id" > {{floor($metodoEnvio->tiempo_envio / 24)}} días || <?=$metodoEnvio->name?> || {{$metodoEnvio->empresa->name}} || {{$metodoEnvio->empresa->direccion->direccion}}, {{$metodoEnvio->empresa->direccion->ciudad->nombre}}, {{$metodoEnvio->empresa->direccion->ciudad->provincia}} || ${{$metodoEnvio->costo_envio}}</option> 
+                                    @endforeach
                                     <li><label for="efectivo">Paypal <img src="../img/paypal.jpg" alt="paypal"></label><input type="radio" name="efectivo" id="efectivo"></li>
                                     <li><label for="tarjeta">Tarjeta de Crédito / Débito <img src="../img/mastercard.jpg" alt="master"></label><input type="radio" name="tarjeta" id="tarjeta"></li>
                                     <li>
@@ -166,4 +172,14 @@ $tituloPag = "Completá tus datos";
         </form>
     </div>
 </section>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+        $('.js-example-basic-single').selectize({
+            sortField: 'text'
+        });
+    });
+    </script>
 @endsection
