@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\EmpresaEnvio;
 use App\MetodoEnvio;
 use App\MetodoPagoEspecifico;
+use App\Venta;
+use Illuminate\Support\Facades\Auth;
 
 class VentasController extends Controller
 {
@@ -20,12 +22,7 @@ class VentasController extends Controller
 
     public function pagar(Request $req) {
 
-        // if(($req['cc-selected'] && $req['tb-selected']) 
-        //     || ($req['cc-selected'] && $req['pf-selected']) 
-        //     || ($req['pf-selected'] && $req['tb-selected']) 
-        // ) {  //Chequeo que solo un tipo de pago este seleccionado
-        //     return redirect()->back();
-        // }
+        
 
         if ($req['cc-selected']){
 
@@ -54,7 +51,8 @@ class VentasController extends Controller
             $fechaActual = date_create(null);
 
             $dateDiff = date_diff($fechaActual, $fecha);
-            if ($dateDiff->invert == 0){
+            // dd($dateDiff);
+            if ($dateDiff->invert == 1){
                 return redirect()->back();
             }
 
@@ -62,8 +60,13 @@ class VentasController extends Controller
             $metodo->id_metodo_pago = 4;
             
 
-            $metodo->save();
-            dd($metodo);
+            //try {
+                    
+            //     $metodo->save();
+            // } catch (\Throwable $th) {
+            //     throw $th;
+            // } SACAR COMENTARIO DESPUES DE TERMINAR PRIMERA VENTA
+            // dd($metodo);
 
         }
 
@@ -87,7 +90,12 @@ class VentasController extends Controller
             $metodo->cbu = $req['tb-cbu'];
             $metodo->id_metodo_pago = 5;
 
-            $metodo->save();
+            try {
+                
+                $metodo->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
 
         }
 
@@ -109,10 +117,23 @@ class VentasController extends Controller
                 $metodo = new MetodoPagoEspecifico();
                 $metodo->titular = $req['pf-name'];
                 $metodo->id_metodo_pago = 1;
-                $metodo->save();
+                try {
+                    
+                    $metodo->save();
+                } catch (\Throwable $th) {
+                    throw $th;
+                }
         }
 
 
         //ACEPTADO EL PAGO SE PROCEDE A LA VENTA
+
+        $venta = new Venta();
+
+        $venta->id_comprador = Auth::user()->id;
+        $venta->id_direccion_envio = Auth::user()->direccion->id;
+        $venta->id_metodo_envio = $req['metodo_envio'];
+        $venta->id_metodo_pago_especifico = $metodo->id;
+        dd($venta);
     }
 }
