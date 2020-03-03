@@ -61,12 +61,13 @@ class VentasController extends Controller
             $metodo->id_metodo_pago = 4;
             
 
-            //try {
+            // SACAR COMENTARIO DESPUES DE TERMINAR PRIMERA VENTA
+            try {
                     
-            //     $metodo->save();
-            // } catch (\Throwable $th) {
-            //     throw $th;
-            // } SACAR COMENTARIO DESPUES DE TERMINAR PRIMERA VENTA
+                $metodo->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            } 
             // dd($metodo);
 
         }
@@ -141,7 +142,9 @@ class VentasController extends Controller
         }
 
         $venta->precio = $precio;
-        // $venta->save(); //SACAR COMENTARIO AL TERMINAR VENTA_DETALLE
+
+        //SACAR COMENTARIO AL TERMINAR VENTA_DETALLE
+        $venta->save(); 
         
         
         foreach (session('cart') as $id => $producto) {
@@ -153,8 +156,9 @@ class VentasController extends Controller
 
             
             // dd($ventaDetalle);
-            // $ventaDetalle->save();
+            $ventaDetalle->save();
         }
+        
         dd($venta);
     }
 }
