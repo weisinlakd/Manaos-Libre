@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Ciudad;
+use App\Producto;
+use App\Venta;
+use App\VentasDetalle;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -104,4 +107,17 @@ class UsuariosController extends Controller
         return view ('perfilAjeno', compact('usuario'));
     }
 
+    public function compras () {
+
+        $compras = Venta::where('id_comprador', '=' , Auth::user()->id);
+
+        // dd(Auth::user()->compras);
+        // dd($compras[1]->VentasDetalle[0]->producto);
+        if ($compras != null) {
+            $total = $compras->count();
+            $compras = $compras->paginate(6);
+        }
+
+        return view('compras', compact('compras', 'total'));
+    }
 }

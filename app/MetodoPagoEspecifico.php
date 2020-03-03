@@ -12,4 +12,7 @@ class MetodoPagoEspecifico extends MetodoPago
     public $timestamps  = false;
     public $guarded = [];
 
+    public function metodoPago () {
+        return $this->belongsTo('App\MetodoPago', 'id_metodo_pago');
+    }
 }

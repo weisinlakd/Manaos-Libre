@@ -72,6 +72,8 @@ Route::get('/checkout', 'VentasController@data');
 
 Route::post('/procesarPago', 'VentasController@pagar');
 
+Route::get('/compras', 'UsuariosController@compras');
+
 //cart
 
 Route::get('/cart', function () {
