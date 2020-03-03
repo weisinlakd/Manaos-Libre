@@ -41,21 +41,29 @@ class VentasController extends Controller
                 'string' => 'El campo :attribute debe tener caracteres alfanuméricos.',
                 'numeric' => 'El campo :attribute debe tener caracteres numéricos.',
                 'digits' => 'El campo :attribute debe tener :digits caracteres.'
-                ]);
+                ]
+            );
 
-            $tarjeta = new MetodoPagoEspecifico();
-            $tarjeta->titular = $req['cc-name'];
-            $tarjeta->numero_tarjeta = $req['cc-number'];
-            $tarjeta->cvv = $req['cc-cvv'];
+            $metodo = new MetodoPagoEspecifico();
+            $metodo->titular = $req['cc-name'];
+            $metodo->numero_tarjeta = $req['cc-number'];
+            $metodo->cvv = $req['cc-cvv'];
 
             $fecha = str_replace('/', '-', $req['cc-expiration']);
             $fecha = date_create_from_format('m-y', $fecha);
+            $fechaActual = date_create(null);
 
-            $tarjeta->fecha_vencimiento = $fecha;
-            $tarjeta->id_metodo_pago = 4;
+            $dateDiff = date_diff($fechaActual, $fecha);
+            if ($dateDiff->invert == 0){
+                return redirect()->back();
+            }
+
+            $metodo->fecha_vencimiento = $fecha;
+            $metodo->id_metodo_pago = 4;
             
-            $tarjeta->save();
-            dd($tarjeta);
+
+            $metodo->save();
+            dd($metodo);
 
         }
 
@@ -71,10 +79,16 @@ class VentasController extends Controller
                 'string' => 'El campo :attribute debe tener caracteres alfanuméricos.',
                 'numeric' => 'El campo :attribute debe tener caracteres numéricos.',
                 'digits' => 'El campo :attribute debe tener :digits caracteres.'
-                ]);
+                ]
+            );
 
-            // dd($req);
-            dd('entro por transferencia ok');
+            $metodo = new MetodoPagoEspecifico();
+            $metodo->titular = $req['tb-name'];
+            $metodo->cbu = $req['tb-cbu'];
+            $metodo->id_metodo_pago = 5;
+
+            $metodo->save();
+
         }
 
         if ($req['pf-selected']){
@@ -89,11 +103,16 @@ class VentasController extends Controller
                 'max' => 'El campo :attribute debe tener :max caracteres como máximo.',
                 'string' => 'El campo :attribute debe tener caracteres alfanuméricos.',
                 
-                ]);
+                ]
+            );
 
-            // dd($req);
-            dd('entro por pagoFacil ok');
+                $metodo = new MetodoPagoEspecifico();
+                $metodo->titular = $req['pf-name'];
+                $metodo->id_metodo_pago = 1;
+                $metodo->save();
         }
 
+
+        //ACEPTADO EL PAGO SE PROCEDE A LA VENTA
     }
 }
