@@ -25,18 +25,25 @@
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-10">
-                     
+                    @isset($compras)
+                    
+                    @else
                     <?php
                     $idProducto = $producto->id;
                     $valoracion = floor($producto->valoracion/2);
                     ?>
                     @include('inserts.ratings-detalle')
                     
+                    @endisset 
                 </div>
             </div>
             <br>
+            @isset($compras)
+            <a href="/producto/{{$producto->id}}" class="btn btn-primary pull-right">></a>  
+            @else
             <a href="/producto/{{$producto->id}}" class="btn btn-primary">Ver</a>  
             <a href="/add-to-cart/{{$producto->id}}" class="btn btn-primary">Comprar</a>
+            @endisset
         </div>						
     </div>
     <br>

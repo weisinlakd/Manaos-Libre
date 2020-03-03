@@ -11,8 +11,13 @@
         $tituloPag = 'No realizaste ninguna compra!';
     }
 
+    
 ?>    
+ 
 @endsection
+
+
+
 
 @section('content')
     @include('inserts.anuncioYtitulo')
@@ -22,33 +27,44 @@
                 
             <div class="row">
                 @foreach ($compras as $compra)
-                    <ul>
-                        {{-- {{dd($compra->ventasDetalle)}} --}}
-                        <li>Precio: {{$compra->precio}}</li>
-                        <li>Fecha: {{$compra->fecha_venta}}</li>
-                        <li>Dirección de Envío: {{$compra->direccion->direccion}}, {{$compra->direccion->ciudad->nombre}}, {{$compra->direccion->ciudad->provincia}}</li>
-                        <li>Método de pago: 
-                            @if ($compra->metodoPagoEspecifico->cvv)
-                               Tarjeta con CVV {{$compra->metodoPagoEspecifico->cvv}}.
-                            @elseif ($compra->metodoPagoEspecifico->cbu)
-                                Transferencia Bancaria 
-                            @else 
-                                Pago Fácil
-                            @endif
-                        </li>
-                        <li>Método de Envío: {{$compra->metodoEnvio->name}} a través de {{$compra->metodoEnvio->empresa->name}}.</li>
-                        <ul>
-                            Productos:
-                            @foreach ($compra->ventasDetalle as $ventasDetalle)
-                                {{$producto = $ventasDetalle->producto}}
-                                    @include('inserts.producto')
-                                
-                            @endforeach
-                            
-                        </ul>
-                    </ul>
-                    
+                    <div class="card col-6">
 
+                        <ul>
+                            <div class="card-body">
+                                <li><h2 class="pull-right">Orden N° {{$compra->id}}</h2></li>
+                                <li>Precio total: <h3>${{$compra->precio}}</h3></li>
+                                <li>Fecha: <h3>{{$compra->fecha_venta}}</h3></li>
+                                <li>Dirección de Envío: <h3>{{$compra->direccion->direccion}}, {{$compra->direccion->ciudad->nombre}}, {{$compra->direccion->ciudad->provincia}}</h3></li>
+                                <li>Método de pago: 
+                                    <h3>
+                                        @if ($compra->metodoPagoEspecifico->cvv)
+                                        Tarjeta con CVV {{$compra->metodoPagoEspecifico->cvv}}.
+                                        @elseif ($compra->metodoPagoEspecifico->cbu)
+                                        Transferencia Bancaria 
+                                        @else 
+                                        Pago Fácil
+                                        @endif
+                                    </h3>
+                                </li>
+                                
+                                <li>Método de Envío: <h3>{{$compra->metodoEnvio->name}} a través de {{$compra->metodoEnvio->empresa->name}}.</h3></li>
+                                <li>Productos:</li>
+                            </div>
+                                <ul>
+                                    
+                                    @foreach ($compra->ventasDetalle as $ventasDetalle)
+                                    <?php $producto = $ventasDetalle->producto; 
+                                            $compra = true; ?>
+                                    <div>
+
+                                        @include('inserts.producto-home')                              
+                                    </div>
+                                    @endforeach
+                                    
+                                </ul>
+                        </ul>                  
+                        
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -58,4 +74,8 @@
             {{$compras->links()}}
         </div>
     @endif
+@endsection
+
+@section('script')
+
 @endsection

@@ -121,7 +121,8 @@
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/perfil">Logeado como {{Auth::user()->name}} </a>
-                    <a class="dropdown-item" href="/perfil#settings">Editar perfil</a>
+                    <a class="dropdown-item" href="/compras">Mis Compras</a>
+                    <a class="dropdown-item" href="/ventas">Mis Ventas</a>
                     <a class="dropdown-item" href="/crearPublicacion">Crear Publicación</a>
                     <div class="dropdown-divider"></div>
                     
