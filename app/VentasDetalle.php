@@ -14,4 +14,8 @@ class VentasDetalle extends Venta
     public function producto () {
         return $this->belongsTo('App\Producto', 'id_producto');
     }
+
+    public function venta () {
+        return $this->belongsTo('App\Venta', 'id_venta');
+    }
 }

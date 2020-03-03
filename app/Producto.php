@@ -49,4 +49,8 @@ class Producto extends Model
             return $valoracion / $i;
         } else return 0; 
     }
+
+    public function vendido () {
+        return $this->hasMany('App\VentasDetalle', 'id_producto');
+    }
 }

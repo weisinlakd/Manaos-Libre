@@ -8,8 +8,12 @@ use App\Ciudad;
 use App\Producto;
 use App\Venta;
 use App\VentasDetalle;
+use App\Usuario;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Collection;
 
 class UsuariosController extends Controller
 {
@@ -119,5 +123,33 @@ class UsuariosController extends Controller
         }
 
         return view('compras', compact('compras', 'total'));
+    }
+
+    public function ventas () {
+
+        $productos = Producto::where('id_usuario', '=', Auth::user()->id)->get();
+
+        $arrProd = [];
+        
+        foreach ($productos as $producto) {
+            // dd($producto->vendido);
+            if ($producto->vendido->isEmpty()){
+                continue;
+            }
+
+            $arrProd[] = $producto;
+        }
+        // $venta = VentasDetalle->producto();
+        // dd($arrProd);
+        
+        if (count($arrProd) == 0){
+            $ventas = null;
+        } else {
+
+            $ventas = $arrProd;
+        }
+
+        // dd($ventas);
+        return view('ventas', compact('ventas'));
     }
 }

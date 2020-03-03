@@ -6,7 +6,7 @@
     $titulo = 'Mis Compras';
     if ($compras != null){
 
-        $tituloPag = 'Mis Compras ('.count($compras).")";
+        $tituloPag = 'Mis Compras ('.$total.")";
     } else {
         $tituloPag = 'No realizaste ninguna compra!';
     }
@@ -31,11 +31,11 @@
 
                         <ul>
                             <div class="card-body">
-                                <li><h2 class="pull-right">Orden N° {{$compra->id}}</h2></li>
-                                <li>Precio total: <h3>${{$compra->precio}}</h3></li>
-                                <li>Fecha: <h3>{{$compra->fecha_venta}}</h3></li>
-                                <li>Dirección de Envío: <h3>{{$compra->direccion->direccion}}, {{$compra->direccion->ciudad->nombre}}, {{$compra->direccion->ciudad->provincia}}</h3></li>
-                                <li>Método de pago: 
+                                <li class="border-bottom"><h2 class="pull-right">Orden N° {{$compra->id}}</h2></li>
+                                <li class="border-bottom">Precio total: <h3>${{$compra->precio}}</h3></li>
+                                <li class="border-bottom">Fecha: <h3>{{$compra->fecha_venta}}</h3></li>
+                                <li class="border-bottom">Dirección de Envío: <h3>{{$compra->direccion->direccion}}, {{$compra->direccion->ciudad->nombre}}, {{$compra->direccion->ciudad->provincia}}</h3></li>
+                                <li class="border-bottom">Método de pago: 
                                     <h3>
                                         @if ($compra->metodoPagoEspecifico->cvv)
                                         Tarjeta con CVV {{$compra->metodoPagoEspecifico->cvv}}.
@@ -47,8 +47,8 @@
                                     </h3>
                                 </li>
                                 
-                                <li>Método de Envío: <h3>{{$compra->metodoEnvio->name}} a través de {{$compra->metodoEnvio->empresa->name}}.</h3></li>
-                                <li>Productos:</li>
+                                <li class="border-bottom">Método de Envío: <h3>{{$compra->metodoEnvio->name}} a través de {{$compra->metodoEnvio->empresa->name}}.</h3></li>
+                                {{-- <li class="border-bottom"><h3>Productos:</h3></li> --}}
                             </div>
                                 <ul>
                                     

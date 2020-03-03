@@ -50,6 +50,10 @@ Route::get('perfil/{id}', 'UsuariosController@perfil');
 
 Route::post('actualizarPerfil', 'UsuariosController@actualizar');
 
+Route::get('/compras', 'UsuariosController@compras');
+
+Route::get('/ventas', 'UsuariosController@ventas');
+
 // Route::get('ciudades', 'CiudadesController@listado');
 // Route::get('/test/{busqueda?}', 'ProductosController@listado');
 
@@ -72,7 +76,7 @@ Route::get('/checkout', 'VentasController@data');
 
 Route::post('/procesarPago', 'VentasController@pagar');
 
-Route::get('/compras', 'UsuariosController@compras');
+
 
 //cart
 
