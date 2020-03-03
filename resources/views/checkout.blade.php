@@ -201,41 +201,49 @@ input[type="radio"] {
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tarjeta">
                                     <h2>Tarjeta</h2>
-                                    <input type="checkbox" name="cc-selected" id="cc-selected">
+                                    <input type="checkbox" name="cc-selected" id="cc-selected" checked>
                                     <label for="cc-selected">Seleccionar para pagar con tarjeta</label>
                                     <br>
                                     <br>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                           <label for="cc-name">Nombre del titular</label>
-                                          <input type="text" name="cc-name"  class="form-control tarjeta" id="cc-name" placeholder="" required>
+                                          <input type="text" name="cc-name"  class="form-control tarjeta @error('cc-name') is-invalid @enderror" id="cc-name" placeholder="" required  value="{{old('cc-name')}}">
                                           <small class="text-muted">Nombre impreso en la tarjeta</small>
-                                          <div class="invalid-feedback">
-                                            Name on card is required
-                                          </div>
+                                            @error('cc-name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                         <div class="col-md-6 mb-3">
                                           <label for="cc-number">Numero de la tarjeta</label>
-                                          <input type="text" name="cc-number"  class="form-control tarjeta" id="cc-number" placeholder="" required>
-                                          <div class="invalid-feedback">
-                                            Credit card number is required
-                                          </div>
+                                          <input type="number" name="cc-number"  class="form-control tarjeta @error('cc-name') is-invalid @enderror" id="cc-number" placeholder="" required value="{{old('cc-number')}}">
+                                            @error('cc-number')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                       </div>
                                       <div class="row">
                                         <div class="col-md-3 mb-3">
                                           <label for="cc-expiration">Fecha de Vencimiento</label>
-                                          <input type="text" name="cc-expiration"  class="form-control tarjeta" id="cc-expiration" placeholder="" required>
-                                          <div class="invalid-feedback">
-                                            Expiration date required
-                                          </div>
+                                          <input type="string" name="cc-expiration" class="form-control tarjeta @error('cc-expiration') is-invalid @enderror" id="cc-expiration" placeholder="MM/YY" required value="{{old('cc-expiration')}}">
+                                            @error('cc-expiration')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                          <label for="cc-expiration">CVV</label>
-                                          <input type="text" name="cc-cvv"  class="form-control tarjeta" id="cc-cvv" placeholder="" required>
-                                          <div class="invalid-feedback">
-                                            Security code required
-                                          </div>
+                                          <label for="cc-cvv">CVV</label>
+                                          <input type="number" name="cc-cvv"  class="form-control tarjeta @error('cc-cvv') is-invalid @enderror" id="cc-cvv" placeholder="XXX" required value="{{old('cc-cvv')}}">
+                                            @error('cc-cvv')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                       </div>
                                 </div>
@@ -250,43 +258,30 @@ input[type="radio"] {
                                     <br>
                                     <br>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-12 mb-6">
                                           <label for="tb-name">Nombre del titular</label>
-                                          <input type="text"   name="tb-name" class="form-control transferencia" id="tb-name" placeholder="" >
-                                          <div class="invalid-feedback">
-                                            Name on card is required
-                                          </div>
+                                          <input type="text"   name="tb-name" class="form-control transferencia @error('tb-name') is-invalid @enderror" id="tb-name" placeholder=""  value="{{old('tb-name')}}">
+                                          @error('tb-name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
-                                        <div class="col-md-6 mb-3">
-                                          <label for="tb-number">Cuenta Bancaria</label>
-                                          <input type="text"  name="tb-number"  class="form-control transferencia" id="tb-number" placeholder="" >
-                                          <div class="invalid-feedback">
-                                            Credit card number is required
-                                          </div>
-                                        </div>
+                                    
                                       </div>
                                       <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                          <label for="tb-alias">Alias</label>
-                                          <input type="text"   name="tb-alias" class="form-control transferencia" id="tb-alias" placeholder="" >
-                                          <div class="invalid-feedback">
-                                            aliasrequired
-                                          </div>
+                                        
+                                        <div class="col-md-12 mb-6">
+                                          <label for="tb-cbu">CBU</label>
+                                          <input type="number"  name="tb-cbu"  class="form-control transferencia @error('tb-cbu') is-invalid @enderror" id="tb-cbu" placeholder="" value="{{old('tb-cbu')}}">
+                                          @error('tb-cbu')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        <br>
                                         </div>
-                                        <div class="col-md-3 mb-3">
-                                          <label for="tb-expiration">CVU</label>
-                                          <input type="text"  name="tb-cvu"  class="form-control transferencia" id="tb-cvu" placeholder="" >
-                                          <div class="invalid-feedback">
-                                            CVU required
-                                          </div>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="tb-expiration">dni</label>
-                                            <input type="text"   name="tb-dni" class="form-control transferencia" id="tb-dni" placeholder="" >
-                                            <div class="invalid-feedback">
-                                              Security code required
-                                            </div>
-                                          </div>
+                                        
                                       </div>
                                 </div>
                                 <div class="tab-pane" id="pago_facil">
@@ -298,10 +293,12 @@ input[type="radio"] {
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                           <label for="pf-name">Nombre</label>
-                                          <input type="text" name="pf-name" class="form-control pagoFacil" id="pf-name" placeholder="" >
-                                          <div class="invalid-feedback">
-                                            Name on card is required
-                                          </div>
+                                          <input type="text" name="pf-name" class="form-control pagoFacil @error('pf-name') is-invalid @enderror" id="pf-name" placeholder="" value="{{old('pf-name')}}">
+                                          @error('pf-name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         
                                         
