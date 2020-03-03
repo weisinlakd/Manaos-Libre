@@ -201,14 +201,14 @@ input[type="radio"] {
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tarjeta">
                                     <h2>Tarjeta</h2>
-                                    {{-- <input type="checkbox" name="cc-selected" id="cc-selected">
-                                    <label for="cc-selected">Seleccionar para pagar con tarjeta</label> --}}
+                                    <input type="checkbox" name="cc-selected" id="cc-selected">
+                                    <label for="cc-selected">Seleccionar para pagar con tarjeta</label>
                                     <br>
                                     <br>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                           <label for="cc-name">Nombre del titular</label>
-                                          <input type="text" class="form-control tarjeta" id="cc-name" placeholder="" required>
+                                          <input type="text" name="cc-name"  class="form-control tarjeta" id="cc-name" placeholder="" required>
                                           <small class="text-muted">Nombre impreso en la tarjeta</small>
                                           <div class="invalid-feedback">
                                             Name on card is required
@@ -216,7 +216,7 @@ input[type="radio"] {
                                         </div>
                                         <div class="col-md-6 mb-3">
                                           <label for="cc-number">Numero de la tarjeta</label>
-                                          <input type="text" class="form-control tarjeta" id="cc-number" placeholder="" required>
+                                          <input type="text" name="cc-number"  class="form-control tarjeta" id="cc-number" placeholder="" required>
                                           <div class="invalid-feedback">
                                             Credit card number is required
                                           </div>
@@ -225,14 +225,14 @@ input[type="radio"] {
                                       <div class="row">
                                         <div class="col-md-3 mb-3">
                                           <label for="cc-expiration">Fecha de Vencimiento</label>
-                                          <input type="text" class="form-control tarjeta" id="cc-expiration" placeholder="" required>
+                                          <input type="text" name="cc-expiration"  class="form-control tarjeta" id="cc-expiration" placeholder="" required>
                                           <div class="invalid-feedback">
                                             Expiration date required
                                           </div>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                           <label for="cc-expiration">CVV</label>
-                                          <input type="text" class="form-control tarjeta" id="cc-cvv" placeholder="" required>
+                                          <input type="text" name="cc-cvv"  class="form-control tarjeta" id="cc-cvv" placeholder="" required>
                                           <div class="invalid-feedback">
                                             Security code required
                                           </div>
@@ -252,14 +252,14 @@ input[type="radio"] {
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                           <label for="tb-name">Nombre del titular</label>
-                                          <input type="text" class="form-control transferencia" id="tb-name" placeholder="" >
+                                          <input type="text"   name="tb-name" class="form-control transferencia" id="tb-name" placeholder="" >
                                           <div class="invalid-feedback">
                                             Name on card is required
                                           </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                           <label for="tb-number">Cuenta Bancaria</label>
-                                          <input type="text" class="form-control transferencia" id="tb-number" placeholder="" >
+                                          <input type="text"  name="tb-number"  class="form-control transferencia" id="tb-number" placeholder="" >
                                           <div class="invalid-feedback">
                                             Credit card number is required
                                           </div>
@@ -268,21 +268,21 @@ input[type="radio"] {
                                       <div class="row">
                                         <div class="col-md-3 mb-3">
                                           <label for="tb-alias">Alias</label>
-                                          <input type="text" class="form-control transferencia" id="tb-alias" placeholder="" >
+                                          <input type="text"   name="tb-alias" class="form-control transferencia" id="tb-alias" placeholder="" >
                                           <div class="invalid-feedback">
                                             aliasrequired
                                           </div>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                           <label for="tb-expiration">CVU</label>
-                                          <input type="text" class="form-control transferencia" id="tb-cvu" placeholder="" >
+                                          <input type="text"  name="tb-cvu"  class="form-control transferencia" id="tb-cvu" placeholder="" >
                                           <div class="invalid-feedback">
                                             CVU required
                                           </div>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="tb-expiration">dni</label>
-                                            <input type="text" class="form-control transferencia" id="tb-dni" placeholder="" >
+                                            <input type="text"   name="tb-dni" class="form-control transferencia" id="tb-dni" placeholder="" >
                                             <div class="invalid-feedback">
                                               Security code required
                                             </div>
@@ -298,7 +298,7 @@ input[type="radio"] {
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                           <label for="pf-name">Nombre</label>
-                                          <input type="text" class="form-control pagoFacil" id="pf-name" placeholder="" >
+                                          <input type="text" name="pf-name" class="form-control pagoFacil" id="pf-name" placeholder="" >
                                           <div class="invalid-feedback">
                                             Name on card is required
                                           </div>
@@ -330,23 +330,29 @@ input[type="radio"] {
         });
     });
 
+    //FALTA SACAR LOS CHECKS
     $('#tb-selected').click(()=>{
         $('.tarjeta').removeAttr('required');
         $('.pagoFacil').removeAttr('required');
         $('.transferencia').attr('required', 'required');
-        
+        $('#cc-selected').prop('checked', false);
+        $('#pf-selected').prop('checked', false);
     })
 
     $('#pf-selected').click(()=>{
         $('.tarjeta').removeAttr('required');
         $('.transferencia').removeAttr('required');
         $('.pagoFacil').attr('required', 'required');
+        $('#cc-selected').prop('checked', false);
+        $('#tb-selected').prop('checked', false);
     })
 
     $('#cc-selected').click(()=>{
         $('.pagoFacil').removeAttr('required');
         $('.transferencia').removeAttr('required');
         $('.tarjeta').attr('required', 'required');
+        $('#pf-selected').prop('checked', false);
+        $('#tb-selected').prop('checked', false);
     })
 
     $(function() {

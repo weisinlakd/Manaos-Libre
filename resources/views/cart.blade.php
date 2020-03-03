@@ -65,7 +65,11 @@
         <td><a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Seguir comprando</a></td>
         <td colspan="2" class="hidden-xs"></td>
         <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
+        @if (!session('cart'))
+        <td><a href="{{ url('/checkout') }}" class="btn btn-warning disabled">Checkout <i class="fa fa-angle-right"></i></a></td>
+        @else
         <td><a href="{{ url('/checkout') }}" class="btn btn-warning">Checkout <i class="fa fa-angle-right"></i></a></td>
+        @endif
     </tr>
     </tfoot>
 </table>
