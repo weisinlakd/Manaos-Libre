@@ -7,6 +7,7 @@ use App\EmpresaEnvio;
 use App\MetodoEnvio;
 use App\MetodoPagoEspecifico;
 use App\Venta;
+use App\VentasDetalle;
 use Illuminate\Support\Facades\Auth;
 
 class VentasController extends Controller
@@ -129,11 +130,31 @@ class VentasController extends Controller
         //ACEPTADO EL PAGO SE PROCEDE A LA VENTA
 
         $venta = new Venta();
-
         $venta->id_comprador = Auth::user()->id;
         $venta->id_direccion_envio = Auth::user()->direccion->id;
         $venta->id_metodo_envio = $req['metodo_envio'];
         $venta->id_metodo_pago_especifico = $metodo->id;
+
+        $precio = 0;
+        foreach (session('cart') as $id => $producto) {
+            $precio += ($producto['precio']* $producto['quantity']);
+        }
+
+        $venta->precio = $precio;
+        // $venta->save(); //SACAR COMENTARIO AL TERMINAR VENTA_DETALLE
+        
+        
+        foreach (session('cart') as $id => $producto) {
+            $ventaDetalle = new VentasDetalle();
+            $ventaDetalle->id_producto = $id;
+            $ventaDetalle->precio_unitario = $producto['precio'];
+            $ventaDetalle->cantidad = $producto['quantity'];
+            $ventaDetalle->id_venta = $venta->id;
+
+            
+            // dd($ventaDetalle);
+            // $ventaDetalle->save();
+        }
         dd($venta);
     }
 }
