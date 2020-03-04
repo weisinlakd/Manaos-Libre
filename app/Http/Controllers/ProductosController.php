@@ -219,7 +219,8 @@ class ProductosController extends Controller
  
         // if cart is empty then this the first product
         if(!$cart) {
- 
+            
+            $foto = isset($producto->fotos[0]) ? "storage/".$producto->fotos[0]->nombre : 'storage/../img/placeholder-home.jpg';
             $cart = [
                     $id => [
                         "name" => $producto->name,                        
@@ -228,7 +229,7 @@ class ProductosController extends Controller
                         "vendedor" => $producto->usuario,
                         "is_usado" => $producto->is_usado,
 
-                        "foto" => "storage/".$producto->fotos[0]->nombre,
+                        "foto" => $foto
 
                     ]
             ];
@@ -250,6 +251,7 @@ class ProductosController extends Controller
         }
  
         // if item not exist in cart then add to cart with quantity = 1
+        $foto = isset($producto->fotos[0]) ? "storage/".$producto->fotos[0]->nombre : 'storage/../img/placeholder-home.jpg';
         $cart[$id] = [
             "name" => $producto->name,                        
             "precio" => $producto->precio,
@@ -257,7 +259,7 @@ class ProductosController extends Controller
             "vendedor" => $producto->usuario,
             "is_usado" => $producto->is_usado,
             
-            // "foto" => $producto->fotos
+            "foto" => $foto
 
         ];
  
