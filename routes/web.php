@@ -27,32 +27,33 @@ Route::get('/producto/{id}', 'ProductosController@detalle');
 
 Route::get('/productos/baratos', 'ProductosController@baratos');
 
-Route::get('/crearPublicacion', 'ProductosController@nuevoProducto');
+Route::get('/crearPublicacion', 'ProductosController@nuevoProducto')->middleware('checkLogin');
 
 Route::post('/crearPublicacion','ProductosController@crear'); 
 
-Route::post('/borrarPublicacion','ProductosController@borrar'); 
+Route::post('/borrarPublicacion','ProductosController@borrar');
+Route::get('/borrarPublicacion')->middleware('checkLogin'); 
 
 Route::get('/recientes', 'ProductosController@recientes');
 
-Route::get('/mas-vendidos', 'ProductosController@hot');
-
 Route::post('/comentar', 'ComentariosController@crear');
+Route::get('/comentar')->middleware('checkLogin');
 
 Route::post('/votar', 'ValoracionesController@votar');
+Route::get('/votar')->middleware('checkLogin');
 
 //USUARIOS
 Auth::routes();
 
-Route::get('perfil', 'CiudadesController@listado');
+Route::get('perfil', 'CiudadesController@listado')->middleware('checkLogin');
 
 Route::get('perfil/{id}', 'UsuariosController@perfil');
 
 Route::post('actualizarPerfil', 'UsuariosController@actualizar');
 
-Route::get('/compras', 'UsuariosController@compras');
+Route::get('/compras', 'UsuariosController@compras')->middleware('checkLogin');
 
-Route::get('/ventas', 'UsuariosController@ventas');
+Route::get('/ventas', 'UsuariosController@ventas')->middleware('checkLogin');
 
 // Route::get('ciudades', 'CiudadesController@listado');
 // Route::get('/test/{busqueda?}', 'ProductosController@listado');
@@ -75,9 +76,11 @@ Route::get('/avanzada', 'SitioController@filtro');
 
 Route::get('/resultados-avanzados', 'ProductosController@filtro');
 
-Route::get('/checkout', 'VentasController@data');
+Route::get('/checkout', 'VentasController@data')->middleware('checkLogin');
 
 Route::post('/procesarPago', 'VentasController@pagar');
+Route::get('/procesarPago')->middleware('checkLogin');
+
 
 
 
