@@ -71,6 +71,9 @@ Route::get('/faq', function () {
     return view('faq');
 });
 
+Route::get('/avanzada', 'SitioController@filtro');
+
+Route::get('/resultados-avanzados', 'ProductosController@filtro');
 
 Route::get('/checkout', 'VentasController@data');
 

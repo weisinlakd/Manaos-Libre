@@ -54,5 +54,9 @@ class User extends Authenticatable
     public function direccion () {
         return $this->belongsTo('App\Direccion', 'id_direccion');
     }
+
+    public function compras () {
+        return $this->hasMany('App\Ventas', 'id_comprador');
+    }
     
 }

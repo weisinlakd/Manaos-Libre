@@ -73,10 +73,10 @@
                     Productos
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/mas-vendidos">Más vendidos</a>
+                    <a class="dropdown-item" href="/productos">Todos</a>
                     <a class="dropdown-item" href="/recientes">Recientemente publicados</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/productos">Todos</a>
+                    <a class="dropdown-item" href="/avanzada">Busqueda Avanzada</a>
                   </div>
                 </li>
                 <li role="separator" class="divider"></li>

@@ -296,4 +296,41 @@ class ProductosController extends Controller
             session()->flash('success', 'Product removed successfully');
         }
     }
+
+    public function filtro(Request $req) {
+        // dd($req);
+        $req->validate(
+            [
+            'ciudad' => 'nullable|numeric',
+            'categoria' => 'nullable|numeric',
+            'usuario' => 'nullable|numeric'
+            ]
+        );
+
+        $productos = Producto::where('estado' ,'=', 1);
+        
+        if ($req['ciudad']) {
+            $productos = $productos->where('ciudad_id', '=', $req['ciudad']);
+        }
+
+        if ($req['categoria']) {
+            $productos = $productos->where('categoria_id', '=', $req['categoria']);
+        }
+
+        if ($req['usuario']) {
+            $productos = $productos->where('id_usuario', '=', $req['usuario']);
+        }
+        
+        $productos = $productos->orderBy('precio')->paginate(8);
+        $total = $productos->total();
+        // dd($total);
+        $token = $req['_token'];
+        $ciudad = isset($req['ciudad']) ? "&ciudad=".$req['ciudad'] : '';
+        $categoria = isset($req['categoria']) ? "&categoria=".$req['categoria'] : '';
+        $usuario = isset($req['usuario']) ? "&usuario=".$req['usuario'] : '';
+        $productos->setPath("http://laravel.test/resultados-avanzados?_token=$token$ciudad$categoria$usuario");
+        // dd($productos);
+        return view('productos', compact('productos', 'total'));
+    }
+
 }
