@@ -14,6 +14,10 @@
     ?>
 @endsection
 
+@section('script')
+   
+@endsection
+
 @section('ads')
     @include('inserts.anuncioYtitulo')
 @endsection
@@ -22,6 +26,12 @@
     <div class="container">
             
         <div class="row">
+            <style>
+                .negro {
+                    background-color: grey!important;
+                    border-radius: 50%;
+                }    
+                </style> 
         @foreach ($productos as $producto) 
             
             @include('inserts.producto')
