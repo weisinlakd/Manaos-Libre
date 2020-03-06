@@ -159,6 +159,8 @@ class VentasController extends Controller
             $ventaDetalle->save();
         }
         
-        dd($venta);
+        // dd($venta);
+        $req->session()->forget('cart');
+        return redirect('/compras');
     }
 }
