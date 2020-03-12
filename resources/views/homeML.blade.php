@@ -1,75 +1,119 @@
-@extends('layouts/default')
+@extends('layouts.default')
 
 @section('php')
-
-    <?php $producto = false;
+    <?php
     $titulo = 'Home';
-    $notHome = false;
+    $notHome = false; 
     ?>
+<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 @endsection
 
 @section('style')
+    
 <style>
-    .carousel-control-prev.hola {
-    left: -90px;
-    }
-    .carousel-control-next.hola {
-    right: -90px;
-    }
-
-    @media screen and (max-width: 600px) {
-      .carousel-control-prev.hola {
-      left: -27px;
+      body {
+        /* background-color: lightgray; */
       }
-      .carousel-control-next.hola {
-      right: -27px;
-      }
-    }
+      .img-home {
+        min-width: 12em;
+        max-width: 12em;
+        min-height: 12em;
+        max-height: 12em;
+        border-radius: 25%;
 
-    .importante {
+      }
+      .importante {
       color: black;
     }
-
-    .img-home {
-      min-width: 12em;
-      max-width: 12em;
-      min-height: 12em;
-      max-height: 12em;
-    }
-
-  </style>
-@endsection
-
-@section('slider-home')
-    @include('inserts.slider-home')
+    </style>
 @endsection
 
 @section('content')
-<div class="row col-12 p-3 text-center m-0"><!-- Informacion General -->
+@include('inserts.slider-home')
+<br>
+<div class="container">
+  
+      <div class="col-md-12">
+
+        <h2><b>Más Votados</h2>
         
-    <br>
+        <br>
+<div class="your-class">
+       
+  @foreach ($masVotados as $producto) 
+  
+  @include('inserts.producto-home')
+  @endforeach
+    </div>
+  </div>
+</div>
 
-     
-      <?php
-        $id = 1;
-        $subtitulo = "Más Votados";
-        $productos = $masVotados;
-      ?>
-      @include('inserts.slider-4-productos')
+<br>
+<div class="container">
+  
+      
+        <h2><b>Más Baratos</h2>
+        <br>
+<div class="your-class">
+       
+  @foreach ($masBaratos as $producto) 
+  
+  @include('inserts.producto-home')
+  @endforeach
+      
+  </div>
+</div>
+@endsection
+
+@section('scripts')
     
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js" defer></script>
 
-      <br>
-    
-    
-      <?php
-        $id = 2;
-        $subtitulo = "Más Baratos";
-        $ofertas = true;
-        $productos = $masBaratos;
-      ?>
-      @include('inserts.slider-4-productos')
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('.your-class').slick({
+        slidesToShow: 4,
+  slidesToScroll: 4,
+  autoplay: true,
+  infinite: false,
+  autoplaySpeed: 4000,
+  dots: true,
+  arrows: true,
+  prevArrow: `<button type="button" class="slick-prev" style="background-color: gray; border-radius: 50%">Previous</button>`,
+  nextArrow: `<button type="button" class="slick-next" style="background-color: gray; border-radius: 50%">Next</button>`,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+    });
+  </script>
 
-
-  </div><!-- (Fin)  Informacion General -->
-  <br>
 @endsection
