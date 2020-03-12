@@ -25,6 +25,7 @@
       }
       .importante {
       color: black;
+      font-size: 3em;
     }
     </style>
 @endsection
