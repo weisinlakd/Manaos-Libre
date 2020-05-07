@@ -132,7 +132,8 @@ class VentasController extends Controller
 
         $venta = new Venta();
         $venta->id_comprador = Auth::user()->id;
-        $venta->id_direccion_envio = Auth::user()->direccion->id;
+        // dd(Auth::user());
+        $venta->id_direccion_envio = 1;
         $venta->id_metodo_envio = $req['metodo_envio'];
         $venta->id_metodo_pago_especifico = $metodo->id;
 
