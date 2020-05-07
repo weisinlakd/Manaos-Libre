@@ -65,14 +65,18 @@ class ProductosController extends Controller
         }
 
         $productos = Producto::where('id_usuario', '=', $producto->id_usuario)->get();
-        $valorAlProd = Valoracion::where('id_usuario', '=', Auth::user()->id)->where('id_producto', '=', $id)->get();
         $disabled = null;
         
-        
-        if (!$valorAlProd->isEmpty()) {
-            $disabled  = true;
-            // dd($valorAlProd);
+        if (Auth::check()){
+            
+            $valorAlProd = Valoracion::where('id_usuario', '=', Auth::user()->id)->where('id_producto', '=', $id)->get();
+            if (!$valorAlProd->isEmpty()) {
+                $disabled  = true;
+                // dd($valorAlProd);
+            }
         }
+        
+        
         if ($productos->isEmpty()) {
             return view('detalleProducto', compact('producto', 'disabled'));
         }
