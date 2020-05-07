@@ -13,9 +13,7 @@
 
     <body>
 
-      <!-- <div id="preloder">
-          <div class="loader"></div>
-      </div> -->
+      
 
     <div class="container-fluid caja p-0 m-0"><!-- Contenedor -->
       @include('../inserts/header')

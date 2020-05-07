@@ -31,6 +31,9 @@
 @endsection
 
 @section('content')
+<div id="preloder">
+  <div class="loader"></div>
+</div>
 @include('inserts.slider-home')
 <br>
 <div class="container">
