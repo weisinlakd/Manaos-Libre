@@ -118,11 +118,11 @@ class ProductosController extends Controller
         
 
         $prodNuevo = new Producto();
-
-        $prodNuevo->id_usuario = 1; //CAMBIAR LUEGO DE HACER USUARIOS
+        // dd($req);
+        $prodNuevo->id_usuario = Auth::user()->id; //CAMBIAR LUEGO DE HACER USUARIOS
         $prodNuevo->name = $req["name"];
-        $prodNuevo->ciudad_id = $req["ciudad_id"]; 
-        $prodNuevo->categoria_id = $req["categoria_id"]; 
+        $prodNuevo->ciudad_id = $req["ciudad"]; 
+        $prodNuevo->categoria_id = $req["categoria"]; 
         $prodNuevo->descripcion = $req["descripcion"];
 
         if (isset($req["is_usado"])) {
