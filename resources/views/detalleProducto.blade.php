@@ -279,9 +279,11 @@
                     <?php 
                         if ($comentario->usuario->foto != 'error'){
                             $foto = $comentario->usuario->foto;
+                            $src = "/storage/profile/$foto";
                         } else {
                             
-                            $foto =  '../img/user.png'; //FALTA VALIDAR LOGICA CUANDO HAYA USUARIOS
+                            $foto =  '/img/user.png'; //FALTA VALIDAR LOGICA CUANDO HAYA USUARIOS
+                            $src = $foto;
                         }
                         $nombre = isset($comentario->apellido) ? $comentario->name." ".$comentario->apellido : $comentario->name;
                         
@@ -298,7 +300,7 @@
                         <li>
                             <div class="comment-main-level col-xs-4">
                                 <!-- Avatar -->
-                            <div class="comment-avatar"><img class="redondo" src="/storage/profile/<?=$foto?>" alt="{{$foto}}"></div>
+                            <div class="comment-avatar"><img class="redondo" src="{{$src}}" alt="{{$foto}}"></div>
                                 <!-- Contenedor del Comentario -->
                                 <div class="comment-box">
                                     <div class="comment-head">
