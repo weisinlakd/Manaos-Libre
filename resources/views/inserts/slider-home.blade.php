@@ -10,7 +10,7 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="d-block d-md-none">
-                  <img src="../img/placeholder-big.jpg" class="d-block w-100" alt="...">
+                  <img src="../img/banner.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="d-none d-md-block d-xl-block">
                   <img src="../img/banner.jpg" class="d-block w-100" alt="...">
@@ -18,7 +18,7 @@
               </div>
               <div class="carousel-item">
                 <div class="d-block d-md-none">
-                  <img src="../img/placeholder-big.jpg" class="d-block w-100" alt="...">
+                  <img src="../img/banner-2.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="d-none d-md-block d-xl-block">
                   <img src="../img/banner-2.jpg" class="d-block w-100" alt="...">
@@ -26,7 +26,7 @@
               </div>
               <div class="carousel-item">
                 <div class="d-block d-md-none">
-                  <img src="../img/placeholder-big.jpg" class="d-block w-100" alt="...">
+                  <img src="../img/banner-3.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="d-none d-md-block d-xl-block">
                   <img src="../img/banner-3.jpg" class="d-block w-100" alt="...">
